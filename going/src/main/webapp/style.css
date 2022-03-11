@@ -1,0 +1,23 @@
+.default_width{
+    width: 1024px;
+    margin: 0 auto;
+}
+.large_text{
+    font-size: 28px;
+}
+.medium_text{
+    font-size: 20px;
+}
+.small_text{
+    font-size: 16px;
+}
+.default_btn{
+    background-color: #ffc107;
+    border: none;
+    color: white;
+    height: 56px;
+    width: 100%;
+}
+.default_padding{
+    padding: 24px 24px 24px 24px;
+}
