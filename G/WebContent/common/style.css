@@ -1,0 +1,129 @@
+.default_width{
+    width: 1024px !important;
+    margin: 0 auto !important;
+}
+.default_padding{
+    padding: 24px 24px 24px 24px;
+}
+.right_text{
+	text-align: right;
+}
+.large_text{
+    font-size: 28px;
+    color:black;
+}
+.medium_text{
+    font-size: 20px;
+    color:black;
+}
+.small_text{
+    font-size: 16px;
+    color:black;
+}
+.gray_text{
+      color: rgba(19, 19, 19, 0.56);
+}
+
+.default_btn{
+    background-color: #ffc107;
+    border: none;
+    color: white;
+    height: 56px;
+    width: 100%;
+}
+.non_deco{
+	text-decoration: none !important;
+}
+.login_form_width{
+	width: 336px;
+	margin: 0 auto;
+	padding-top: 100px;
+}
+.signup_form_width{
+	width: 600px;
+	margin: 0 auto;
+	padding-top: 50px;
+}
+.reserve_detail{
+  width: 1024px;
+  margin: 30px auto 0 auto;
+}
+.reserve_top-img{
+  width: 490px;
+}
+.address, .user_profile, .comment, .reserve_name{
+  color: rgba(19, 19, 19, 0.56);
+}
+.event-bg{
+  background: linear-gradient(to right, #d84f00c4 0%,#ff004ccb 100%);
+}
+.reserve_room{
+  width: 1024px;
+  height: 275px;
+  overflow: hidden;
+  position: relative;
+  margin: 12px 0 12px 0;
+  padding: 23px 24px 24px 424px;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 4px;
+}
+.active{
+  color: #ffc107 !important;
+  font-weight: bold;
+}
+.reserve_pic_view{
+  display: inline-block;
+  position: absolute;
+  top: 23px;
+  left: 23px;
+  width: 376px;
+  height: 226px;
+}
+.reserve_room_title{
+  display: block;
+  height: 100px;
+  padding: 0;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1;
+}
+.reserve_room_btn{
+      width: 100%;
+      height: 48px;
+      margin-top: 20px;
+    }
+.reserve_room_price{
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+	padding-bottom: 10px;
+}
+.form-check-input:checked{
+  background-color: #ffc107;
+}
+.reserve{
+  background: rgba(235, 235, 235, 0.507);
+  margin-top: 39px;
+  font-size: 16px;
+  color: rgba(0,0,0,0.87);
+}
+.reserve_body{
+  margin: 39px 24px 0 24px;
+  padding: 0 0 31px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.reserve_left{
+  width: 564px !important;
+  margin: 40px 88px 0 0;
+}
+.reserve_name{
+  font-size: 20px;
+}
+.reserve_info{
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+.form-check-input:checked{
+  background-color: #ffc107 !important;
+}
+
+
+
