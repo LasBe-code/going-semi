@@ -115,10 +115,10 @@
 	padding-left: 20px;
 }
 .main_categorybox {
-	box-sizing: border-box;
 	margin-top: 100px;
 }
 .main_first_floor {
-	display: flex;
-	justify-content: center;
+	display: grid;
+    grid-template-columns: auto auto;
+    text-align: center
 }
