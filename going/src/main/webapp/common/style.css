@@ -1,0 +1,111 @@
+.default_width{
+    width: 1024px !important;
+    margin: 0 auto;
+}
+.default_padding{
+    padding: 24px 24px 24px 24px;
+}
+.large_text{
+    font-size: 28px;
+    color:black;
+}
+.medium_text{
+    font-size: 20px;
+    color:black;
+}
+.small_text{
+    font-size: 16px;
+    color:black;
+}
+.default_btn{
+    background-color: #ffc107;
+    border: none;
+    color: white;
+    height: 56px;
+    width: 100%;
+}
+/* inquiry css */
+	.inquiry_table_writer{
+		width: 15%;
+	}
+	.inquiry_table_subject{
+		width: 65%;
+	}
+	.inquiry_table_date{
+		width: 20%;
+	}
+	#inquiry_table{
+		text-align: center;
+	}
+	
+	
+	/* roominfo css */
+	.roominfo_div_box{
+		width: 40%;
+		margin: 10px auto;
+	}
+
+
+	/* inquiry css */
+	.inquiry_table_writer{
+		width: 15%;
+	}
+	.inquiry_table_subject{
+		width: 65%;
+	}
+	.inquiry_table_date{
+		width: 20%;
+	}
+	.inquiry_table{
+		text-align: center;
+	}
+	
+	
+	/* room update / insert   css */
+	#room_Update_multi_picture {
+	    display: grid;
+	    grid-template-columns: 1fr 1fr 1fr;
+	}
+	.room_Update_image {
+	    display: block;
+	    width: 200px;
+	    height: 200px;
+	}
+	.room_Update_image_label {
+	    position: relative;
+	    bottom: 22px;
+	    left: 5px;
+	    color: white;
+	    text-shadow: 2px 2px 2px black;
+	}
+	
+	
+	/* roomlist css */
+	.roomlist_box{
+	position:relative;
+	}
+	
+	.roomlist_bottom{
+		position: absolute;
+		bottom: 50px;
+		left: 60%;
+	}
+	.roomlist_main-img{
+		width: 80%;
+		height: 250px;
+	}
+	
+.non_deco{
+	text-decoration: none !important;
+}
+.login_form_width{
+	width: 336px;
+	margin: 0 auto;
+	padding-top: 100px;
+}
+.signup_form_width{
+	width: 600px;
+	margin: 0 auto;
+	padding-top: 50px;
+}
+ 
