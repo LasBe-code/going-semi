@@ -107,10 +107,10 @@
       <div class="col-sm-2"></div>
         <div class="col-sm-5" >
       <p class="medium_text" style="margin-top: 100px;">이용 완료</p>
-       <table class="reservation_form_table"   >
+       <table class="reservationList_table"   >
       <tr>
       <td>
-      <img class="reservation_form_img"  width="400px" height="180px" 
+      <img class="reservationList_image"
       src="https://image.goodchoice.kr/resize_490x348/affiliate/2019/12/16/5df725fda53ad.jpg" ></td>
       </tr>
       <tr align=center>
@@ -127,10 +127,10 @@
       </tr>
       </table>
       
-      <table class="reservation_form_table" style="margin-top: 40px;"  >
+      <table class="reservationList_table" style="margin-top: 40px;"  >
       <tr>
       <td>
-      <img class="reservation_form_img"  width="400px" height="180px" 
+      <img class="reservationList_image"
       src="https://image.goodchoice.kr/resize_490x348/affiliate/2016/05/26/574681a23f0e2.jpg" ></td>
       </tr>
       <tr align=center>
@@ -149,10 +149,10 @@
       </div>
       
       <div class="col-sm-5" >
-       <table class="reservation_form_table" style="margin-top:146px;"   >
+       <table class="reservationList_table" style="margin-top:146px;"   >
       <tr>
       <td>
-      <img class="reservation_form_img"  width="400px" height="180px" 
+      <img class="reservationList_image"
       src="https://image.goodchoice.kr/resize_490x348/adimg_new/3858/4082/8609699a540f344fad7b057af22d0ce7.jpg" ></td>
       </tr>
       <tr align=center>
@@ -169,10 +169,10 @@
       </tr>
       </table>
       
-      <table class="reservation_form_table" style="margin-top: 40px;"  >
+      <table class="reservationList_table" style="margin-top: 40px;"  >
       <tr>
       <td>
-      <img class="reservation_form_img"  width="400px" height="180px" 
+      <img class="reservationList_image"
       src="https://image.goodchoice.kr/resize_490x348/affiliate/2021/07/29/23/cfacb82d640647dfbafc874decc28dad.jpg" ></td>
       </tr>
       <tr align=center>
@@ -195,10 +195,10 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-5" >
       <p class="medium_text" style="margin-top: 100px;">취소 완료</p>
-        <table class="reservation_form_table"   >
+        <table class="reservationList_table"   >
       <tr>
       <td>
-      <img class="reservation_form_img"  width="400px" height="180px" 
+      <img class="reservationList_image"
       src="https://image.goodchoice.kr/resize_490x348/affiliate/2022/03/02/621f0c9d95b28.jpg" ></td>
       </tr>
       <tr align=center>
@@ -215,10 +215,10 @@
       </tr>
       </table>
       
-      <table class="reservation_form_table" style="margin-top: 40px;"  >
+      <table class="reservationList_table" style="margin-top: 40px;"  >
       <tr>
       <td>
-      <img class="reservation_form_img"  width="400px" height="180px" 
+      <img class="reservationList_image" 
       src="https://image.goodchoice.kr/resize_490x348/affiliate/2020/09/07/5f55dd379ce58.jpg" ></td>
       </tr>
       <tr align=center>
@@ -237,10 +237,10 @@
       </div>
       
       <div class="col-sm-5" >
-       <table class="reservation_form_table" style="margin-top:146px;"   >
+       <table class="reservationList_table"  style="margin-top:146px;"   >
       <tr>
       <td>
-      <img class="reservation_form_img"  width="400px" height="180px" 
+      <img class="reservationList_image "  
       src="https://image.goodchoice.kr/resize_490x348/affiliate/2022/02/18/620f1a13a01f2.jpg" ></td>
       </tr>
       <tr align=center>
@@ -257,10 +257,10 @@
       </tr>
       </table>
       
-      <table class="reservation_form_table" style="margin-top: 40px;"  >
+      <table class="reservationList_table" style="margin-top: 40px;"  >
       <tr>
       <td>
-      <img class="reservation_form_img"  width="400px" height="180px" 
+      <img class="reservationList_image"
       src="https://image.goodchoice.kr/resize_490x348/affiliate/2019/07/02/5d1afb7a0078a.jpg" ></td>
       </tr>
       <tr align=center>

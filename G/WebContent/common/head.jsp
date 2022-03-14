@@ -18,7 +18,7 @@
         	onclick="location.href='<%=request.getContextPath() %>/view/search/main.jsp'">
         <ul class="navbar-nav  justify-content-end">
           <li class="nav-item">
-            <a class="nav-link" href="<%=request.getContextPath()%>/view/member/reservationForm.jsp">예약내역</a>
+            <a class="nav-link" href="<%=request.getContextPath()%>/view/reservationList/reservationList.jsp">예약내역</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<%=request.getContextPath() %>/view/member/loginForm.jsp">로그인</a>
