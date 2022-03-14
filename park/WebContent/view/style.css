@@ -117,8 +117,45 @@
 .main_categorybox {
 	margin-top: 100px;
 }
-.main_first_floor {
+.main_floor {
 	display: grid;
     grid-template-columns: auto auto;
-    text-align: center
+    text-align: center;
+    margin-bottom: 50px;
+}
+.main_image_size {
+	width: 300px;
+	height: 200px;
+	object-fit: cover;
+}
+.search_first_box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.search_top_line {
+	margin-top: 100px;
+}
+.search_bottom_line {
+	margin-bottom: 200px;
+}
+.search_twice_box {
+	background: #ffffff;
+	border-radius: 8px;
+	padding: 16px;
+	margin-bottom: 10px;
+}
+.search_button_box {
+	display: flex;
+	justify-content: center;
+}
+.search_detail_button_size {
+	background-color: #ffc107;
+    border: none;
+    color: white;
+    height: 56px;
+    width: auto;
+}
+.main_date_button {
+	cursor: pointer;
 }
