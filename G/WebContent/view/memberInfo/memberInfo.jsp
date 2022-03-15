@@ -5,72 +5,76 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/common/memberInfo.css">
 </head>
 <body>
 <div class="default_width container-fluid">
   <div class="row">
-     <div class="col-sm-2" style="margin-top: 55px;">
-    <a style="color: black; font-size: 1.4em; text-decoration-line:none; " 
-    href="<%= request.getContextPath()%>/view/member/reservationForm.jsp">예약내역<br><br></a>
-    <a style="color: black; font-size: 1.4em; text-decoration-line:none; " 
-    href="<%= request.getContextPath()%>/view/member/memberInfo.jsp">내정보관리<br><br></a>
+    <div class="col-sm-2" id="memberinfo_left_nav" >
+    <a href="<%= request.getContextPath()%>/view/reservationList/reservationList.jsp">예약내역<br><br></a>
+    <a href="<%= request.getContextPath()%>/view/memberInfo/memberInfo.jsp">내정보관리<br><br></a>
     </div>
     
     
     <div class="col-sm-8">
-      <h4><b>내 정보 수정</b></h4>
+      <p class="memberInfo_large_text"><b>내 정보 수정</b></p>
          <div class="row" >
-				<div class="box" style="background: #BDBDBD;" >
-				<img class="profile" src='zzz.JPG' id="pic"><br>
+				<div class="profile_img_box" >
+				<img class = "profile_user_img"
+				src="https://mblogthumb-phinf.pstatic.net/MjAyMDA4MTJfMjUx/MDAxNTk3MjM2NTM1ODk1.ETanjjCYIUtqm9yj0WiqcZawOJJRAqBi5nOvL2eJpjUg.3e_LhZq9spyXeL0ErHeq9wIm_XPm9meVAg91BoyiFtkg.JPEG.thfwl4514/IMG_1896.JPG?type=w800"><br>
 			</div>
   </div>
-  <button type="button" class="btn btn-dark" onclick="win_upload()">사진등록</button>
-  
+  <button type="button" class="memberInfo_btn_picture rounded" onclick="">사진등록</button>
   <br><br><br>
   <div>
-  <p style="font-size: 1.5em;">닉네임&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hoytory</p>
-  <button type="button" class ="btn btn-dark" style="width : 180px" onclick="nickname_update()" >수정</button>
-    <p id="nickname_update"></p>
-<script>
-function nickname_update() {
-  document.getElementById("nickname_update").innerHTML ="닉네임 변경" ;
-}
-
+  <p class="memberInfo_default_text">닉네임&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hoytory</p>
+  <button type="button" class ="memberInfo_defalut_btn rounded" 
+  onclick="nickname_update()" >수정</button>
+   <p id="nickname_update"></p>
+	<script>
+	function nickname_update() {
+  	document.getElementById("nickname_update").innerHTML ="닉네임 변경" ;
+	}
 </script>
   </div>
   
    <br><br>
   <div>
-  <p style="font-size: 1.5em;">예약자 이름&nbsp;&nbsp;&nbsp;&nbsp; 황*경</p>
-  <button type="button" class ="btn btn-dark" style="width : 180px" onclick="name_update()">수정</button>
+  <p class="memberInfo_default_text">예약자 이름&nbsp;&nbsp;&nbsp;&nbsp; 황유경</p>
+  <button type="button" class ="memberInfo_defalut_btn rounded" 
+  onclick="name_update()">수정</button>
     <p id="name_update"></p>
-<script>
-function name_update() {
-  document.getElementById("name_update").innerHTML ="이름 변경" ;
-}
+	<script>
+	function name_update() {
+  	document.getElementById("name_update").innerHTML ="이름 변경" ;
+	}
 </script>
   </div>
   
    <br><br> 
   <div>
-  <p style="font-size: 1.5em;">휴대폰 번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 010****1234</p>
-  <p style="color:#BDBDBD;">개인 정보 보호를 위해 내 정보는 모두 안전하게 암호화됩니다.</p>
-  <button type="button" class ="btn btn-dark" style="width : 180px" onclick="tel_update()">수정</button>
+  <p class="memberInfo_default_text">휴대폰 번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 010-1234-1234</p>
+  <p class="memberInfo_small_text">개인 정보 보호를 위해 내 정보는 모두 안전하게 암호화됩니다.</p>
+  <button type="button" class ="memberInfo_defalut_btn rounded" onclick="tel_update()">수정</button>
       <p id="tel_update"></p>
-<script>
-function tel_update() {
-  document.getElementById("tel_update").innerHTML ="전화번호 변경" ;
-}
-</script>
+	<script>
+	function tel_update() {
+  	document.getElementById("tel_update").innerHTML ="전화번호 변경" ;
+	}
+	</script>
   </div>
   
   <br>
   <hr>
   <br>
   <hr>
-  <p style="color:#BDBDBD;"> 여기어때를 이용하고 싶지 않으신가요?&nbsp;&nbsp;
-  <a href="#" style="color: black">로그아웃</a>
-  &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="color: black">회원탈퇴</a>
+  <div id="memberinfo_bottom_text">
+  <p class="memberInfo_small_text"> GOING을 이용하고 싶지 않으신가요?&nbsp;&nbsp;
+  <a href="<%=request.getContextPath()%>/search/main.jsp" >로그아웃</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="<%=request.getContextPath()%>/search/main.jsp" >회원탈퇴</a>
+  </div>
+  
   </div>
 </div>
 </div>

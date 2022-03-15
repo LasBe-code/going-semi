@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/common/reservationList.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/common/memberInfo.css">
 </head>
 <body>
 <div class="default_width container-fluid">
@@ -16,7 +16,7 @@
     </div>
     
     <!-- 예약완료 -->
-      <div class="col-sm-5" >
+      <div class="col-sm-5"  >
      <p class="reservationList_large_text"><b>예약 내역</b></p>
       <p class="reservationList_medium_text">예약 완료</p>
         <table class="reservationList_table">
@@ -27,19 +27,20 @@
       </tr>
       <tr align=center>
        <td width="400px" height="150px">
-      <p class="small_text" style="padding-top: 10px; margin-bottom: -20px;">예약완료</p><br>
-      <a class="medium_text" 
-      style="cursor:pointer; color:black;  text-decoration-line: none;  " 
-      href="location.herf='<%=request.getContextPath()%>/view/member/reservationDetail.jsp'">
+      <p class="reservationList_table_head_text">예약완료</p><br>
+      <div id="reservation_table_main_text" >
+      <a href="<%=request.getContextPath()%>/view/reservationDetail/oceanDetail.jsp">
       <b>오션스위츠 제주</b><br>
       11.13 토 - 11.14 일<b>ㆍ</b>1박 </a><br>
-      <button class="default_btn rounded" type="button" style="height: 30px; width:100px; margin-top: 5px; background-color: red;" 
-      onclick="location.href='<%= request.getContextPath()%>/view/member/reservationCancelDetail.jsp'"><b>예약취소</b></button>
+      </div>
+      <button class="reservation_btn_cancel rounded" type="button" " 
+      onclick="location.href='<%= request.getContextPath()%>/view/reservationCancleDetail/oceanCancleDetail.jsp'"><b>예약취소</b></button>
       </td>
       </tr>
       </table>
       
-      <table class="reservationList_table" style="margin-top: 40px;"  >
+      
+        <table class="reservationList_table" style="margin-top: 40px";>
       <tr>
       <td>
       <img class="reservationList_image"
@@ -47,18 +48,19 @@
       </tr>
       <tr align=center>
        <td width="400px" height="150px">
-      <p class="small_text" style="padding-top: 10px; margin-bottom: -20px;">예약완료</p><br>
-      <a class="medium_text" 
-      style="cursor:pointer; color:black;  text-decoration-line: none;  " 
-      href="location.herf='<%=request.getContextPath()%>/view/member/reservationDetail.jsp'">
+      <p class="reservationList_table_head_text">예약완료</p><br>
+      <div id="reservation_table_main_text" >
+      <a href="<%=request.getContextPath()%>/view/reservationDetail/joyDetail.jsp">
       <b>양평 풀스테이 조이 풀빌라</b><br>
       03.13 일 - 03.15 화<b>ㆍ</b>2박 </a><br>
-      <button class="default_btn rounded" type="button" style="height: 30px; width:100px; margin-top: 5px; background-color: red; " 
-      onclick="location.href='<%= request.getContextPath()%>/view/member/reservationCancelDetail.jsp'"><b>예약취소</b></button>
+      </div>
+      <button class="reservation_btn_cancel rounded" type="button" " 
+      onclick="location.href='<%= request.getContextPath()%>/view/reservationCancleDetail/joyCancleDetail.jsp'"><b>예약취소</b></button>
       </td>
       </tr>
       </table>
       </div>
+
       
       <div class="col-sm-5" >
        <table class="reservationList_table" style="margin-top:184px;"   >
@@ -69,14 +71,14 @@
       </tr>
       <tr align=center>
        <td width="400px" height="150px">
-      <p class="small_text" style="padding-top: 10px; margin-bottom: -20px;">예약완료</p><br>
-      <a class="medium_text" 
-      style="cursor:pointer; color:black;  text-decoration-line: none;  " 
-      href="location.herf='<%=request.getContextPath()%>/view/member/reservationDetail.jsp'">
+      <p class="reservationList_table_head_text">예약완료</p><br>
+      <div id="reservation_table_main_text"  >
+      <a href="<%=request.getContextPath()%>/view/reservationDetail/villaDetail.jsp">
       <b>양평 독채펜션 빌라엘라</b><br>
       11.14 일 - 11.16 화<b>ㆍ</b>2박 </a><br>
-      <button class="default_btn rounded" type="button" style="height: 30px; width:100px; margin-top: 5px; background-color: red;" 
-      onclick="location.href='<%= request.getContextPath()%>/view/member/reservationCancelDetail.jsp'"><b>예약취소</b></button>
+      </div>
+     <button class="reservation_btn_cancel rounded" type="button" " 
+      onclick="location.href='<%= request.getContextPath()%>/view/reservationCancleDetail/villaCancleDetail.jsp'"><b>예약취소</b></button>
       </td>
       </tr>
       </table>
@@ -89,14 +91,14 @@
       </tr>
       <tr align=center>
        <td width="400px" height="150px">
-      <p class="small_text" style="padding-top: 10px; margin-bottom: -20px;">예약완료</p><br>
-      <a class="medium_text" 
-      style="cursor:pointer; color:black;  text-decoration-line: none;  " 
-      href="location.herf='<%=request.getContextPath()%>/view/member/reservationDetail.jsp'">
+      <p class="reservationList_table_head_text">예약완료</p><br>
+      <div id="reservation_table_main_text"  >
+      <a href="<%=request.getContextPath()%>/view/reservationDetail/mydasDetail.jsp">
       <b>마이다스 호텔 & 리조트</b><br>
       03.21 월 - 03.22 화<b>ㆍ</b>1박 </a><br>
-      <button class="default_btn rounded" type="button" style="height: 30px; width:100px; margin-top: 5px; background-color: red;" 
-      onclick="location.href='<%= request.getContextPath()%>/view/member/reservationCancelDetail.jsp'"><b>예약취소</b></button>
+      </div>
+   	  <button class="reservation_btn_cancel rounded" type="button" " 
+      onclick="location.href='<%= request.getContextPath()%>/view/reservationCancleDetail/mydasCancleDetail.jsp'"><b>예약취소</b></button>
       </td>
       </tr>
       </table>
@@ -106,7 +108,7 @@
       <!-- 이용완료 -->
       <div class="col-sm-2"></div>
         <div class="col-sm-5" >
-      <p class="medium_text" style="margin-top: 100px;">이용 완료</p>
+      <p class="reservationList_medium_text" style="margin-top: 100px; ">이용 완료</p>
        <table class="reservationList_table"   >
       <tr>
       <td>
@@ -115,14 +117,14 @@
       </tr>
       <tr align=center>
        <td width="400px" height="150px">
-      <p class="small_text" style="padding-top: 10px; margin-bottom: -20px;">이용완료</p><br>
-      <a class="medium_text" 
-      style="cursor:pointer; color:black;  text-decoration-line: none;  " 
-      href="location.herf='<%=request.getContextPath()%>/view/member/reservationDetail.jsp'">
+      <p class="reservationList_table_head_text">이용완료</p><br>
+      <div id="reservation_table_main_text"  > 
+      <a href="<%=request.getContextPath()%>/view/reservationDetail/thestarDetail.jsp">
       <b>더스타휴빌리지</b><br>
       04.04 월 - 04.05 화<b>ㆍ</b>1박 </a><br>
-      <button class="default_btn rounded" type="button" style="height: 30px; width:100px; margin-top: 5px;" 
-      onclick="location.href='<%= request.getContextPath()%>/view/member/reservationCancelDetail.jsp'"><b>이용완료</b></button>
+      </div>
+      
+      <p class="reservation_table_box rounded"><b>이용완료</b></p>
       </td>
       </tr>
       </table>
@@ -135,14 +137,13 @@
       </tr>
       <tr align=center>
        <td width="400px" height="150px">
-      <p class="small_text" style="padding-top: 10px; margin-bottom: -20px;">이용완료</p><br>
-      <a class="medium_text" 
-      style="cursor:pointer; color:black;  text-decoration-line: none;  " 
-      href="location.herf='<%=request.getContextPath()%>/view/member/reservationDetail.jsp'">
+      <p class="reservationList_table_head_text">이용완료</p><br>
+      <div id="reservation_table_main_text"  > 
+      <a href="<%=request.getContextPath()%>/view/reservationDetail/sunvalleyDetail.jsp">
       <b>썬밸리호텔 여주</b><br>
       01.03 월 - 01.05 수<b>ㆍ</b>2박 </a><br>
-      <button class="default_btn rounded" type="button" style="height: 30px; width:100px; margin-top: 5px;" 
-      onclick="location.href='<%= request.getContextPath()%>/view/member/reservationCancelDetail.jsp'"><b>이용완료</b></button>
+      </div>
+       <p class="reservation_table_box rounded"><b>이용완료</b></p>
       </td>
       </tr>
       </table>
@@ -157,14 +158,13 @@
       </tr>
       <tr align=center>
        <td width="400px" height="150px">
-      <p class="small_text" style="padding-top: 10px; margin-bottom: -20px;">이용완료</p><br>
-      <a class="medium_text" 
-      style="cursor:pointer; color:black;  text-decoration-line: none;  " 
-      href="location.herf='<%=request.getContextPath()%>/view/member/reservationDetail.jsp'">
+      <p class="reservationList_table_head_text">이용완료</p><br>
+      <div id="reservation_table_main_text"  > 
+      <a href="<%=request.getContextPath()%>/view/reservationDetail/jviewDetail.jsp">
       <b>서귀포 제이뷰</b><br>
       11.17 수 - 11.18 목<b>ㆍ</b>1박 </a><br>
-      <button class="default_btn rounded" type="button" style="height: 30px; width:100px; margin-top: 5px;" 
-      onclick="location.href='<%= request.getContextPath()%>/view/member/reservationCancelDetail.jsp'"><b>이용완료</b></button>
+      </div>
+      <p class="reservation_table_box rounded"><b>이용완료</b></p>
       </td>
       </tr>
       </table>
@@ -177,14 +177,13 @@
       </tr>
       <tr align=center>
        <td width="400px" height="150px">
-      <p class="small_text" style="padding-top: 10px; margin-bottom: -20px;">이용완료</p><br>
-      <a class="medium_text" 
-      style="cursor:pointer; color:black;  text-decoration-line: none;  " 
-      href="location.herf='<%=request.getContextPath()%>/view/member/reservationDetail.jsp'">
+      <p class="reservationList_table_head_text">이용완료</p><br>
+      <div id="reservation_table_main_text"  > 
+      <a href="<%=request.getContextPath()%>/view/reservationDetail/bangajeaDetail.jsp">
       <b>담양 방아재한옥펜션</b><br>
       03.24 목 - 03.25 금<b>ㆍ</b>1박 </a><br>
-      <button class="default_btn rounded" type="button" style="height: 30px; width:100px; margin-top: 5px;" 
-      onclick="location.href='<%= request.getContextPath()%>/view/member/reservationCancelDetail.jsp'"><b>이용완료</b></button>
+      </div>
+      <p class="reservation_table_box rounded"><b>이용완료</b></p>
       </td>
       </tr>
       </table>
@@ -194,7 +193,7 @@
       <!-- 취소완료 -->
         <div class="col-sm-2"></div>
         <div class="col-sm-5" >
-      <p class="medium_text" style="margin-top: 100px;">취소 완료</p>
+      <p class="reservationList_medium_text" style="margin-top: 100px;">취소 완료</p>
         <table class="reservationList_table"   >
       <tr>
       <td>
@@ -203,14 +202,13 @@
       </tr>
       <tr align=center>
        <td width="400px" height="150px">
-      <p class="small_text" style="padding-top: 10px; margin-bottom: -20px;">취소완료</p><br>
-      <a class="medium_text" 
-      style="cursor:pointer; color:black;  text-decoration-line: none;  " 
-      href="location.herf='<%=request.getContextPath()%>/view/member/reservationDetail.jsp'">
+      <p class="reservationList_table_head_text">취소완료</p><br>
+      <div id="reservation_table_main_text"  > 
+      <a href="<%=request.getContextPath()%>/view/reservationCancleDetail/kaiveCancleDetail.jsp">
       <b>부산 카이브펜션</b><br>
       11.15 월 - 11.16 화<b>ㆍ</b>1박 </a><br>
-      <button class="default_btn rounded" type="button" style="height: 30px; width:100px; margin-top: 5px;" 
-      onclick="location.href='<%= request.getContextPath()%>/view/member/reservationCancelDetail.jsp'"><b>취소완료</b></button>
+      </div>
+       <p class="reservation_table_box rounded"><b>취소완료</b></p>
       </td>
       </tr>
       </table>
@@ -223,21 +221,20 @@
       </tr>
       <tr align=center>
        <td width="400px" height="150px">
-      <p class="small_text" style="padding-top: 10px; margin-bottom: -20px;">취소완료</p><br>
-      <a class="medium_text" 
-      style="cursor:pointer; color:black;  text-decoration-line: none;  " 
-      href="location.herf='<%=request.getContextPath()%>/view/member/reservationDetail.jsp'">
+      <p class="reservationList_table_head_text">취소완료</p><br>
+      <div id="reservation_table_main_text"  > 
+      <a href="<%=request.getContextPath()%>/view/reservationCancleDetail/lctCancleDetail.jsp">
       <b>엘시티(LCT) 레지던스</b><br>
       01.08 수 - 01.10 금<b>ㆍ</b>2박 </a><br>
-      <button class="default_btn rounded" type="button" style="height: 30px; width:100px; margin-top: 5px;" 
-      onclick="location.href='<%= request.getContextPath()%>/view/member/reservationCancelDetail.jsp'"><b>취소완료</b></button>
+      </div>
+      <p class="reservation_table_box rounded"><b>취소완료</b></p>
       </td>
       </tr>
       </table>
       </div>
       
       <div class="col-sm-5" >
-       <table class="reservationList_table"  style="margin-top:146px;"   >
+      <table class="reservationList_table"  style="margin-top:146px;"   >
       <tr>
       <td>
       <img class="reservationList_image "  
@@ -245,14 +242,13 @@
       </tr>
       <tr align=center>
        <td width="400px" height="150px">
-      <p class="small_text" style="padding-top: 10px; margin-bottom: -20px;">취소완료</p><br>
-      <a class="medium_text" 
-      style="cursor:pointer; color:black;  text-decoration-line: none;  " 
-      href="location.herf='<%=request.getContextPath()%>/view/member/reservationDetail.jsp'">
+      <p class="reservationList_table_head_text">취소완료</p><br>
+      <div id="reservation_table_main_text"  > 
+      <a href="<%=request.getContextPath()%>/view/reservationCancleDetail/solbeachCancleDetail.jsp">
       <b>쏠비치 삼척 리조트</b><br>
       08.23 화 - 08.24 수<b>ㆍ</b>1박 </a><br>
-      <button class="default_btn rounded" type="button" style="height: 30px; width:100px; margin-top: 5px;" 
-      onclick="location.href='<%= request.getContextPath()%>/view/member/reservationCancelDetail.jsp'"><b>취소완료</b></button>
+      </div>
+      <p class="reservation_table_box rounded"><b>취소완료</b></p>
       </td>
       </tr>
       </table>
@@ -265,14 +261,13 @@
       </tr>
       <tr align=center>
        <td width="400px" height="150px">
-      <p class="small_text" style="padding-top: 10px; margin-bottom: -20px;">취소완료</p><br>
-      <a class="medium_text" 
-      style="cursor:pointer; color:black;  text-decoration-line: none;  " 
-      href="location.herf='<%=request.getContextPath()%>/view/member/reservationDetail.jsp'">
+      <p class="reservationList_table_head_text">취소완료</p><br>
+      <div id="reservation_table_main_text"  > 
+      <a href="<%=request.getContextPath()%>/view/reservationCancleDetail/intercontinentalCancleDetail.jsp">
       <b>인터컨티넨탈 서울 코엑스</b><br>
       09.11 월 - 09.13 수<b>ㆍ</b>2박 </a><br>
-      <button class="default_btn rounded" type="button" style="height: 30px; width:100px; margin-top: 5px;" 
-      onclick="location.href='<%= request.getContextPath()%>/view/member/reservationCancelDetail.jsp'"><b>취소완료</b></button>
+      </div>
+      <p class="reservation_table_box rounded"><b>취소완료</b></p>
       </td>
       </tr>
       </table>
