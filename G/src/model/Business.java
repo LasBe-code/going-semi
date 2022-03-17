@@ -1,73 +1,96 @@
 package model;
 
 public class Business {
-	private String buemail, bupassword, butel, buname, buaddress;
-	private int buid;
-	private String butitle;
-	private int picnum;
+	private String bu_email, bu_password, bu_tel, bu_name, bu_address;
+	private String bu_id;
+	private String bu_title;
+	private int pic_num;
 	
 	public Business() {}
-	public Business(String buemail, String bupassword, String butel, String buname, String buaddress, int buid,
-			String butitle, int picnum) {
+
+	public Business(String bu_email, String bu_password, String bu_tel, String bu_name, String bu_address, String bu_id,
+			String bu_title, int pic_num) {
 		super();
-		this.buemail = buemail;
-		this.bupassword = bupassword;
-		this.butel = butel;
-		this.buname = buname;
-		this.buaddress = buaddress;
-		this.buid = buid;
-		this.butitle = butitle;
-		this.picnum = picnum;
+		this.bu_email = bu_email;
+		this.bu_password = bu_password;
+		this.bu_tel = bu_tel;
+		this.bu_name = bu_name;
+		this.bu_address = bu_address;
+		this.bu_id = bu_id;
+		this.bu_title = bu_title;
+		this.pic_num = pic_num;
 	}
-	public String getBuemail() {
-		return buemail;
+
+	public String getBu_email() {
+		return bu_email;
 	}
-	public void setBuemail(String buemail) {
-		this.buemail = buemail;
+
+	public void setBu_email(String bu_email) {
+		this.bu_email = bu_email;
 	}
-	public String getBupassword() {
-		return bupassword;
+
+	public String getBu_password() {
+		return bu_password;
 	}
-	public void setBupassword(String bupassword) {
-		this.bupassword = bupassword;
+
+	public void setBu_password(String bu_password) {
+		this.bu_password = bu_password;
 	}
-	public String getButel() {
-		return butel;
+
+	public String getBu_tel() {
+		return bu_tel;
 	}
-	public void setButel(String butel) {
-		this.butel = butel;
+
+	public void setBu_tel(String bu_tel) {
+		this.bu_tel = bu_tel;
 	}
-	public String getBuname() {
-		return buname;
+
+	public String getBu_name() {
+		return bu_name;
 	}
-	public void setBuname(String buname) {
-		this.buname = buname;
+
+	public void setBu_name(String bu_name) {
+		this.bu_name = bu_name;
 	}
-	public String getBuaddress() {
-		return buaddress;
+
+	public String getBu_address() {
+		return bu_address;
 	}
-	public void setBuaddress(String buaddress) {
-		this.buaddress = buaddress;
+
+	public void setBu_address(String bu_address) {
+		this.bu_address = bu_address;
 	}
-	public int getBuid() {
-		return buid;
+
+	public String getBu_id() {
+		return bu_id;
 	}
-	public void setBuid(int buid) {
-		this.buid = buid;
+
+	public void setBu_id(String bu_id) {
+		this.bu_id = bu_id;
 	}
-	public String getButitle() {
-		return butitle;
+
+	public String getBu_title() {
+		return bu_title;
 	}
-	public void setButitle(String butitle) {
-		this.butitle = butitle;
+
+	public void setBu_title(String bu_title) {
+		this.bu_title = bu_title;
 	}
-	public int getPicnum() {
-		return picnum;
+
+	public int getPic_num() {
+		return pic_num;
 	}
-	public void setPicnum(int picnum) {
-		this.picnum = picnum;
+
+	public void setPic_num(int pic_num) {
+		this.pic_num = pic_num;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "{\"bu_email\":\"" + bu_email + "\", \"bu_password\":\"" + bu_password + "\", \"bu_tel\":\"" + bu_tel
+				+ "\", \"bu_name\":\"" + bu_name + "\", \"bu_address\":\"" + bu_address + "\", \"bu_id\":\"" + bu_id
+				+ "\", \"bu_title\":\"" + bu_title + "\", \"pic_num\":\"" + pic_num + "\"}";
+	}
 	
 	
 }

@@ -22,7 +22,7 @@ public class MybatisConnection {
 		}
 	}
 	public static SqlSession getConnection() {
-		return sqlmap.openSession();
+		return sqlmap.openSession();//SessionFactory에서 SqlSession 얻어오기
 	}
 	public static void close(SqlSession session) {
 		session.commit(); session.close();

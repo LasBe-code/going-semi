@@ -2,38 +2,38 @@ package model;
 
 
 public class Review {
-	private int revnum, bonum;
+	private int rev_num, bo_num;
 	private String email, content;
 	private String checkin, checkout;
-	private int picnum;
+	private int pic_num;
 	
 	public Review() {}
 
-	public Review(int revnum, int bonum, String email, String content, String checkin, String checkout, int picnum) {
+	public Review(int rev_num, int bo_num, String email, String content, String checkin, String checkout, int pic_num) {
 		super();
-		this.revnum = revnum;
-		this.bonum = bonum;
+		this.rev_num = rev_num;
+		this.bo_num = bo_num;
 		this.email = email;
 		this.content = content;
 		this.checkin = checkin;
 		this.checkout = checkout;
-		this.picnum = picnum;
+		this.pic_num = pic_num;
 	}
 
-	public int getRevnum() {
-		return revnum;
+	public int getRev_num() {
+		return rev_num;
 	}
 
-	public void setRevnum(int revnum) {
-		this.revnum = revnum;
+	public void setRev_num(int rev_num) {
+		this.rev_num = rev_num;
 	}
 
-	public int getBonum() {
-		return bonum;
+	public int getBo_num() {
+		return bo_num;
 	}
 
-	public void setBonum(int bonum) {
-		this.bonum = bonum;
+	public void setBo_num(int bo_num) {
+		this.bo_num = bo_num;
 	}
 
 	public String getEmail() {
@@ -68,15 +68,21 @@ public class Review {
 		this.checkout = checkout;
 	}
 
-	public int getPicnum() {
-		return picnum;
+	public int getPic_num() {
+		return pic_num;
 	}
 
-	public void setPicnum(int picnum) {
-		this.picnum = picnum;
+	public void setPic_num(int pic_num) {
+		this.pic_num = pic_num;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "{\"rev_num\":\"" + rev_num + "\", \"bo_num\":\"" + bo_num + "\", \"email\":\"" + email
+				+ "\", \"content\":\"" + content + "\", \"checkin\":\"" + checkin + "\", \"checkout\":\"" + checkout
+				+ "\", \"pic_num\":\"" + pic_num + "\"}";
+	}
+
 	
 	
 }

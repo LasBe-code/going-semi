@@ -1,23 +1,23 @@
 package model;
 
 public class Picture {
-	private int picnum;
+	private int pic_num;
 	private String location;
 	
 	public Picture() {}
 
-	public Picture(int picnum, String location) {
+	public Picture(int pic_num, String location) {
 		super();
-		this.picnum = picnum;
+		this.pic_num = pic_num;
 		this.location = location;
 	}
 
-	public int getPicnum() {
-		return picnum;
+	public int getPic_num() {
+		return pic_num;
 	}
 
-	public void setPicnum(int picnum) {
-		this.picnum = picnum;
+	public void setPic_num(int pic_num) {
+		this.pic_num = pic_num;
 	}
 
 	public String getLocation() {
@@ -27,5 +27,12 @@ public class Picture {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
+	@Override
+	public String toString() {
+		return "{\"pic_num\":\"" + pic_num + "\", \"location\":\"" + location + "\"}";
+	}
+
+	
 	
 }

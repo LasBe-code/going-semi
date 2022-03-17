@@ -2,38 +2,38 @@ package model;
 
 
 public class Booking {
-	private int bonum;
+	private int bo_num;
 	private String email, name, tel, payment;
-	private int price;
-	private String butitle;
-	private String rname;
+	private String price;
+	private String bu_title;
+	private String ro_name;
 	private String checkin, checkout;
-	private int ronum;
+	private int ro_num;
 	
 	public Booking() {}
 
-	public Booking(int bonum, String email, String name, String tel, String payment, int price, String butitle,
-			String rname, String checkin, String checkout, int ronum) {
+	public Booking(int bo_num, String email, String name, String tel, String payment, String price, String bu_title,
+			String ro_name, String checkin, String checkout, int ro_num) {
 		super();
-		this.bonum = bonum;
+		this.bo_num = bo_num;
 		this.email = email;
 		this.name = name;
 		this.tel = tel;
 		this.payment = payment;
 		this.price = price;
-		this.butitle = butitle;
-		this.rname = rname;
+		this.bu_title = bu_title;
+		this.ro_name = ro_name;
 		this.checkin = checkin;
 		this.checkout = checkout;
-		this.ronum = ronum;
+		this.ro_num = ro_num;
 	}
 
-	public int getBonum() {
-		return bonum;
+	public int getBo_num() {
+		return bo_num;
 	}
 
-	public void setBonum(int bonum) {
-		this.bonum = bonum;
+	public void setBo_num(int bo_num) {
+		this.bo_num = bo_num;
 	}
 
 	public String getEmail() {
@@ -68,28 +68,28 @@ public class Booking {
 		this.payment = payment;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
-	public String getButitle() {
-		return butitle;
+	public String getBu_title() {
+		return bu_title;
 	}
 
-	public void setButitle(String butitle) {
-		this.butitle = butitle;
+	public void setBu_title(String bu_title) {
+		this.bu_title = bu_title;
 	}
 
-	public String getRname() {
-		return rname;
+	public String getRo_name() {
+		return ro_name;
 	}
 
-	public void setRname(String rname) {
-		this.rname = rname;
+	public void setRo_name(String ro_name) {
+		this.ro_name = ro_name;
 	}
 
 	public String getCheckin() {
@@ -108,15 +108,21 @@ public class Booking {
 		this.checkout = checkout;
 	}
 
-	public int getRonum() {
-		return ronum;
+	public int getRo_num() {
+		return ro_num;
 	}
 
-	public void setRonum(int ronum) {
-		this.ronum = ronum;
+	public void setRo_num(int ro_num) {
+		this.ro_num = ro_num;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "{\"bo_num\":\"" + bo_num + "\", \"email\":\"" + email + "\", \"name\":\"" + name + "\", \"tel\":\""
+				+ tel + "\", \"payment\":\"" + payment + "\", \"price\":\"" + price + "\", \"bu_title\":\"" + bu_title
+				+ "\", \"ro_name\":\"" + ro_name + "\", \"checkin\":\"" + checkin + "\", \"checkout\":\"" + checkout
+				+ "\", \"ro_num\":\"" + ro_num + "\"}";
+	}
 	
 	
 }

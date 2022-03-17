@@ -23,4 +23,15 @@
 	  </jsp-property-group>
   </jsp-config>
   
+  
+    <servlet>
+  <servlet-name>memberController</servlet-name>
+  <servlet-class>controller.MemberController</servlet-class>
+  <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>memberController</servlet-name>
+  <url-pattern>/member/*</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
