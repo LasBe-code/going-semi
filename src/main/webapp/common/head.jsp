@@ -13,6 +13,7 @@
 
 </head>
 <body>
+	
 	<nav class="header navbar navbar-expand-sm bg-warning navbar-dark">
       <div class="default_width container-fluid ">
         <img alt="logo" src="<%=request.getContextPath() %>/image/logo.png" style="width:120px;"
@@ -27,5 +28,7 @@
         </ul>
       </div>
     </nav>
+ 
+
 </body>
 </html>

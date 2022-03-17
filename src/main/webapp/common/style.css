@@ -28,9 +28,14 @@
     background-color: #ffc107;
     border: none;
     color: white;
+    font-weight : bold;
     height: 56px;
     width: 100%;
 }
+
+.default_btn:disabled{
+	background-color: gray;
+};
 
 /* 장성우 */
 

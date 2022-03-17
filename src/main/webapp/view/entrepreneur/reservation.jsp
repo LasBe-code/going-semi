@@ -17,16 +17,13 @@
   	<div style="margin: 0px auto;">
 	  <ul class="navbar-nav">
 	  	<li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath()%>/view/entrepreneur/roomInsert.jsp">객실 등록</a>
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/roomInsert">객실 등록</a>
 	    </li>
 	    <li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath()%>/view/entrepreneur/roomlist.jsp">객실 정보</a>
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/roomlist">객실 정보</a>
 	    </li>
 	    <li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath()%>/view/entrepreneur/reservation.jsp">예약 확인</a>
-	    </li>
-	    <li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath()%>/view/entrepreneur/inquiry.jsp">문의 내역</a>
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/reservation">예약 확인</a>
 	    </li>
 	  </ul>
 	  </div>

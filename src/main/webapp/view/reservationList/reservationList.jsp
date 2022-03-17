@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-sm-2" id="memberinfo_left_nav" >
     <a href="<%= request.getContextPath()%>/view/reservationList/reservationList.jsp">예약내역<br><br></a>
-    <a href="<%= request.getContextPath()%>/view/memberInfo/memberInfo.jsp">내정보관리<br><br></a>
+    <a href="<%= request.getContextPath()%>/view/member/memberInfo.jsp">내정보관리<br><br></a>
     </div>
     
     <!-- 예약완료 -->

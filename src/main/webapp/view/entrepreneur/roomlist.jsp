@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Bootstrap 4 Website Example</title>
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/common/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/common/style.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -19,64 +20,35 @@
   	<div style="margin: 0px auto;">
 	  <ul class="navbar-nav">
 	  	<li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath()%>/view/entrepreneur/roomInsert.jsp">객실 등록</a>
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/roomInsert">객실 등록</a>
 	    </li>
 	    <li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath()%>/view/entrepreneur/roomlist.jsp">객실 정보</a>
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/roomlist">객실 정보</a>
 	    </li>
 	    <li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath()%>/view/entrepreneur/reservation.jsp">예약 확인</a>
-	    </li>
-	    <li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath()%>/view/entrepreneur/inquiry.jsp">문의 내역</a>
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/reservation">예약 확인</a>
 	    </li>
 	  </ul>
 	  </div>
 </nav>
 <table class="table" style="width: 75%; margin:10px auto; margin-top: 50px;">
     <tbody>
-      <tr>
-        <td><a href="<%=request.getContextPath()%>/view/entrepreneur/roominfo.jsp">
-        	<img class="roomlist_main-img" src="<%=request.getContextPath()%>/image/1.jpg">
-        </a></td>
-        <td class= "roomlist_box">
-			<div>
-				<h3>스탠다드 더블</h3>
-				<h6>기준 2명 / 최대 2명</h6>
-			</div>
-			<div class="roomlist_bottom">
-				<h4>65,000원</h4>
-			</div>
-		</td>
-      </tr>
-      <tr>
-        <td><a href="<%=request.getContextPath()%>/view/room/roominfo.jsp">
-        	<img class="roomlist_main-img" src="<%=request.getContextPath()%>/image/2.jpg">
-        </a></td>
-        <td  class= "roomlist_box">
-        	<div>
-				<h3>스탠다드 트윈</h3>
-				<h6>기준 2명 / 최대 3명</h6>
-			</div>
-			<div class="roomlist_bottom">
-				<h4>75,000원</h4>
-			</div>
-        </td>
-      </tr>
-      <tr>
-        <td><a href="<%=request.getContextPath()%>/view/room/roominfo.jsp">
-        	<img class="roomlist_main-img" src="<%=request.getContextPath()%>/image/3.jpg">
-        </a></td>
-        <td  class= "roomlist_box">
-        	<div>
-				<h3>디럭스 더블</h3>
-				<h6>기준 2명 / 최대 4명</h6>
-			</div>
-			<div class="roomlist_bottom">
-				<h4>80,000원</h4>
-			</div>
-        </td>
-      </tr>
+    <c:forEach var="l" items="${list}" >
+	      <tr style="width: 100%">
+	        <td style="width: 60%"><a href="${pageContext.request.contextPath}/room/roominfo?pic_num=${l.pic_num}">
+	        	<img class="roomlist_main-img" src="${pageContext.request.contextPath}/image/1.jpg">
+	        </a></td>
+	        <td class= "roomlist_box" style="width: 40%">
+				<div>
+					<h3>${l.ro_name}</h3>
+					<h6>이용인원 : ${l.ro_count}명</h6>
+				</div>
+				<div class="roomlist_bottom">
+					<h4>${l.ro_price}원</h4>
+				</div>
+			</td>
+	      </tr>
+      </c:forEach>
     </tbody>
   </table>
 </div>
