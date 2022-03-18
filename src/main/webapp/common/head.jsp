@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,17 +15,48 @@
 </head>
 <body>
 	
-	<nav class="header navbar navbar-expand-sm bg-warning navbar-dark">
+	<nav class="header navbar navbar-expand-sm bg-warning navbar-dark" style="margin-bottom: 0px !important;">
       <div class="default_width container-fluid ">
-        <img alt="logo" src="<%=request.getContextPath() %>/image/logo.png" style="width:120px;"
-        	onclick="location.href='<%=request.getContextPath() %>/view/search/main.jsp'">
+        	
+        <c:choose>
+        	<c:when test="${bu_email != null}"> <!-- 사업자 로그인 -->
+        		<img alt="logo" src="${pageContext.request.contextPath}/image/logo.png" style="width:120px;"
+        		onclick="location.href='${pageContext.request.contextPath}/room/roomlist'">
+        	</c:when>
+        	<c:otherwise> <!-- 그 외 -->
+        		<img alt="logo" src="${pageContext.request.contextPath}/image/logo.png" style="width:120px;"
+        		onclick="location.href='${pageContext.request.contextPath}/search/main'">
+        	</c:otherwise>
+        </c:choose>
+        
         <ul class="navbar-nav  justify-content-end">
-          <li class="nav-item">
-            <a class="nav-link" href="#">예약내역</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%=request.getContextPath() %>/view/member/loginForm.jsp">로그인</a>
-          </li>
+        	<c:if test="${email != null}"> <!-- 고객 로그인 -->
+        		<li class="nav-item">
+		           <a class="nav-link" href="${pageContext.request.contextPath}/member/memberInfo">내 정보</a>
+		        </li>
+		        <li class="nav-item">
+		           <a class="nav-link" href="${pageContext.request.contextPath}/reservation/reservationList">예약 내역</a>
+		        </li>
+		        <li class="nav-item">
+		           <a class="nav-link" href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
+		        </li>
+        	</c:if>
+        	<c:if test="${bu_email != null}"> <!-- 사업자 로그인 -->
+        		<li class="nav-item">
+		            <a class="nav-link" href="${pageContext.request.contextPath}">예약내역</a>
+		        </li>
+		        <li class="nav-item">
+		            <a class="nav-link" href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
+		        </li>
+        	</c:if>
+          <c:if test="${bu_email == null && email == null}"> <!-- 비로그인 -->
+          	<li class="nav-item">  
+            	<a class="nav-link" href="${pageContext.request.contextPath}">예약내역</a>
+            </li>
+            <li class="nav-item">
+            	<a class="nav-link" href="${pageContext.request.contextPath}/view/member/loginForm.jsp">로그인</a>
+            </li>
+          </c:if>
         </ul>
       </div>
     </nav>

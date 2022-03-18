@@ -12,7 +12,6 @@
 	<form action="${pageContext.request.contextPath}/member/loginPro" method="post">
 		<div class="large_text active" style="text-align : center;">
 			<img alt="logo" src="<%=request.getContextPath() %>/image/colorlogo.png" style="width:200px;"><br>
-			Business
 		</div>
 		<input type="text" name="email" class="form-control form-control-lg mt-5" placeholder="이메일">
 		<input type="text" name="password" class="form-control form-control-lg mt-1" placeholder="비밀번호">

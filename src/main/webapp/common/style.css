@@ -215,19 +215,24 @@
 /* 조성필 끝 */
 
 /* 박상용 */
+	.outer_border{
+	 border : 3px solid;
+	 border-color : #ffc107;
+	}
+	
 	.main_first_box {
-	height: 580px;
+	height: 500px;
 	background: #fff url(http://nstayidb.cafe24.com/arribada/main/mv01.jpg) 50% 100% no-repeat;
-	background-size: 1100px auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	}
 	.main_twice_box {
-		background: #ffffff;
 		border-radius: 8px;
-		padding: 16px;
-		margin-bottom: 80px;
+		padding : 10px 10px 10px 10px;
+		margin-bottom : 50px;
+		background-color: #ffffff;
+		box-shadow: 10px 10px 50px black;
 	}		
 	.main_search_title {
 		font-size: 28px;
@@ -235,7 +240,6 @@
 		margin: 0;
 	}
 	.main_search_all {
-		margin-top: 10px;
 		display: flex;
 	}
 	.main_checkinout{
@@ -244,7 +248,7 @@
 	}
 	.main_checkin_1 {
 		border: 0;
-		background-color: #ffc107;
+		background-color: #ffffff; 
 		padding-left: 12px;
 	    padding-right: 12px;
 	    height: 48px;
@@ -260,8 +264,9 @@
 		border-top: 0;
 		border-right: 0;
 		border-bottom: 0;
+		border-left: 1px solid #c8c8c8;
 		border-left-width: 1px;
-		background-color: #ffc107;
+		background-color: #ffffff; 
 		padding-left: 12px;
 	    padding-right: 12px;
 	    height: 48px;
@@ -293,10 +298,10 @@
 	}
 	.main_search_button {
 		background-color: #ffc107;
-		color: black;
+		color: white;
 		font-size: 14px;
-		font-weight: 700;
-		border-radius: 50vh;
+		font-weight: bold;
+		border-radius: 0.25vh;
 		width: 100%;
 		border: none;
 		min-width: 112px;
@@ -304,7 +309,7 @@
 	}
 	.main_search_text {
 		margin-left: 8px;
-		background-color: #ffc107;
+		background-color: #ffffff;
 	    border: none;
 	    color: black;
 	    width: 96%;
@@ -312,7 +317,17 @@
 		padding-left: 20px;
 	}
 	.main_categorybox {
-		margin-top: 100px;
+		padding-top: 50px;
+		padding-bottom : 50px;
+		margin-top : 100px;
+		margin-bottom : 100px;
+		margin : auto;
+		width : 800px;
+	}
+	.main_categoryone{
+		box-shadow: 5px 5px 10px black;
+		padding : 15px 0px 35px 0px;
+		border-radius: 8px;
 	}
 	.main_floor {
 		display: grid;
@@ -324,6 +339,8 @@
 		width: 300px;
 		height: 200px;
 		object-fit: cover;
+		padding-top : 15px;
+		border-top: 2px solid #c8c8c8;
 	}
 	.main_event_box {
 		display: flex;

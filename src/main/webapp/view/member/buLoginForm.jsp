@@ -19,7 +19,7 @@
 		<input type="text" name="bu_password" class="form-control form-control-lg mt-1" placeholder="비밀번호">
 		<input type="submit" class="default_btn rounded mt-3" value="사업자 로그인">
 		<button type="button" class="default_btn rounded mt-1" 
-			onclick="location.href='<%=request.getContextPath()%>/view/member/buLoginForm.jsp'">Going Business</button>
+			onclick="location.href='${pageContext.request.contextPath}/member/loginForm'">Going Customer</button>
 		
 		<hr>
 		

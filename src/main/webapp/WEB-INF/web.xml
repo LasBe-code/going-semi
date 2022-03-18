@@ -34,13 +34,33 @@
   </servlet-mapping>
   
   <servlet>
-        <servlet-name>roomController</servlet-name>
-        <servlet-class>controller.RoomController</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>roomController</servlet-name>
-        <url-pattern>/room/*</url-pattern>
-    </servlet-mapping>
+       <servlet-name>roomController</servlet-name>
+       <servlet-class>controller.RoomController</servlet-class>
+       <load-on-startup>1</load-on-startup>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>roomController</servlet-name>
+       <url-pattern>/room/*</url-pattern>
+   </servlet-mapping>
+   
+   <servlet>
+       <servlet-name>searchController</servlet-name>
+       <servlet-class>controller.SearchController</servlet-class>
+       <load-on-startup>1</load-on-startup>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>searchController</servlet-name>
+       <url-pattern>/search/*</url-pattern>
+   </servlet-mapping>
+   
+   <servlet>
+       <servlet-name>reservationController</servlet-name>
+       <servlet-class>controller.ReservationController</servlet-class>
+       <load-on-startup>1</load-on-startup>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>reservationController</servlet-name>
+       <url-pattern>/reservation/*</url-pattern>
+   </servlet-mapping>
   
 </web-app>

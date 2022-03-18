@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% response.sendRedirect(request.getContextPath()+"/member/loginForm"); %>
+<% response.sendRedirect(request.getContextPath()+"/search/main"); %>
 
 </body>
 </html>

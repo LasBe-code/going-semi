@@ -15,6 +15,16 @@ import util.Naver_Sens_V2;
 
 
 public class MemberController extends MskimRequestMapping {
+	@RequestMapping("logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		session.invalidate(); // 세션과 관련된 모든 데이터 날리는 메소드
+		request.setAttribute("msg", "로그아웃 하였습니다.");
+		request.setAttribute("url", request.getContextPath()+"/search/main");
+		
+		return "/view/alert.jsp";
+	}
+	
 	@RequestMapping("loginForm")
 	public String loginForm(HttpServletRequest request, HttpServletResponse response) {
 		return "/view/member/loginForm.jsp";
