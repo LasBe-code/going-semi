@@ -11,16 +11,16 @@
 <div class="login_form_width">
 	<form action="${pageContext.request.contextPath}/member/loginPro" method="post">
 		<div class="large_text active" style="text-align : center;">
-			<img alt="logo" src="<%=request.getContextPath() %>/image/colorlogo.png" style="width:200px;"><br>
+			<img alt="logo" src="${pageContext.request.contextPath}/image/colorlogo.png" style="width:200px;"><br>
 		</div>
 		<input type="text" name="email" class="form-control form-control-lg mt-5" placeholder="이메일">
 		<input type="text" name="password" class="form-control form-control-lg mt-1" placeholder="비밀번호">
 		<input type="submit" class="default_btn rounded mt-3" value="로그인">
 		<button type="button" class="default_btn rounded mt-1" 
-			onclick="location.href='<%=request.getContextPath()%>/view/member/buLoginForm.jsp'">Going Business</button>
+			onclick="location.href='${pageContext.request.contextPath}/member/buLoginForm'">Going Business</button>
 		<button class="default_btn rounded mt-1" style="background: rgb(252,229,30);">
 			<span class="small_text">
-				<img alt="logo" src="<%=request.getContextPath() %>/image/kakaotalk.png">
+				<img alt="logo" src="${pageContext.request.contextPath}/image/kakaotalk.png">
 				카카오톡으로 로그인
 			</span>
 		</button>

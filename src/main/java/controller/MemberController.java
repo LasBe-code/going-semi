@@ -32,7 +32,32 @@ public class MemberController extends MskimRequestMapping {
 	
 	@RequestMapping("loginPro")
 	public String loginPro(HttpServletRequest request, HttpServletResponse response) {
-		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String email = request.getParameter("email");
+		String pass = request.getParameter("password");
+		MemberDao md = new MemberDao();
+
+		Member m = md.selectMemberOne(email);
+
+		String msg = "아이디를 확인하세요";
+		String url = request.getContextPath()+"/member/loginForm";
+
+		if(m != null){
+			if(pass.equals(m.getPassword())){ //로그인 성공
+				request.getSession().setAttribute("email", email);
+				msg = m.getName() + "님이 로그인 하셨습니다.";
+				url = request.getContextPath()+"/search/main";
+			} else { // 아이디 o / 패스워드 x
+				msg = "비밀번호를 확인하세요.";
+			}
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("url", url);
 		
 		return "/view/alert.jsp";
 	}

@@ -54,7 +54,7 @@
             	<a class="nav-link" href="${pageContext.request.contextPath}">예약내역</a>
             </li>
             <li class="nav-item">
-            	<a class="nav-link" href="${pageContext.request.contextPath}/view/member/loginForm.jsp">로그인</a>
+            	<a class="nav-link" href="${pageContext.request.contextPath}/member/loginForm">로그인</a>
             </li>
           </c:if>
         </ul>

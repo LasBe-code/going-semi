@@ -62,6 +62,18 @@ public class MemberDao {
 		return 0;
 	}
 	
+	public Member selectMemberOne(String email) {
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		try {
+			return sqlSession.getMapper(MemberMapperAnno.class).selectMemberOne(email);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		return null;
+	}
+	
 	public Business selectBusinessOne(String bu_email) {
 		SqlSession sqlSession = MybatisConnection.getConnection();
 		try {
