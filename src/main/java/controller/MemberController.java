@@ -90,7 +90,7 @@ public class MemberController extends MskimRequestMapping {
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("url", url);
-		
+		request.getSession().invalidate();
 		return "/view/alert.jsp";
 	}
 	@RequestMapping("buLoginPro")
@@ -224,4 +224,43 @@ public class MemberController extends MskimRequestMapping {
       
       return "/view/member/memberInfo.jsp";
    }
+	
+	@RequestMapping("kakaoLogin")
+    public String kakaoLogin(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String id = request.getParameter("id");
+		MemberDao md = new MemberDao();
+
+		Member m = md.selectMemberOne(id);
+
+		String msg = "아이디를 확인하세요";
+		String url = request.getContextPath()+"/member/loginForm";
+
+		if(m != null){ //카카오로그인 성공
+			session.setAttribute("email", id);
+			msg = m.getName() + "님이 로그인 하셨습니다.";
+			url = request.getContextPath()+"/search/main";
+		} else { // id가 없을 때
+			String name = request.getParameter("name");
+			url = request.getContextPath()+"/member/kakaoSignup";
+			msg = "회원가입 페이지로 이동합니다.";
+			session.setAttribute("id", id);
+			session.setAttribute("name", name);
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("url", url);
+		
+		return "/view/alert.jsp";
+   }
+
+	@RequestMapping("kakaoSignup")
+	public String kakaoSignup(HttpServletRequest request, HttpServletResponse response) {
+	    return "/view/member/kakaoSignup.jsp";
+	 }
 }

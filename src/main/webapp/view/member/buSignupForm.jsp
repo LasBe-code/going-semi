@@ -23,7 +23,7 @@
 			alert('인증 번호를 전송했습니다.')
 			
 			const code_btn = document.getElementById("code_btn")
-			code_btn.disabled = false
+			code_btn.readonly = false
 		}
 	}
 	
@@ -43,10 +43,10 @@
 			if(result == 'false'){
 				alert('인증되었습니다')
 				const input_tel = document.getElementById("input_tel")
-				input_tel.disabled = true
+				input_tel.readonly = true
 				
 				const input_code = document.getElementById("input_code")
-				input_code.disabled = true
+				input_code.readonly = true
 				
 				const tel_btn = document.getElementById("tel_btn")
 				tel_btn.disabled = true

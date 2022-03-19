@@ -18,14 +18,13 @@ public class MemberDao {
 	public int insertMember(HttpServletRequest request) {
 		
 		SqlSession sqlSession = MybatisConnection.getConnection();
-		
 		Member m = new Member(
-				request.getParameter("email"),
+				(String)request.getParameter("email"),
 				request.getParameter("password"),
 				request.getParameter("tel"),
 				request.getParameter("name")
 				);
-				
+		System.out.println(m);		
 		try {
 			return sqlSession.getMapper(MemberMapperAnno.class).insertMember(m);
 		} catch (Exception e) {

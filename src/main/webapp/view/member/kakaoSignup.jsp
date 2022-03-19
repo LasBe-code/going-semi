@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/ajax.js"></script>
 <script>
+
 function auth(){
-	const tel = document.f.bu_tel.value;
+	const tel = document.f.tel.value;
 	const param = "tel="+tel;
 	
 	ajax("<%=request.getContextPath()%>/member/phoneAuth", param, callback, 'GET')
@@ -85,13 +86,13 @@ function callbackCheck(){
 			</div>
 		</div>
 		
-		<input type="email" name="email" class="form-control form-control-lg mt-3" placeholder="이메일">
+		<input type="text" name="email" class="form-control form-control-lg mt-3" value="${id}" placeholder="이메일" readonly>
 		
 		<input type="password" name="password" class="form-control form-control-lg mt-3" placeholder="비밀번호" pattern="^(?=.*[a-zA-z])(?=.*[0-9]).{6,12}$">
 		<input type="password" class="form-control form-control-lg mt-3" placeholder="비밀번호 확인">
 		
 		<div class="mt-3">
-			<input type="text" name="name" class="form-control form-control-lg" placeholder="이름">
+			<input type="text" name="name" class="form-control form-control-lg" value="${name}" placeholder="이름" readonly>
 		</div>
 		
 		<input type="submit" class="default_btn rounded mt-3" value="회원가입">
