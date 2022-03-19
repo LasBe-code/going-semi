@@ -198,4 +198,30 @@ public class MemberController extends MskimRequestMapping {
 		
 		return "/common/phoneAuth.jsp";
 	}
+	@RequestMapping("memberInfo")
+   public String memberInfo(HttpServletRequest request, HttpServletResponse response) {
+      HttpSession session = request.getSession();
+      try {
+         request.setCharacterEncoding("utf-8");
+      } catch (UnsupportedEncodingException e) {
+         e.printStackTrace();
+      }
+      
+      String email = (String) session.getAttribute("email");
+      
+      if(email!=null) {
+      
+         MemberDao md = new MemberDao();
+         
+         Member m = md.selectMemberOne(email);
+         
+         request.setAttribute("mem",m);
+      
+      } else {
+         return "/member/loginForm";
+      }
+      
+      
+      return "/view/member/memberInfo.jsp";
+   }
 }
