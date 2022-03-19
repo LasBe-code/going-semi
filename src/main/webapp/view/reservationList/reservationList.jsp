@@ -226,7 +226,7 @@
       <p class="small_text" style="padding-top: 10px; margin-bottom: -20px;">취소완료</p><br>
       <a class="medium_text" 
       style="cursor:pointer; color:black;  text-decoration-line: none;  " 
-      href="${pageContext.request.contextPath}/reservation/reservationDetail'">
+      href="${pageContext.request.contextPath}/reservation/reservationDetail">
       <b>엘시티(LCT) 레지던스</b><br>
       01.08 수 - 01.10 금<b>ㆍ</b>2박 </a><br>
       <button class="default_btn rounded" type="button" style="height: 30px; width:100px; margin-top: 5px;" 
