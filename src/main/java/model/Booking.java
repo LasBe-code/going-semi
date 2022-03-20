@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Date;
 
 public class Booking {
 	private int bo_num;
@@ -9,11 +10,15 @@ public class Booking {
 	private String ro_name;
 	private String checkin, checkout;
 	private int ro_num;
+	private Date reg_date; // 예약한 날짜확인 
+	private int status;//예약 상태 확인
 	
-	public Booking() {}
-
+	
+	public Booking() {
+	}
+	
 	public Booking(int bo_num, String email, String name, String tel, String payment, String price, String bu_title,
-			String ro_name, String checkin, String checkout, int ro_num) {
+			String ro_name, String checkin, String checkout, int ro_num, Date reg_date, int status) {
 		super();
 		this.bo_num = bo_num;
 		this.email = email;
@@ -26,8 +31,12 @@ public class Booking {
 		this.checkin = checkin;
 		this.checkout = checkout;
 		this.ro_num = ro_num;
+		this.reg_date = reg_date;
+		this.status = status;
 	}
 
+	
+	
 	public int getBo_num() {
 		return bo_num;
 	}
@@ -116,13 +125,28 @@ public class Booking {
 		this.ro_num = ro_num;
 	}
 
+	public Date getReg_date() {
+		return reg_date;
+	}
+
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "{\"bo_num\":\"" + bo_num + "\", \"email\":\"" + email + "\", \"name\":\"" + name + "\", \"tel\":\""
 				+ tel + "\", \"payment\":\"" + payment + "\", \"price\":\"" + price + "\", \"bu_title\":\"" + bu_title
 				+ "\", \"ro_name\":\"" + ro_name + "\", \"checkin\":\"" + checkin + "\", \"checkout\":\"" + checkout
-				+ "\", \"ro_num\":\"" + ro_num + "\"}";
+				+ "\", \"ro_num\":\"" + ro_num + "\", \"reg_date\":\"" + reg_date + "\", \"status\":\"" + status
+				+ "\"}";
 	}
-	
-	
 }
