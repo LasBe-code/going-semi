@@ -43,74 +43,18 @@
     </select>
     </div>
 	<div class="mb-3" >
-    	<label style=" margin-bottom: 10px;">객실기본정보&nbsp;&nbsp;&nbsp;</label><span id="byteInfo" style="display: inline;">0</span> /3900bytes
+    	<label style=" margin-bottom: 10px;">객실기본정보&nbsp;&nbsp;&nbsp;</label>
+    	<span id="byteInfo" style="display: inline;">0</span> /3900bytes
    		<textarea rows="10" cols="100" name="roomInfo" onKeyUp="javascript:fnChkByte(this,'3900')"></textarea>
     </div>
-    <div style="margin-bottom: 30px;">
-    	<label>객실 사진</label>
-    	<input type="file" id = "multi-inputImg" name="picLocation">
-    </div>
-    <div id = "room_Update_multi_picture"></div>
+
+    <label style=" margin-bottom: 10px;">객실사진등록&nbsp;&nbsp;&nbsp;</label>
+    <textarea rows="10" cols="100" name="picLocation"></textarea>
     <button type="submit" class="default_btn rounded mt-1" style="width:100px;margin:auto; display:block;">등록</button>
   </form>
 
 </div>
 <script type="text/javascript">
-/**
- * 멀티파일 업로드
- */
-function readMultipleImage(input) {
-    const multipleContainer = document.getElementById('room_Update_multi_picture')
-    
-    if(input.files) {
-        console.log(input.files)
-        const fileArr = Array.from(input.files)
-        const $colDiv1 = document.createElement('div')
-        const $colDiv2 = document.createElement('div')
-        const $colDiv3 = document.createElement('div')
-        $colDiv1.classList.add('column')
-        $colDiv2.classList.add('column')
-        $colDiv3.classList.add('column')
-        fileArr.forEach((file, index) => {
-            const reader = new FileReader()
-            const $imgDiv = document.createElement('div')   
-            const $img = document.createElement('img')
-            $img.classList.add('room_Update_image')
-            const $label = document.createElement('label')
-            $label.classList.add('room_Update_image_label')
-            $label.textContent = file.name
-            $imgDiv.appendChild($img)
-            $imgDiv.appendChild($label)
-            reader.onload = e => {
-                $img.src = e.target.result
-                
-                //$imgDiv.style.width = ($img.naturalWidth) * 0.2 + "px"
-                //$imgDiv.style.height = ($img.naturalHeight) * 0.2 + "px"
-            }
-            
-            console.log(file.name)
-            if(index % 3 == 0) {
-                $colDiv1.appendChild($imgDiv)
-            } else if(index % 3 == 1){
-                $colDiv2.appendChild($imgDiv)
-            }else{
-                $colDiv3.appendChild($imgDiv)
-            }
-            
-            reader.readAsDataURL(file)
-        })
-        multipleContainer.appendChild($colDiv1)
-        multipleContainer.appendChild($colDiv2)
-        multipleContainer.appendChild($colDiv3)
-    }
-}
-
-
-// 이벤트 리스너
-document.getElementById('multi-inputImg').addEventListener('change', (e) => {
-    readMultipleImage(e.target);
-})
-
 
 //Byte 수 체크 제한
 function fnChkByte(obj, maxByte)
