@@ -80,9 +80,12 @@
 		
 		<c:forEach var="room" items="${roomList}">
 			<form action="${pageContext.request.contextPath}/reservation/reserve" method="get">
+		    	<input type="hidden" name="bu_title" value="${bu.bu_title}">
 		    	<input type="hidden" name="ro_count" value="${ro_count}">
 				<input type="hidden" name="checkin" value="${checkin}">
 				<input type="hidden" name="checkout" value="${checkout}">
+				<input type="hidden" name="ro_name" value="${room.ro_name}">
+				<input type="hidden" name="price" value="${room.ro_price}">
 				<c:set var="ro_num" value="${room.ro_num}" />
 				<input type="hidden" name="ro_num" value="${ro_num}">
 				

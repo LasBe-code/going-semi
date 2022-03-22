@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 
+import model.Booking;
+import model.Business;
 import model.Reserved;
 import model.Room;
 import mybatis.ReservedMapperAnno;
@@ -31,13 +33,13 @@ public class ReserveDao {
 		return null;
 	}
 	
-	public Reserved reserveCheck(Map map) {
+	public List<Reserved> reserveCheck(Map map) {
 		
 		SqlSession sqlSession = MybatisConnection.getConnection();
 		try {
 			
-			Reserved reserved = sqlSession.getMapper(ReservedMapperAnno.class).reserveCheck(map);
-			return reserved;
+			List<Reserved> list = sqlSession.getMapper(ReservedMapperAnno.class).reserveCheck(map);
+			return list;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -46,6 +48,39 @@ public class ReserveDao {
 		}
 		
 		return null;
+	}
+	
+	public int insertBooking(Booking b) {
+		
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		try {
+			
+			int result = sqlSession.getMapper(ReservedMapperAnno.class).insertBooking(b);
+			return result;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return 0;
+	}
+	
+	public int insertReserved(Reserved r) {
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		try {
+			
+			int result = sqlSession.getMapper(ReservedMapperAnno.class).insertReserved(r);
+			return result;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return 0;
 	}
 	
 }

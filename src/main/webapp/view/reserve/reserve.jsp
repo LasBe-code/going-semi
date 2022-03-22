@@ -5,29 +5,65 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script>
+function requestPay() {
+  IMP.init('imp49486608'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
+  IMP.request_pay({
+    pg: "inicis",
+    pay_method: "kakaopay",
+    merchant_uid : 'merchant_'+new Date().getTime(),
+    name : 'Going 결제',
+    amount : ${booking.price},
+    buyer_email : '${email}',
+    buyer_name : '${member.name}',
+    buyer_tel : '${member.tel}',
+    buyer_postcode : '123-456',
+    m_redirect_url : 'http://localhost:8080/reservation/reservePro'
+  }, function (rsp) { // callback
+      if (rsp.success) {
+    	  $.ajax({
+	        	type : "GET",
+	        	url : "${pageContext.request.contextPath}/reservation/reservePro?bo_num=" + rsp.imp_uid + "&payment=" + rsp.pay_method
+	        }).done(function(data){
+	        	location.href='${pageContext.request.contextPath}/reservation/reservationList'
+	        	
+	        })
+	        
+	   	  
+      } else {
+     	alert('결제 실패')
+      }
+  });
+}
+
+</script>
 </head>
 <body>
 
-<form action="#" class="default_width mt-5">
+<div class="default_width mt-5">
 	<div class="row" style="margin: 0 auto !important;">
 	  <div class="col-sm-8 reserve_left">
 	    <b class="large_text">예약자 정보</b>
 	      <div class="mt-5"><strong class="user_profile">예약자 이름</strong></div>
-	      <input type="text" class="form-control form-control-lg mt-3" placeholder="장성우">
+	      <input type="text" class="form-control form-control-lg mt-3" value="${member.name}" readonly>
 	
 	      <div class="mt-5">
 	        <strong class="user_profile">휴대폰 번호</strong> <br>
-	        <input type="text" class="form-control form-control-lg mt-3" placeholder="01012345678">
+	        <input type="text" class="form-control form-control-lg mt-3" value="${member.tel}" readonly>
 	      </div>
 	
-	      <div class="mt-5">
+	      <!-- <div class="mt-5">
 	        <strong class="user_profile">결제방식</strong> <br>
 	        <select class="form-select form-select-lg mt-3" style="width: 200px;">
 	          <option>카카오페이</option>
 	          <option>네이버페이</option>
 	          <option>신용카드</option>
 	        </select>
-	      </div>
+	      </div> -->
 	
 	      <div class="mt-5">
 	        <div class="form-check">
@@ -50,31 +86,31 @@
 	    <div class="reserve_body">
 	      <p class="reserve_info">
 	        <strong class="reserve_name">숙소이름</strong> <br>
-	        신라스테이 역삼
+	        ${booking.bu_title}
 	      </p>
 	      <p class="reserve_info">
 	        <strong class="reserve_name">객실타입</strong> <br>
-	        스텐다드 더블
+	        ${booking.ro_name }
 	      </p>
 	      <p class="reserve_info">
 	        <strong class="reserve_name">체크인</strong> <br>
-	        03.10 목 15:00
+	        ${booking.checkin}
 	      </p>
 	      <p class="reserve_info">
 	        <strong class="reserve_name">체크아웃</strong> <br>
-	        03.11 금 12:00
+	        ${booking.checkout}
 	      </p>
 	    </div>
 	
 	    <div class="reserve_body">
 	      <strong class="reserve_name" style="color: black;">총 결제 금액</strong> <br>
-	      <strong class="reserve_name" style="color: #ffc107; font-size: 30px;">110,000원</strong> <br>
+	      <strong class="reserve_name" style="color: #ffc107; font-size: 30px;">${booking.price}</strong><strong class="reserve_name" style="color: black; font-size: 30px;"> 원</strong> <br>
 	    </div>
-	    <input type="submit" value="결제하기"
-	    	style="width: 100%; height: 56px; background-color: #ffc107; color: white; border: none;">
+	    <button type="button" onclick="requestPay()"
+	    	style="width: 100%; height: 56px; background-color: #ffc107; color: white; border: none;">결제하기</button>
 	  </div>
 	  
 	</div>
-</form>
+</div>
 </body>
 </html>

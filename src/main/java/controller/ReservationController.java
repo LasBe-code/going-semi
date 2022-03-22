@@ -1,5 +1,7 @@
 package controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import model.Booking;
 import model.Business;
+import model.Member;
 import model.Reserved;
 import model.Room;
 import service.MemberDao;
@@ -37,7 +40,7 @@ public class ReservationController extends MskimRequestMapping {
 	@RequestMapping("reservationDetail")
 	public String reservationDetail (HttpServletRequest request, HttpServletResponse response) {
 		String flag = request.getParameter("flag");
-		int bo_num = Integer.parseInt(request.getParameter("bo_num"));
+		String bo_num = request.getParameter("bo_num");
 		System.out.println(bo_num);
 		//bo_num이 getParameter로 넘어왔기때문에 반환형이 String이다/ 그런데 테이블에선 int이므로 String으로 형변환을 해줘야하는데 Integer.parseInt이렇게 써줘야 한다.
 		
@@ -73,8 +76,8 @@ public class ReservationController extends MskimRequestMapping {
 //		String ro_count = request.getParameter("ro_count");
 		
 		String bu_email = "aaa@naver.com";
-		String checkin = "20220311";
-		String checkout = "20220317";
+		String checkin = "20220304";
+		String checkout = "20220307";
 		String ro_count = "2";
 		
 		Map<String, String> map = new HashMap<String, String>();
@@ -88,9 +91,9 @@ public class ReservationController extends MskimRequestMapping {
 		for(Room r : roomList) {
 			map.put("ro_num", ""+r.getRo_num()); map.put("checkin", checkin); map.put("checkout", String.valueOf(Integer.parseInt(checkout)-1));
 			// 방마다 예약 체크
-			Reserved reserved = reserveDao.reserveCheck(map);
-			System.out.println(r.getRo_num()); System.out.println(reserved);
-			if(reserved == null) { // 예약된 정보가 없으면 false
+			List<Reserved> list = reserveDao.reserveCheck(map);
+			System.out.println(r.getRo_num()); System.out.println(list);
+			if(list.isEmpty()) { // 예약된 정보가 없으면 false
 				roomMap.put(r.getRo_num(), false);
 			} else { // 예약이 되어 있으면 true
 				roomMap.put(r.getRo_num(), true); 
@@ -112,9 +115,67 @@ public class ReservationController extends MskimRequestMapping {
 		return "/view/reserve/detail.jsp";
 	}
 	
+	@RequestMapping("reserve")
+	public String reserve(HttpServletRequest request, HttpServletResponse response) {
+		Booking bo = new Booking();
+		ReserveDao rd = new ReserveDao();
+		MemberDao md = new MemberDao();
+		
+		// =========== 현재 시간 ==============
+		LocalDate now = LocalDate.now();
+		// 포맷 정의
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+		// 포맷 적용
+		String nowDay = now.format(formatter);
+
+		
+		bo.setEmail((String) request.getSession().getAttribute("email"));
+		bo.setCheckin(request.getParameter("checkin"));
+		bo.setCheckout(request.getParameter("checkout"));
+		bo.setPrice(request.getParameter("price"));
+		bo.setBu_title(request.getParameter("bu_title"));
+		bo.setRo_name(request.getParameter("ro_name"));
+		bo.setRo_num(Integer.parseInt(request.getParameter("ro_num")));
+		bo.setReg_date(nowDay);
+		bo.setStatus(1);
+		
+		Member m = md.selectMemberOne(bo.getEmail());
+		
+		request.getSession().setAttribute("booking", bo);
+		request.setAttribute("member", m);
+		
+		return "/view/reserve/reserve.jsp";
+	}
 	
-	
-	
+	@RequestMapping("reservePro")
+	public String reservePro(HttpServletRequest request, HttpServletResponse response) {
+		String bo_num = request.getParameter("bo_num");
+		String payment = request.getParameter("payment");
+		System.out.println(bo_num+", "+payment);
+		
+		Booking bo = (Booking) request.getSession().getAttribute("booking");
+		
+		bo.setBo_num(bo_num);		bo.setPayment(payment);
+		
+		ReserveDao rd = new ReserveDao();
+		
+		int result = rd.insertBooking(bo);
+		
+		System.out.println(bo);
+		System.out.println(result);
+		
+		int icheckin = Integer.parseInt(bo.getCheckin());
+		int icheckout = Integer.parseInt(bo.getCheckout());
+		Reserved r = new Reserved();
+		
+		for(int i=icheckin; i<icheckout ;i++) {
+			r = new Reserved(bo.getRo_num(), String.valueOf(i));
+			System.out.println(r);
+			rd.insertReserved(r);
+		}
+		
+		return "/view/reservationList/reservationList.jsp";
+	}
 	
 	
 }

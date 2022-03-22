@@ -22,7 +22,7 @@ public class ReservationDao {
 		return null;
 	}
 	
-	public Booking getBookingSelectDetail(int bo_num) {
+	public Booking getBookingSelectDetail(String bo_num) {
 		SqlSession sqlSession = MybatisConnection.getConnection();
 		
 		try {
@@ -39,7 +39,7 @@ public class ReservationDao {
 	}
 	
 	
-	public void updateBookingStatus(int bo_num) {
+	public void updateBookingStatus(String bo_num) {
 		SqlSession sqlSession = MybatisConnection.getConnection();
 		
 		try {

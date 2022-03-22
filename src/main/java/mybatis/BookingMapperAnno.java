@@ -13,10 +13,10 @@ public interface BookingMapperAnno {
 	List<Booking> getBookingSelectList(String email);
 	
 	@Select ("select * from booking where bo_num = #{bo_num}")
-	Booking getBookingSelectDetail(int bo_num);
+	Booking getBookingSelectDetail(String bo_num);
 	
 	@Update("update booking set status = 2 where bo_num = #{bo_num}")
-	void updateBookingStatus(int bo_num);
+	void updateBookingStatus(String bo_num);
 	
 	
 	
