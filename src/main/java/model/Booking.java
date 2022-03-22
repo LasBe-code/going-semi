@@ -10,7 +10,7 @@ public class Booking {
 	private String ro_name;
 	private String checkin, checkout;
 	private int ro_num;
-	private Date reg_date; // 예약한 날짜확인 
+	private String reg_date; // 예약한 날짜확인 
 	private int status;//예약 상태 확인
 	
 	
@@ -19,7 +19,7 @@ public class Booking {
 
 
 	public Booking(int bo_num, String email, String payment, String price, String bu_title, String ro_name,
-			String checkin, String checkout, int ro_num, Date reg_date, int status) {
+			String checkin, String checkout, int ro_num, String reg_date, int status) {
 		super();
 		this.bo_num = bo_num;
 		this.email = email;
@@ -125,12 +125,12 @@ public class Booking {
 	}
 
 
-	public Date getReg_date() {
+	public String getReg_date() {
 		return reg_date;
 	}
 
 
-	public void setReg_date(Date reg_date) {
+	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
 
@@ -152,6 +152,7 @@ public class Booking {
 				+ "\", \"checkin\":\"" + checkin + "\", \"checkout\":\"" + checkout + "\", \"ro_num\":\"" + ro_num
 				+ "\", \"reg_date\":\"" + reg_date + "\", \"status\":\"" + status + "\"}";
 	}
+
 	
 	
 }
