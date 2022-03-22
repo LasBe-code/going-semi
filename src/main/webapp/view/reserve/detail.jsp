@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,13 +46,21 @@
     </div>
 
     <div class="col-sm-6">
-      <b class="large_text"><span class="badge bg-warning">호텔</span> 신라스테이 역삼</b>
-      <p class="gray_text"><img src="https://cdn4.iconfinder.com/data/icons/music-ui-solid-24px/24/location_map_marker_pin-2-512.png" style="width: 20px;"> 서울 강남구 역삼동 675-3</p>
+    
+      <b class="large_text">
+      	<span class="badge bg-warning">
+      		<c:if test="${bu.bu_id == 1}">호텔</c:if>
+      		<c:if test="${bu.bu_id == 2}">모텔</c:if>
+      		<c:if test="${bu.bu_id == 3}">펜션</c:if>
+      		<c:if test="${bu.bu_id == 4}">리조트</c:if>
+      	</span> ${bu.bu_title}
+      </b>
+      
+      <p class="gray_text"><img src="https://cdn4.iconfinder.com/data/icons/music-ui-solid-24px/24/location_map_marker_pin-2-512.png" style="width: 20px;"> ${bu.bu_address}</p>
       <div class="event-bg text-white rounded">
         <ul>
-          <li>호텔 조식 1+1 제공</li>
-          <li>24시간 스테이</li>
-          <li>조식 3인</li>
+          <li>대표 이름 : ${bu.bu_name}</li>
+          <li>대표 전화번호 : ${bu.bu_tel}</li>
         </ul>
       </div>
     </div>
@@ -65,41 +76,38 @@
       </ul>
     </div>
 
-    <form action="<%=request.getContextPath()%>/view/reserve/reserve.jsp">
-
-      <div class="reserve_room">
-        <p class="reserve_pic_view">
-          <img src="https://image.goodchoice.kr/resize_370x220/affiliate/2017/06/22/594b62844c51f.jpg" alt="">
-        </p>
-        <strong class="reserve_room_title">스텐다드 더블</strong>
-        <div class="reserve_room_price row">
-          <div class="col-sm-6">
-            <strong class="medium_text">가격</strong>
-          </div>
-          <div class="col-sm-6 right_text">
-            <b class="large_text">110,000원</b>
-          </div>
-        </div>
-        <input type="submit" class="reserve_room_btn default_btn medium_text" value="예약">
-      </div>
-
-      <div class="reserve_room">
-        <p class="reserve_pic_view">
-          <img src="https://image.goodchoice.kr/resize_370x220/affiliate/2021/08/30/612c95ab1d16c.jpg" alt="">
-        </p>
-        <strong class="reserve_room_title">스텐다드 트윈</strong>
-        <div class="reserve_room_price row">
-          <div class="col-sm-6">
-            <strong class="medium_text">가격</strong>
-          </div>
-          <div class="col-sm-6 right_text">
-            <b class="large_text">120,000원</b>
-          </div>
-        </div>
-        <input type="submit" class="reserve_room_btn default_btn medium_text" value="예약">
-      </div>
-
-    </form>
+    
+		
+		<c:forEach var="room" items="${roomList}">
+			<form action="${pageContext.request.contextPath}/reservation/reserve" method="get">
+		    	<input type="hidden" name="ro_count" value="${ro_count}">
+				<input type="hidden" name="checkin" value="${checkin}">
+				<input type="hidden" name="checkout" value="${checkout}">
+				<c:set var="ro_num" value="${room.ro_num}" />
+				<input type="hidden" name="ro_num" value="${ro_num}">
+				
+				<div class="reserve_room">
+				  <p class="reserve_pic_view">
+				    <img src="https://image.goodchoice.kr/resize_370x220/affiliate/2017/06/22/594b62844c51f.jpg" alt="">
+				  </p>
+				  <strong class="reserve_room_title">${room.ro_name}</strong>
+				  <div class="reserve_room_price row">
+				    <div class="col-sm-6">
+				      <strong class="medium_text">가격</strong>
+				    </div>
+				    <div class="col-sm-6 right_text">
+				      <b class="large_text">${room.ro_price}</b>
+				    </div>
+				  </div>
+				  <input type="submit" class="reserve_room_btn default_btn medium_text"
+				  	
+				  	<c:if test="${roomMap[ro_num] == true}">disabled value="예약된 방"</c:if>
+					<c:if test="${roomMap[ro_num] == false}">value="예약"</c:if>
+				  >
+				</div>
+			</form>   
+		</c:forEach>
+    
 
   </div>
 </div>

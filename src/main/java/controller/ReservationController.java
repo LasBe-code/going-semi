@@ -1,13 +1,21 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Booking;
+import model.Business;
+import model.Reserved;
+import model.Room;
+import service.MemberDao;
 import service.ReservationDao;
+import service.ReserveDao;
 
 public class ReservationController extends MskimRequestMapping {
 	ReservationDao dao = new ReservationDao();
@@ -54,7 +62,55 @@ public class ReservationController extends MskimRequestMapping {
 	}
 	*/
 	
-	
+	@RequestMapping("detail")
+	public String detail(HttpServletRequest request, HttpServletResponse response) {
+		ReserveDao reserveDao = new ReserveDao();
+		MemberDao md = new MemberDao();
+		
+//		String bu_email = request.getParameter("bu_email");
+//		String checkin = request.getParameter("checkin");
+//		String checkout = request.getParameter("checkout");
+//		String ro_count = request.getParameter("ro_count");
+		
+		String bu_email = "aaa@naver.com";
+		String checkin = "20220311";
+		String checkout = "20220317";
+		String ro_count = "2";
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("bu_email", bu_email); map.put("ro_count", ro_count);
+		
+		List<Room> roomList = reserveDao.roomList(map); // 룸 정보 받아오기
+		Business bu = md.selectBusinessOne(bu_email); // 사업자, 숙소 정보 받아오기
+		
+		Map<Integer, Boolean> roomMap = new HashMap<>();
+		
+		for(Room r : roomList) {
+			map.put("ro_num", ""+r.getRo_num()); map.put("checkin", checkin); map.put("checkout", String.valueOf(Integer.parseInt(checkout)-1));
+			// 방마다 예약 체크
+			Reserved reserved = reserveDao.reserveCheck(map);
+			System.out.println(r.getRo_num()); System.out.println(reserved);
+			if(reserved == null) { // 예약된 정보가 없으면 false
+				roomMap.put(r.getRo_num(), false);
+			} else { // 예약이 되어 있으면 true
+				roomMap.put(r.getRo_num(), true); 
+			}
+			
+		}
+		
+		System.out.println(bu);
+		System.out.println(roomList);
+		System.out.println(roomMap);
+		
+		request.setAttribute("roomList", roomList);
+		request.setAttribute("roomMap", roomMap);
+		request.setAttribute("bu", bu);
+		request.setAttribute("ro_count", ro_count);
+		request.setAttribute("checkin", checkin);
+		request.setAttribute("checkout", checkout);
+		
+		return "/view/reserve/detail.jsp";
+	}
 	
 	
 	

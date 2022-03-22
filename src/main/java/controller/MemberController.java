@@ -93,6 +93,13 @@ public class MemberController extends MskimRequestMapping {
 		request.getSession().invalidate();
 		return "/view/alert.jsp";
 	}
+	
+	@RequestMapping("buLoginForm")
+	public String buLoginForm(HttpServletRequest request, HttpServletResponse response) {
+		
+		return "/view/member/buLoginForm.jsp";
+	}
+	
 	@RequestMapping("buLoginPro")
 	public String buLoginPro(HttpServletRequest request, HttpServletResponse response) {
 		try {
