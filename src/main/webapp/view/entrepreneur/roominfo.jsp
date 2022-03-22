@@ -27,15 +27,14 @@
 	  
 	  <!-- The slideshow -->
 	  <div class="carousel-inner">
-	    <div class="carousel-item active">
-	      <img src="${pageContext.request.contextPath}/image/1.jpg" width="1100" height="500">
+	  	<div class="carousel-item active">
+	      <img src="${picMain}" width="100%">
 	    </div>
+	  <c:forEach items="${p_list}" var="p">
 	    <div class="carousel-item">
-	      <img src="${pageContext.request.contextPath}/image/2.jpg" width="1100" height="500">
+	      <img src="${p}" width="100%">
 	    </div>
-	    <div class="carousel-item">
-	      <img src="${pageContext.request.contextPath}/image/3.jpg" width="1100" height="500">
-	    </div>
+	  </c:forEach>
 	  </div>
 	  
 	  <!-- Left and right controls -->
@@ -47,13 +46,16 @@
 	  </a>
 	</div>
 	<div style="margin-top: 70px;">
+	<input type="hidden" name="pic_num" value="${pic_num}">
+	<input type="hidden" name="ro_num" value="${room.ro_num}">
 		<h4 style="text-align: center; margin-bottom: 30px;">객실기본정보</h4>
 		<h5 style=" margin-bottom: 30px;">${room.ro_name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가격 : ${room.ro_price}</h5>
 		<h5 style=" margin-bottom: 30px;">체크인시간 : ${room.checkin}&nbsp;&nbsp;체크아웃시간 : ${room.checkout}</h5>
-		<div>	
-			${room.ro_info}
+		<div style="margin-bottom: 50px;">	
+			${info}
 		</div>
-		  <input type="button" class="default_btn rounded mt-1" value="정보수정" onclick="location.href='${pageContext.request.contextPath}/room/roomUpdate'">
+		  <button class="default_btn rounded mt-1" onclick="location.href='${pageContext.request.contextPath}/room/roomUpdate?pic_num=${pic_num}&ro_num=${ro_num}'">정보수정</button>
+		  <button class="default_btn rounded mt-1" onclick="location.href='${pageContext.request.contextPath}/room/roomDelete?ro_num=${ro_num}'">객실삭제</button>
 	</div>
 </div>
 </body>

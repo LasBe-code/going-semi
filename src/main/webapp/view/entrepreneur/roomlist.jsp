@@ -33,10 +33,11 @@
 </nav>
 <table class="table" style="width: 75%; margin:10px auto; margin-top: 50px;">
     <tbody>
-    <c:forEach var="l" items="${list}" >
+    <c:forEach var="l" items="${list}">
 	      <tr style="width: 100%">
-	        <td style="width: 60%"><a href="${pageContext.request.contextPath}/room/roominfo?pic_num=${l.pic_num}">
-	        	<img class="roomlist_main-img" src="${pageContext.request.contextPath}/image/1.jpg">
+	        <td style="width: 60%"><a href="${pageContext.request.contextPath}/room/roominfo?ro_num=${l.ro_num}">
+	        <input type="hidden" name="pic_num" value="${l.pic_num}">
+	        	<img class="roomlist_main-img" src="${l.location}">
 	        </a></td>
 	        <td class= "roomlist_box" style="width: 40%">
 				<div>

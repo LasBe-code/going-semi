@@ -42,32 +42,30 @@
       </tr>
     </thead>
     <tbody>
+    <c:forEach var="b" items="${bk}">
       <tr>
-     	<td>스탠다드 더블</td>
-        <td>2명</td>
-        <td>2022/02/20 ~ 2022/02/21</td>
-     	<td>김철수</td>
-        <td>010-5794-2154</td>
-        <td>john@example.com</td>
+     	<td>${b.ro_name}</td>
+        <td>${b.ro_count}</td>
+        <td>${b.checkin} ~ ${b.checkout}</td>
+     	<td>${b.name}</td>
+        <td>${b.tel}</td>
+        <td>${b.email}</td>
       </tr>
-      <tr>
-      	<td>스탠다드 트윈</td>
-        <td>3명</td>
-        <td>2022/02/25 ~ 2022/02/28</td>
-      	<td>김영희</td>
-        <td>010-3157-5418</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-   		<td>스탠다드 트윈</td>
-        <td>4명</td>
-        <td>2022/03/6 ~ 2022/03/08</td>
-   		<td>김영호</td>
-        <td>010-6987-5431</td>
-        <td>july@example.com</td>
-      </tr>
+    </c:forEach>  
     </tbody>
   </table>
+</div>
+<div class="container"  >
+<ul class="pagination justify-content-center"  >
+	<li class='page-item <c:if test="${startNum <= bottomLine}">disabled </c:if>'>
+	<a class="page-link" href="${pageContext.request.contextPath}/room/reservation?pageNum=${startPage-bottomLine}">Previous</a></li>
+	<c:forEach var="i" begin="${startNum}" end="${endNum}">
+		<li class='page-item <c:if test="${i==pageInt}">active</c:if>'>
+		<a class="page-link" href="${pageContext.request.contextPath}/room/reservation?pageNum=${i}">${i}</a></li>
+	</c:forEach>
+	<li class='page-item <c:if test="${endNum >= maxNum}">disabled </c:if>'>
+	<a class="page-link" href="${pageContext.request.contextPath}/room/reservation?pageNum=${startPage+bottomLine}">Next</a></li>
+</ul>
 </div>
 </div>
 </body>
