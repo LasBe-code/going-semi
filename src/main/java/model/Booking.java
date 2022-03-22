@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.Date;
 
 public class Booking {
 	private String bo_num;
@@ -21,14 +20,9 @@ public class Booking {
 	}
 
 
-<<<<<<< HEAD
-	public Booking(int bo_num, String email, String payment, String price, String bu_title, String ro_name,
+	public Booking(String bo_num, String email, String payment, String price, String bu_title, String ro_name,
 			String checkin, String checkout, int ro_num, String reg_date, int status, int ro_count, String name,
 			String tel) {
-=======
-	public Booking(String bo_num, String email, String payment, String price, String bu_title, String ro_name,
-			String checkin, String checkout, int ro_num, String reg_date, int status) {
->>>>>>> branch 'master' of https://github.com/LasBe-code/Going.git
 		super();
 		this.bo_num = bo_num;
 		this.email = email;
@@ -52,14 +46,6 @@ public class Booking {
 	}
 
 
-<<<<<<< HEAD
-=======
-	public void setBo_num(String bo_num) {
-		this.bo_num = bo_num;
-	}
-
-
->>>>>>> branch 'master' of https://github.com/LasBe-code/Going.git
 	public String getEmail() {
 		return email;
 	}
@@ -125,7 +111,7 @@ public class Booking {
 	}
 
 
-	public void setBo_num(int bo_num) {
+	public void setBo_num(String bo_num) {
 		this.bo_num = bo_num;
 	}
 
@@ -203,8 +189,5 @@ public class Booking {
 				+ ", name=" + name + ", tel=" + tel + "]";
 	}
 
-
-	
-	
 	
 }
