@@ -3,7 +3,7 @@ package model;
 import java.sql.Date;
 
 public class Booking {
-	private int bo_num;
+	private String bo_num;
 	private String email, payment;
 	private String price;
 	private String bu_title;
@@ -18,7 +18,7 @@ public class Booking {
 	}
 
 
-	public Booking(int bo_num, String email, String payment, String price, String bu_title, String ro_name,
+	public Booking(String bo_num, String email, String payment, String price, String bu_title, String ro_name,
 			String checkin, String checkout, int ro_num, String reg_date, int status) {
 		super();
 		this.bo_num = bo_num;
@@ -35,12 +35,12 @@ public class Booking {
 	}
 
 
-	public int getBo_num() {
+	public String getBo_num() {
 		return bo_num;
 	}
 
 
-	public void setBo_num(int bo_num) {
+	public void setBo_num(String bo_num) {
 		this.bo_num = bo_num;
 	}
 
