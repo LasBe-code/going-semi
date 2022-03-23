@@ -28,7 +28,7 @@
 				<a class="small_text non_deco">비밀번호 재설정</a>
 			</div>
 			<div class="col-sm-6" style="text-align:center;">
-				<a class="small_text non_deco" href="${pageContext.request.contextPath}/view/member/buSignupForm.jsp">사업자 회원가입</a>
+				<a class="small_text non_deco" href="${pageContext.request.contextPath}/member/buSignupForm">사업자 회원가입</a>
 			</div>
 		</div>
 	</form>

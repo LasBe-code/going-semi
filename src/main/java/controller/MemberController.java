@@ -131,6 +131,13 @@ public class MemberController extends MskimRequestMapping {
 		
 		return "/view/alert.jsp";
 	}
+	
+	@RequestMapping("buSignupForm")
+	public String buSignupForm(HttpServletRequest request, HttpServletResponse response) {
+		
+		return "/view/member/buSignupForm.jsp";
+	}
+	
 	@RequestMapping("buSignupPro")
 	public String buSignupPro(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -270,4 +277,28 @@ public class MemberController extends MskimRequestMapping {
 	public String kakaoSignup(HttpServletRequest request, HttpServletResponse response) {
 	    return "/view/member/kakaoSignup.jsp";
 	 }
+	
+	@RequestMapping("readId")
+	public String readId(HttpServletRequest request, HttpServletResponse response) {
+		String email = request.getParameter("email");
+		String bu_email = request.getParameter("bu_email");
+		String chk = "true";
+		MemberDao md = new MemberDao();
+		
+		System.out.println(bu_email);
+		
+		if(email != null) {
+			Member m = md.selectMemberOne(email);
+			chk = m==null? "false":"true";
+			request.setAttribute("result", chk);
+		} 
+		if(bu_email != null) {
+			Business b = md.selectBusinessOne(bu_email);
+			chk = b==null? "false":"true";
+			request.setAttribute("result", chk);
+		}
+		
+		
+		return "/common/phoneAuth.jsp";
+	}
 }
