@@ -74,15 +74,15 @@ public class ReservationController extends MskimRequestMapping {
 		MemberDao md = new MemberDao();
 		RoomDao rd = new RoomDao();
 		
-//		String bu_email = request.getParameter("bu_email");
-//		String checkin = request.getParameter("checkin");
-//		String checkout = request.getParameter("checkout");
-//		String ro_count = request.getParameter("ro_count");
+		String bu_email = request.getParameter("bu_email");
+		String checkin = request.getParameter("checkin");
+		String checkout = request.getParameter("checkout");
+		String ro_count = request.getParameter("ro_count");
 		
-		String bu_email = "test@naver.com";
-		String checkin = "20220304";
-		String checkout = "20220307";
-		String ro_count = "1";
+		/*
+		 * String bu_email = "test@naver.com"; String checkin = "20220304"; String
+		 * checkout = "20220307"; String ro_count = "1";
+		 */
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("bu_email", bu_email); map.put("ro_count", ro_count);

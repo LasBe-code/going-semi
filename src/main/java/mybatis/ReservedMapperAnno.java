@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.*;
 
 import model.Booking;
+import model.Business;
 import model.Picture;
 import model.Reserved;
 import model.Room;
@@ -26,4 +27,12 @@ public interface ReservedMapperAnno {
 	@Insert("insert into reserved values(#{ro_num}, #{re_date})")
 	int insertReserved(Reserved r);
 	
+	@Select("select * from business where bu_id = #{bu_id} and bu_address like '%${bu_address}%'")
+	List<Business> businessList(Map map);
+	
+	@Select("select * from picture where pic_num = #{pic_num}")
+	List<Picture> sbPicList(int pic_num);
+	
+	@Select("select min(ro_price) from room where bu_email = #{bu_email} group by #{bu_email}")
+	String roomMinPrice(String bu_email);
 }
