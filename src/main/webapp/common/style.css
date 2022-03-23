@@ -253,7 +253,7 @@
 	    padding-right: 12px;
 	    height: 48px;
 	    display: flex;
-	    width: 128px;
+	    width: atuo;
 	    font-size: 16px;
 	    color: black;
 	    justify-content: center;
@@ -271,7 +271,7 @@
 	    padding-right: 12px;
 	    height: 48px;
 	    display: flex;
-	    width: 128px;
+	    width: auto;
 	    font-size: 16px;
 	    color: black;
 	    justify-content: center;
@@ -353,10 +353,8 @@
 		justify-content: center;
 		align-items: center;
 	}
-	.search_top_line {
-		margin-top: 100px;
-	}
 	.search_bottom_line {
+		margin-top: 100px;
 		margin-bottom: 200px;
 	}
 	.search_twice_box {
@@ -397,7 +395,7 @@
 		border-left-color: gray;
 	    color: black;
 	    height: 40px;
-	    width: 120px;
+	    width: 100%;
 	    cursor: pointer;
 	}
 	.search_detail_ul {
