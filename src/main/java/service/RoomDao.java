@@ -121,13 +121,13 @@ public class RoomDao {
 		return 0;
 	}
 
-	public Room selectRoom(Map<String, Object> map) {
+	public Room selectRoom(int ro_num) {
 
 		SqlSession sqlSession = MybatisConnection.getConnection();
 		
 		try {
 			
-			Room room = sqlSession.getMapper(RoomMapperAnno.class).selectRoom(map);
+			Room room = sqlSession.getMapper(RoomMapperAnno.class).selectRoom(ro_num);
 			return room;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -140,13 +140,13 @@ public class RoomDao {
 	}
 	
 	
-	public Picture selectPic(Map<String, Object> map) {
+	public List<Picture> selectPic(int pic_num) {
 		
 		SqlSession sqlSession = MybatisConnection.getConnection();
 		
 		try {
 			
-			Picture pic = sqlSession.getMapper(RoomMapperAnno.class).selectPic(map);
+			List<Picture> pic = sqlSession.getMapper(RoomMapperAnno.class).selectPic(pic_num);
 			return pic;
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.*;
 
 import model.Booking;
+import model.Picture;
 import model.Reserved;
 import model.Room;
 
@@ -24,4 +25,5 @@ public interface ReservedMapperAnno {
 	
 	@Insert("insert into reserved values(#{ro_num}, #{re_date})")
 	int insertReserved(Reserved r);
+	
 }

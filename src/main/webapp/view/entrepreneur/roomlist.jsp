@@ -12,6 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
 
@@ -37,7 +38,10 @@
 	      <tr style="width: 100%">
 	        <td style="width: 60%"><a href="${pageContext.request.contextPath}/room/roominfo?ro_num=${l.ro_num}">
 	        <input type="hidden" name="pic_num" value="${l.pic_num}">
-	        	<img class="roomlist_main-img" src="${l.location}">
+	        	<c:set var="ro_num" value="${l.ro_num}" />
+	        	<input type="text" value="${ro_num}">
+	        	<script>console.log(${l.ro_num}.toString+", "+${picMap}'</script>
+	        	<img class="roomlist_main-img" src="${picMap[ro_num]}">
 	        </a></td>
 	        <td class= "roomlist_box" style="width: 40%">
 				<div>

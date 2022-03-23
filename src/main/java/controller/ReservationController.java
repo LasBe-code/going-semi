@@ -3,6 +3,7 @@ package controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,11 +15,13 @@ import javax.servlet.http.HttpSession;
 import model.Booking;
 import model.Business;
 import model.Member;
+import model.Picture;
 import model.Reserved;
 import model.Room;
 import service.MemberDao;
 import service.ReservationDao;
 import service.ReserveDao;
+import service.RoomDao;
 
 public class ReservationController extends MskimRequestMapping {
 	ReservationDao dao = new ReservationDao();
@@ -69,16 +72,17 @@ public class ReservationController extends MskimRequestMapping {
 	public String detail(HttpServletRequest request, HttpServletResponse response) {
 		ReserveDao reserveDao = new ReserveDao();
 		MemberDao md = new MemberDao();
+		RoomDao rd = new RoomDao();
 		
 //		String bu_email = request.getParameter("bu_email");
 //		String checkin = request.getParameter("checkin");
 //		String checkout = request.getParameter("checkout");
 //		String ro_count = request.getParameter("ro_count");
 		
-		String bu_email = "aaa@naver.com";
+		String bu_email = "test@naver.com";
 		String checkin = "20220304";
 		String checkout = "20220307";
-		String ro_count = "2";
+		String ro_count = "1";
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("bu_email", bu_email); map.put("ro_count", ro_count);
@@ -87,7 +91,6 @@ public class ReservationController extends MskimRequestMapping {
 		Business bu = md.selectBusinessOne(bu_email); // 사업자, 숙소 정보 받아오기
 		
 		Map<Integer, Boolean> roomMap = new HashMap<>();
-		
 		for(Room r : roomList) {
 			map.put("ro_num", ""+r.getRo_num()); map.put("checkin", checkin); map.put("checkout", String.valueOf(Integer.parseInt(checkout)-1));
 			// 방마다 예약 체크
@@ -101,10 +104,21 @@ public class ReservationController extends MskimRequestMapping {
 			
 		}
 		
+		Map<Integer, Object> roomPicMap = new HashMap<>();
+		List<Picture> picList = new ArrayList<Picture>();
+		
+		for(Room room : roomList) {
+			picList = rd.selectPic(room.getPic_num());
+			System.out.println(picList);
+			roomPicMap.put(room.getRo_num(), picList.get(0).getLocation().trim());
+			System.out.println(picList.get(0).getLocation().trim());
+		}
+		
 		System.out.println(bu);
 		System.out.println(roomList);
 		System.out.println(roomMap);
 		
+		request.setAttribute("roomPicMap", roomPicMap);
 		request.setAttribute("roomList", roomList);
 		request.setAttribute("roomMap", roomMap);
 		request.setAttribute("bu", bu);
@@ -177,5 +191,36 @@ public class ReservationController extends MskimRequestMapping {
 		return "/view/reservationList/reservationList.jsp";
 	}
 	
-	
+	@RequestMapping("roomDetail")
+	public String roomDetail(HttpServletRequest request, HttpServletResponse response) {
+		
+		RoomDao rd = new RoomDao();
+		int ro_num = Integer.parseInt(request.getParameter("ro_num"));
+		Room room = rd.selectRoom(ro_num);
+		
+		List<Picture> picList = rd.selectPic(room.getPic_num());
+		List<String> p_list = new ArrayList<String>();
+		for(int i=0; i<picList.size();i++) {
+			if(i==0) {
+				request.setAttribute("picMain", picList.get(i).getLocation());
+				System.out.println(picList.get(i).getLocation());
+				} else {
+				p_list.add(picList.get(i).getLocation());
+			}
+		}
+		
+		System.out.println(p_list);
+		
+		// 선택한 객실의 정보를 가져와서 저장
+		
+		String info = room.getRo_info().replace("\r\n", "<br/>");
+		
+		request.setAttribute("p_list", p_list);
+		request.setAttribute("room", room);
+		request.setAttribute("ro_num", ro_num);
+		request.setAttribute("pic_num", room.getPic_num());
+		request.setAttribute("info", info);
+		
+		return "/view/reserve/roomDetail.jsp";
+	}
 }

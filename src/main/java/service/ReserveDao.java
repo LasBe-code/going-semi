@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import model.Booking;
 import model.Business;
+import model.Picture;
 import model.Reserved;
 import model.Room;
 import mybatis.ReservedMapperAnno;
@@ -82,5 +83,6 @@ public class ReserveDao {
 		
 		return 0;
 	}
+	
 	
 }

@@ -15,9 +15,7 @@ import model.Room;
 
 public interface RoomMapperAnno {
 
-	@Select("select substr(location ,0,INSTRB(location,',')-1) location, r.*  "
-			+ " from room r, picture p where r.bu_email = #{bu_email} and r.pic_num = p.pic_num "
-			+ " order by lpad(r.ro_price, 10, '0') ")
+	@Select("select * from room where bu_email = #{bu_email}")
 	List<Room> roomList(String bu_email);
 	
 	//roominfo 슬라이드에 나올 첫번째 사진
@@ -37,15 +35,15 @@ public interface RoomMapperAnno {
 	int insertRoom(Room room);
 
 	
-	@Insert("insert into picture(pic_num, location) values(#{pic_num}, #{location})")
+	@Insert("insert into picture values(#{pic_num}, #{location})")
 	int insertPicture(Picture p);
 	
 	
-	@Select("select * from room where bu_email = #{bu_email} and ro_num = #{ro_num}")
-	Room selectRoom(Map<String, Object> map);
+	@Select("select * from room where ro_num = #{ro_num}")
+	Room selectRoom(int ro_num);
 	
-	@Select("select p.* from room r, picture p where r.bu_email = #{bu_email} and r.ro_num = #{ro_num} and r.pic_num = p.pic_num")
-	Picture selectPic(Map<String, Object> map);
+	@Select("select * from picture where pic_num = #{pic_num}")
+	List<Picture> selectPic(int pic_num);
 
 	
 	

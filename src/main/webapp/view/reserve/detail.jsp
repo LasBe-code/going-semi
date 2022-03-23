@@ -8,6 +8,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+function roomDetail(ro_num, bu_email){
+	const url = '${pageContext.request.contextPath}/reservation/roomDetail?ro_num='+ro_num+'&bu_email='+bu_email
+			console.log(url+', '+ro_num)
+	const op = 'width=1200, height=1000, location=no, toolbar=no'
+
+	open(url, '방 정보', op)
+}
+</script>
 </head>
 <body>
 
@@ -91,7 +100,7 @@
 				
 				<div class="reserve_room">
 				  <p class="reserve_pic_view">
-				    <img src="https://image.goodchoice.kr/resize_370x220/affiliate/2017/06/22/594b62844c51f.jpg" alt="">
+				    <img src="${roomPicMap[ro_num]}" alt="">
 				  </p>
 				  <strong class="reserve_room_title">${room.ro_name}</strong>
 				  <div class="reserve_room_price row">
@@ -102,11 +111,17 @@
 				      <b class="large_text">${room.ro_price}</b>
 				    </div>
 				  </div>
-				  <input type="submit" class="reserve_room_btn default_btn medium_text"
-				  	
-				  	<c:if test="${roomMap[ro_num] == true}">disabled value="예약된 방"</c:if>
-					<c:if test="${roomMap[ro_num] == false}">value="예약"</c:if>
-				  >
+				  <div class="row">
+				  		<div class="col-sm-6">
+				  			<button type="button" class="reserve_room_btn default_btn medium_text" onclick="roomDetail('${room.ro_num}', '${bu.bu_email}')">방 정보</button>
+				  		</div>
+				  		<div class="col-sm-6">
+				  			<input type="submit" class="reserve_room_btn default_btn medium_text"
+						  		<c:if test="${roomMap[ro_num] == true}">disabled value="예약된 방"</c:if>
+								<c:if test="${roomMap[ro_num] == false}">value="예약"</c:if>
+					  		>
+				  		</div>
+				  </div>
 				</div>
 			</form>   
 		</c:forEach>
