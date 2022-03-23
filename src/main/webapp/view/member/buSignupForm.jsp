@@ -168,7 +168,7 @@
 		</div>
 		
 		<div class="form-floating mt-3">
-		  <input type="email" name="bu_email" class="form-control" id="bu_email" onkeyup="emailChk()">
+		  <input type="email" name="bu_email" class="form-control" id="bu_email" onkeyup="emailChk()" required>
 		  <label><span id="result">이메일</span></label>
 		</div>
 		
@@ -185,7 +185,7 @@
 		
 		
 		<div class="mt-3">
-			<input type="text" name="bu_name" class="form-control form-control-lg" placeholder="이름" pattern="." required>
+			<input type="text" name="bu_name" class="form-control form-control-lg" placeholder="이름" required>
 		</div>
 		
 		<div class="row mt-3">
@@ -200,11 +200,11 @@
 			</div>
 			
 			<div class="col-sm-8">
-				<input type="text" name="bu_title" class="form-control form-control-lg" placeholder="업체 이름" pattern="." required>
+				<input type="text" name="bu_title" class="form-control form-control-lg" placeholder="업체 이름" required>
 			</div>
 		</div> 
 		
-		<input type="text" name="bu_address" class="form-control form-control-lg mt-3" placeholder="업체 주소" pattern="." required>
+		<input type="text" name="bu_address" class="form-control form-control-lg mt-3" placeholder="업체 주소"  required>
 		
 		<input type="submit" id="submit" class="default_btn rounded mt-3" value="회원가입" disabled>
 		  

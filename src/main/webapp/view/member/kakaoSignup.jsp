@@ -116,17 +116,17 @@ function inputCheck() {
 		</div>
 		<div class="row mt-3">
 			<div class="col-sm-8">
-				<input type="text" name="code" id="input_code" class="form-control form-control-lg" placeholder="전송받은 코드">
+				<input type="text" name="code" id="input_code" class="form-control form-control-lg" placeholder="전송받은 코드" required>
 			</div>
 			<div class="col-sm-4">
 				<button type="button" id="code_btn" class="default_btn rounded" style="height: 48px;" onclick="authCheck()" disabled>코드 확인</button>
 			</div>
 		</div>
 		
-		<input type="text" name="email" class="form-control form-control-lg mt-3" value="${id}" placeholder="이메일" readonly>
+		<input type="text" name="email" class="form-control form-control-lg mt-3" value="${id}" placeholder="이메일" readonly required>
 		
 		<div class="form-floating mt-3">
-		  <input type="password" name="password" class="form-control form-control-lg mt-3" pattern="^(?=.*[a-zA-z])(?=.*[0-9]).{6,12}$" required>
+		  <input type="password" name="password" class="form-control form-control-lg mt-3" pattern="^(?=.*[a-zA-z])(?=.*[0-9]).{6,12}$" required required>
 		  <label><span>비밀번호 - 대문자 혹은 소문자와 숫자를 합해 6자리 이상 12자리 이하</span></label>
 		</div>
 		<div class="form-floating mt-3">
@@ -135,7 +135,7 @@ function inputCheck() {
 		</div>
 		
 		<div class="mt-3">
-			<input type="text" name="name" class="form-control form-control-lg" value="${name}" placeholder="이름" readonly>
+			<input type="text" name="name" class="form-control form-control-lg" value="${name}" placeholder="이름" readonly required>
 		</div>
 		
 		<input type="submit" id="submit" class="default_btn rounded mt-3" value="회원가입" disabled>

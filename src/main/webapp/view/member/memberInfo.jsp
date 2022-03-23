@@ -40,17 +40,17 @@ function logout() {
   <br><br><br>
   <div>
     <p class="memberInfo_defalut_btn rounded" >이메일</p>
-    <p class="memberInfo_default_text" type="text" name="email" readonly="readonly" value="${mem.email}"></p>
+    <p class="memberInfo_default_text">${mem.email}</p>
   </div>
   
    <br><br>
   <div>
-  <p class="memberInfo_defalut_btn rounded" >이름</span><p class="memberInfo_default_text">name</p>
+  <p class="memberInfo_defalut_btn rounded" >이름</p><p class="memberInfo_default_text">${mem.name }</p>
   </div>
   
    <br><br> 
   <div>
-  <p class="memberInfo_defalut_btn rounded" >전화번호</span><p class="memberInfo_default_text">tel</p>
+  <p class="memberInfo_defalut_btn rounded" >전화번호</p><p class="memberInfo_default_text">${mem.tel }</p>
   <p class="memberInfo_small_text">개인 정보 보호를 위해 내 정보는 모두 안전하게 암호화됩니다.</p>
  
   </div>
