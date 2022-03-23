@@ -168,7 +168,7 @@
 		</div>
 		
 		<div class="form-floating mt-3">
-		  <input type="email" name="bu_email" class="form-control" id="bu_email" onkeyup="emailChk()" pattern="." required>
+		  <input type="email" name="bu_email" class="form-control" id="bu_email" onkeyup="emailChk()">
 		  <label><span id="result">이메일</span></label>
 		</div>
 		
