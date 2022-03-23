@@ -38,7 +38,7 @@ public interface RoomMapperAnno {
 
 	
 	@Insert("insert into picture(pic_num, location) values(#{pic_num}, #{location})")
-	void insertPicture(Picture p);
+	int insertPicture(Picture p);
 	
 	
 	@Select("select * from room where bu_email = #{bu_email} and ro_num = #{ro_num}")
@@ -66,11 +66,12 @@ public interface RoomMapperAnno {
 	Business selectBu(String bu_email);
 
 	
-	@Select("select * from (select bo.ro_name, ro.ro_count, bo.checkin, bo.checkout, m.name, m.tel, m.email "
-			+ " from booking bo, room ro, member m, business bu "
-			+ " where ro.bu_email = 'qqq@naver.com' and ro.ro_name = bo.ro_name and "
-			+ " m.email = bo.email and ro.bu_email = bu.bu_email order by checkin) "
-			+ " where checkin >= sysdate")
+	@Select("select * from (select rownum rnum, a.* from(select * from (select bo.ro_name, ro.ro_count, bo.checkin, bo.checkout, m.name, m.tel, m.email "
+			+ "	from booking bo, room ro, member m, business bu "
+			+ "	where ro.bu_email = #{bu_email} and ro.ro_name = bo.ro_name and "
+			+ "	m.email = bo.email and ro.bu_email = bu.bu_email order by checkin) "
+			+ " where #{nowDay} < checkin or #{nowDay} = checkout or #{nowDay} between checkin and checkout) a "
+			+ " ) where rnum between #{startPage} and #{endPage}")
 	List<Booking> selectBkList(Map<String, Object> map);
 
 	

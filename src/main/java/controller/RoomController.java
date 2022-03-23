@@ -3,6 +3,8 @@ package controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -31,15 +33,15 @@ public class RoomController extends MskimRequestMapping{
 		
 		
 		
-		HttpSession session = request.getSession(); 
+		
+		HttpSession session = request.getSession();
+		  
 		String bu_email =(String)session.getAttribute("bu_email");
 		 
-		
 		RoomDao rd = new RoomDao();
 		
 		// business 메일을 사용하는 사업자의 객실 리스트 저장
 		List<Room> list = rd.roomList(bu_email);
-		System.out.println(list);
 		request.setAttribute("list", list);
 			
 		return "/view/entrepreneur/roomlist.jsp";
@@ -64,10 +66,8 @@ public class RoomController extends MskimRequestMapping{
 		}
 		
 		
-		// 사업자가 로그인하면 세션에 bu_email을 키 값으로 저장 한걸 세션에서 가져온다
-		
-		
-		HttpSession session = request.getSession(); 
+		HttpSession session = request.getSession();
+		  
 		String bu_email =(String)session.getAttribute("bu_email");
 		 
 		
@@ -102,13 +102,13 @@ public class RoomController extends MskimRequestMapping{
 		int rnum = rd.insertRoom(room);
 		
 		// p객체에 picture table에 저장
-		rd.insertPicture(p);
+		int pic = rd.insertPicture(p);
 		
 		String msg = "객실 등록시 오류가 발생했습니다.";
 		String url = request.getContextPath() + "/room/roomInsert?bu_email="+bu_email;
 		
 		
-		if(rnum > 0) {
+		if(rnum > 0 && pic > 0) {
 			msg = "객실 등록이 완료되었습니다.";
 			url = request.getContextPath() + "/room/roomlist?bu_email="+bu_email;
 		}
@@ -125,7 +125,8 @@ public class RoomController extends MskimRequestMapping{
 		
 		
 		
-		HttpSession session = request.getSession(); 
+		HttpSession session = request.getSession();
+		  
 		String bu_email =(String)session.getAttribute("bu_email");
 		 
 		
@@ -166,7 +167,8 @@ public class RoomController extends MskimRequestMapping{
 		
 		
 		
-		HttpSession session = request.getSession(); 
+		HttpSession session = request.getSession();
+		  
 		String bu_email =(String)session.getAttribute("bu_email");
 		 
 		 
@@ -204,10 +206,8 @@ public class RoomController extends MskimRequestMapping{
 		}
 		
 		
-		// 사업자가 로그인하면 세션에 bu_email을 키 값으로 저장 한걸 세션에서 가져온다
-		
-		
-		HttpSession session = request.getSession(); 
+		HttpSession session = request.getSession();
+		  
 		String bu_email =(String)session.getAttribute("bu_email");
 		 
 		
@@ -284,10 +284,8 @@ public class RoomController extends MskimRequestMapping{
 	public String roomDeletePro(HttpServletRequest request, HttpServletResponse response) {
 		
 		
-		// 사업자가 로그인하면 세션에 bu_email을 키 값으로 저장 한걸 세션에서 가져온다
-		
-		
-		HttpSession session = request.getSession(); 
+		HttpSession session = request.getSession();
+		  
 		String bu_email =(String)session.getAttribute("bu_email");
 		 
 		
@@ -330,8 +328,11 @@ public class RoomController extends MskimRequestMapping{
 		
 		
 		
-		HttpSession session = request.getSession(); 
+		
+		HttpSession session = request.getSession();
+		 
 		String bu_email =(String)session.getAttribute("bu_email");
+		
 		 
 		
 		RoomDao rd = new RoomDao();		
@@ -370,14 +371,21 @@ public class RoomController extends MskimRequestMapping{
 		int startPage = (pageInt-1)*limit + 1;
 		int endPage = (pageInt-1)*limit + limit;
 
+		// =========== 현재 시간 ==============
+		LocalDate now = LocalDate.now();
+		// 포맷 정의
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+		// 포맷 적용
+		String nowDay = now.format(formatter);
+				
 		map.clear();
 		map.put("startPage", startPage);
 		map.put("endPage", endPage);
 		map.put("bu_email", bu_email);
+		map.put("nowDay", nowDay);
 		
 		// 예약 내역 찾기
 		List<Booking> bk = rd.selectBkList(map);
-		System.out.println(bk);
 		
 		request.setAttribute("bk", bk);
 		request.setAttribute("boardNum", boardNum);

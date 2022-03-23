@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import model.Business;
 import model.Member;
+import model.Picture;
 import mybatis.MemberMapperAnno;
 import util.MybatisConnection;
 
@@ -39,7 +40,6 @@ public class MemberDao {
 		
 		SqlSession sqlSession = MybatisConnection.getConnection();
 		RoomDao rd = new RoomDao();
-		
 		Business b = new Business(
 				request.getParameter("bu_email"),
 				request.getParameter("bu_password"),
@@ -50,9 +50,17 @@ public class MemberDao {
 				request.getParameter("bu_title"),
 				rd.nextPicNum()
 				);
+		Picture p = new Picture(
+				b.getPic_num(),
+				request.getParameter("picLocation")
+				);
 				
 		try {
-			return sqlSession.getMapper(MemberMapperAnno.class).insertBusiness(b);
+			int insertBusiness = sqlSession.getMapper(MemberMapperAnno.class).insertBusiness(b);
+			int insertPicture = sqlSession.getMapper(MemberMapperAnno.class).insertPicture(p);
+			if(insertBusiness > 0 && insertPicture > 0) {
+				return 1;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

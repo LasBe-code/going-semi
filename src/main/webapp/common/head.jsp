@@ -43,6 +43,9 @@
         	</c:if>
         	<c:if test="${bu_email != null}"> <!-- 사업자 로그인 -->
         		<li class="nav-item">
+		           <a class="nav-link" href="${pageContext.request.contextPath}/member/buInfo">사업자 정보</a>
+		        </li>
+        		<li class="nav-item">
 		            <a class="nav-link" href="${pageContext.request.contextPath}">예약내역</a>
 		        </li>
 		        <li class="nav-item">

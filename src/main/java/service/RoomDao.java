@@ -104,21 +104,21 @@ public class RoomDao {
 		return 0;
 	}
 
-	public void insertPicture(Picture p) {
+	public int insertPicture(Picture p) {
 		
 		
 		SqlSession sqlSession = MybatisConnection.getConnection();
 		
 		try {
 			
-			sqlSession.getMapper(RoomMapperAnno.class).insertPicture(p);
+			return sqlSession.getMapper(RoomMapperAnno.class).insertPicture(p);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			MybatisConnection.close(sqlSession);
 		}
-		
+		return 0;
 	}
 
 	public Room selectRoom(Map<String, Object> map) {
