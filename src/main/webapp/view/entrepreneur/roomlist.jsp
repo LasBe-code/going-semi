@@ -39,7 +39,6 @@
 	        <td style="width: 60%"><a href="${pageContext.request.contextPath}/room/roominfo?ro_num=${l.ro_num}">
 	        <input type="hidden" name="pic_num" value="${l.pic_num}">
 	        	<c:set var="ro_num" value="${l.ro_num}" />
-	        	<input type="text" value="${ro_num}">
 	        	<script>console.log(${l.ro_num}.toString+", "+${picMap}'</script>
 	        	<img class="roomlist_main-img" src="${picMap[ro_num]}">
 	        </a></td>
