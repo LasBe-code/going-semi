@@ -1,6 +1,7 @@
 package service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +41,7 @@ public class MemberDao {
 		
 		SqlSession sqlSession = MybatisConnection.getConnection();
 		RoomDao rd = new RoomDao();
+		Picture p = new Picture();
 		Business b = new Business(
 				request.getParameter("bu_email"),
 				request.getParameter("bu_password"),
@@ -50,10 +52,12 @@ public class MemberDao {
 				request.getParameter("bu_title"),
 				rd.nextPicNum()
 				);
-		Picture p = new Picture(
-				b.getPic_num(),
-				request.getParameter("picLocation")
-				);
+		String[] picList = request.getParameter("picLocation").split("\\n");
+		
+		for(String pic : picList) {
+			p = new Picture(b.getPic_num(), pic.trim());
+			rd.insertPicture(p);
+		}
 				
 		try {
 			int insertBusiness = sqlSession.getMapper(MemberMapperAnno.class).insertBusiness(b);
@@ -85,6 +89,65 @@ public class MemberDao {
 		SqlSession sqlSession = MybatisConnection.getConnection();
 		try {
 			return sqlSession.getMapper(MemberMapperAnno.class).selectBusinessOne(bu_email);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		return null;
+	}
+
+	public int updateBusiness(HttpServletRequest request) {
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		RoomDao rd = new RoomDao();
+		
+		String[] picList = request.getParameter("picLocation").split("\n");
+		Business sb = rd.selectBusiness(request.getParameter("bu_email"));
+		int p = 0;
+		Picture insertP = new Picture();
+		
+		String pass = request.getParameter("bu_password");
+		if(sb.getBu_password().equals(pass)) {
+			// 입력한 비밀번호와 저장된 비밀번호가 같으면 pic_num이 같은 데이터는 삭제
+			p = rd.deleteLocation(sb.getPic_num());
+			// 비밀번호가 같으면 사업자 정보수정
+			sb.setBu_tel(request.getParameter("bu_tel"));
+			sb.setBu_name(request.getParameter("bu_name"));
+			sb.setBu_address(request.getParameter("bu_address"));
+			sb.setBu_id(request.getParameter("bu_id"));
+			sb.setBu_title(request.getParameter("bu_title"));
+			
+		}else {
+			// 비밀번호가 다르면 -1 리턴
+			return -1;
+		}
+		int insertPicture = 0;
+		
+		
+		
+		try {
+			int insertBusiness = sqlSession.getMapper(MemberMapperAnno.class).updateBusiness(sb);
+			for(String pic : picList) {
+				insertP.setPic_num(sb.getPic_num());
+				insertP.setLocation(pic);
+				insertPicture = sqlSession.getMapper(MemberMapperAnno.class).insertPicture(insertP);
+			}
+			if(insertBusiness > 0 && insertPicture > 0) {
+				return 1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		return 0;
+	}
+
+	public List<Picture> selectPic(int pic_num) {
+		
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		try {
+			return sqlSession.getMapper(MemberMapperAnno.class).selectPic(pic_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

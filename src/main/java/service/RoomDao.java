@@ -294,5 +294,56 @@ public class RoomDao {
 		return null;
 	}
 
+	public Business selectBusiness(String bu_email) {
+		SqlSession sqlSession = MybatisConnection.getConnection();
+
+		try {
+			
+			Business selectBusiness = sqlSession.getMapper(RoomMapperAnno.class).selectBusiness(bu_email);
+			return selectBusiness;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return null;
+	}
+
+	public List<Picture> selectLocation(int pic_num) {
+		SqlSession sqlSession = MybatisConnection.getConnection();
+
+		try {
+			
+			List<Picture> selectLocation = sqlSession.getMapper(RoomMapperAnno.class).selectLocation(pic_num);
+			return selectLocation;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return null;
+	}
+
+	public int deleteLocation(int pic_num) {
+		SqlSession sqlSession = MybatisConnection.getConnection();
+
+		try {
+			
+			int deleteLocation = sqlSession.getMapper(RoomMapperAnno.class).deleteLocation(pic_num);
+			return deleteLocation;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return 0;
+	}
+
 	
 }

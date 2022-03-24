@@ -82,6 +82,15 @@ public interface RoomMapperAnno {
 			+ " r.pic_num = p.pic_num and r.ro_num = #{ro_num}")
 	String picList(Map<String, Object> map);
 
+	@Select("select * from business where bu_email = #{bu_email}")
+	Business selectBusiness(String bu_email);
+
+	@Select("select location from picture where pic_num = #{pic_num}")
+	List<Picture> selectLocation(int pic_num);
+
+	@Delete("delete from picture where pic_num = #{pic_num}")
+	int deleteLocation(int pic_num);
+
 	
 	
 	
