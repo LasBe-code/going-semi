@@ -14,7 +14,7 @@ function requestPay() {
   IMP.init('imp49486608'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
   IMP.request_pay({
     pg: "inicis",
-    pay_method: "kakaopay",
+    pay_method: "card",
     merchant_uid : 'merchant_'+new Date().getTime(),
     name : 'Going 결제',
     amount : ${booking.price},

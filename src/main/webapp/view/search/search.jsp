@@ -89,19 +89,19 @@ function NoMultiChk(chk) {
 			<strong class="search_strong_font">숙소 유형</strong>
 			<ul class="search_detail_ul">
 			<li>
-			<input type="checkbox" name="bu_id" value="1" onclick="NoMultiChk(this)">
+			<input type="checkbox" name="bu_id" value="1" onclick="NoMultiChk(this)" style=accent-color:#ffc107>
 			<label class="search_label_font">호텔</label>
 			</li>
 			<li>
-			<input type="checkbox" name="bu_id" value="2" onclick="NoMultiChk(this)">
+			<input type="checkbox" name="bu_id" value="2" onclick="NoMultiChk(this)" style=accent-color:#ffc107>
 			<label class="search_label_font">모텔</label>
 			</li >
 			<li>
-			<input type="checkbox" name="bu_id" value="3" onclick="NoMultiChk(this)">
+			<input type="checkbox" name="bu_id" value="3" onclick="NoMultiChk(this)" style=accent-color:#ffc107>
 			<label class="search_label_font">펜션</label>
 			</li>
 			<li>
-			<input type="checkbox" name="bu_id" value="4" onclick="NoMultiChk(this)">
+			<input type="checkbox" name="bu_id" value="4" onclick="NoMultiChk(this)" style=accent-color:#ffc107>
 			<label class="search_label_font">리조트</label>
 			</li>
 			</ul>

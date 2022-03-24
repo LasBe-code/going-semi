@@ -28,7 +28,7 @@ function cancel(bo_num){
 <body>
 
 <div class="default_width container-fluid">
-
+	
 	<div class="row">
 		<div class="col-sm-2" id="memberinfo_left_nav" >
 	    	<a href="${pageContext.request.contextPath}/reservation/reservationList">예약내역<br><br></a>
@@ -39,6 +39,8 @@ function cancel(bo_num){
 	    	<p class="reservationList_medium_text">예약 완료</p>
     	</div>
    	</div>
+	
+	<hr style="width:800px; margin-left:170px;">
 	    	
    	<div class="row">
 	    <c:forEach var="booking" items="${bookingList}" varStatus="s">
@@ -72,7 +74,7 @@ function cancel(bo_num){
 	   	</c:forEach>
 	</div>
 
-	<hr style="width:800px; margin-left:170px;">
+	
 	
 	<div class="row"> 
 	    <div class="col-sm-2"></div>
@@ -80,6 +82,8 @@ function cancel(bo_num){
 		    <p class="medium_text" style="margin-top: 100px;">이용 완료</p>
 	    </div>	
     </div>    
+	
+	<hr style="width:800px; margin-left:170px;">
 		    
     <div class="row">
 	    <c:forEach var="booking" items="${bookingList}">
@@ -112,7 +116,6 @@ function cancel(bo_num){
 	    </c:forEach>
     </div>
 	    
-  	<hr style="width:800px; margin-left:170px;">
   
 	<div class="row">
 	    <div class="col-sm-2"></div>
@@ -121,8 +124,9 @@ function cancel(bo_num){
 	    </div>
     </div>	    
 			
+	<hr style="width:800px; margin-left:170px;">		
 			
-    <div class="row">
+    <div class="row mb-5">
 	    <c:forEach var="booking" items="${bookingList}">
 		    <div class="col-sm-2"></div>
 		    <div class="col-sm-10" >
