@@ -46,7 +46,7 @@
 		           <a class="nav-link" href="${pageContext.request.contextPath}/member/buInfo">사업자 정보</a>
 		        </li>
         		<li class="nav-item">
-		            <a class="nav-link" href="${pageContext.request.contextPath}">예약내역</a>
+		            <a class="nav-link" href="${pageContext.request.contextPath}/room/reservation">예약내역</a>
 		        </li>
 		        <li class="nav-item">
 		            <a class="nav-link" href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
