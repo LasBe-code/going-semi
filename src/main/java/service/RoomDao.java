@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import model.Booking;
 import model.Business;
+import model.Member;
 import model.Picture;
 import model.Room;
 import mybatis.RoomMapperAnno;
@@ -343,6 +344,23 @@ public class RoomDao {
 		}
 		
 		return 0;
+	}
+
+	public List<Member> selectMember(Map<String, Object> map) {
+		SqlSession sqlSession = MybatisConnection.getConnection();
+
+		try {
+			
+			List<Member> selectMember = sqlSession.getMapper(RoomMapperAnno.class).selectMember(map);
+			return selectMember;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return null;
 	}
 
 

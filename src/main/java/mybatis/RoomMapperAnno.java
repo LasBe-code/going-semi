@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 import model.Booking;
 import model.Business;
+import model.Member;
 import model.Picture;
 import model.Room;
 
@@ -64,14 +65,17 @@ public interface RoomMapperAnno {
 	Business selectBu(String bu_email);
 
 	
-	@Select("select * from (select rownum rnum, a.* from(select * from (select bo.ro_name, ro.ro_count, bo.checkin, bo.checkout, m.name, m.tel, m.email "
-			+ "	from booking bo, room ro, member m, business bu "
-			+ "	where ro.bu_email = #{bu_email} and ro.ro_name = bo.ro_name and "
-			+ "	m.email = bo.email and ro.bu_email = bu.bu_email order by checkin) "
-			+ " where #{nowDay} < checkin or #{nowDay} = checkout or #{nowDay} between checkin and checkout) a "
-			+ " ) where rnum between #{startPage} and #{endPage}")
+	@Select("select * from (select rownum rnum, a.* from (select bo.ro_name, ro.ro_count, bo.checkin, bo.checkout "
+			+ " from booking bo, room ro where ro.bu_email = #{bu_email} and ro.ro_name = bo.ro_name order by checkin "
+			+ " ) a where #{nowDay} < checkin or #{nowDay} = checkout or #{nowDay} between checkin and checkout) where rnum between #{startPage} and #{endPage}")
 	List<Booking> selectBkList(Map<String, Object> map);
 
+	@Select("select rnum, name, tel, email from (select rownum rnum, a.* "
+			+ " from(select m.name, m.tel, m.email, b.checkin, b.checkout from member m, room r, booking b "
+			+ " where r.bu_email = 'iop@naver.com' and r.ro_name = b.ro_name and m.email = b.email order by checkin) a "
+			+ " where #{nowDay} < checkin or #{nowDay} = checkout or #{nowDay} between checkin and checkout) where rnum between #{startPage} and #{endPage}")
+	List<Member> selectMember(Map<String, Object> map);
+	
 	
 	@Select("select count(*) from booking bk, business bu where bk.bu_title = bu.bu_title and bu.bu_email = #{bu_email}")
 	int countBoard(String bu_email);
@@ -90,6 +94,8 @@ public interface RoomMapperAnno {
 
 	@Delete("delete from picture where pic_num = #{pic_num}")
 	int deleteLocation(int pic_num);
+
+	
 
 	
 	

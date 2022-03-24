@@ -20,6 +20,7 @@ import com.oreilly.servlet.MultipartRequest;
 
 import model.Booking;
 import model.Business;
+import model.Member;
 import model.Picture;
 import model.Room;
 import service.RoomDao;
@@ -367,7 +368,7 @@ public class RoomController extends MskimRequestMapping{
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
 		// 포맷 적용
 		String nowDay = now.format(formatter);
-				
+		
 		map.clear();
 		map.put("startPage", startPage);
 		map.put("endPage", endPage);
@@ -376,7 +377,9 @@ public class RoomController extends MskimRequestMapping{
 		
 		// 예약 내역 찾기
 		List<Booking> bk = rd.selectBkList(map);
+		List<Member> m = rd.selectMember(map);
 		
+		request.setAttribute("m", m);
 		request.setAttribute("bk", bk);
 		request.setAttribute("boardNum", boardNum);
 		request.setAttribute("bottomLine", bottomLine);

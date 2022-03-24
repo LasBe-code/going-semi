@@ -42,14 +42,14 @@
       </tr>
     </thead>
     <tbody>
-    <c:forEach var="b" items="${bk}">
+    <c:forEach var="b" items="${bk}" varStatus="i">
       <tr>
      	<td>${b.ro_name}</td>
         <td>${b.ro_count}</td>
         <td>${b.checkin} ~ ${b.checkout}</td>
-     	<td>${b.name}</td>
-        <td>${b.tel}</td>
-        <td>${b.email}</td>
+     	<td>${m[i.index].name}</td>
+        <td>${m[i.index].tel}</td>
+        <td>${m[i.index].email}</td>
       </tr>
     </c:forEach>  
     </tbody>
