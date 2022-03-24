@@ -47,7 +47,7 @@
     </div>
     
     <label style=" margin-bottom: 10px;">객실사진등록&nbsp;&nbsp;&nbsp;</label>
-    <textarea rows="10" cols="100" name="picLocation">${pic.location}</textarea>
+    <textarea rows="10" cols="100" name="picLocation">${pic}</textarea>
     
     <input type="hidden" name="pic_num" value="${room.pic_num}">
 	<input type="hidden" name="ro_num" value="${room.ro_num}">

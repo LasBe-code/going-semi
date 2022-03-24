@@ -48,9 +48,7 @@ public class RoomController extends MskimRequestMapping{
 		
 		for(Room room : list) {
 			picList = rd.selectPic(room.getPic_num());
-			System.out.println(picList);
 			map.put(room.getRo_num(), picList.get(0).getLocation().trim());
-			System.out.println(picList.get(0).getLocation().trim());
 		}
 		request.setAttribute("picMap", map);
 		request.setAttribute("list", list);
@@ -109,10 +107,8 @@ public class RoomController extends MskimRequestMapping{
 		room.setPic_num(picNum);
 		
 		String[] picList = multi.getParameter("picLocation").split("\\n");
-		System.out.println(picList);
 		
 		for (String pic : picList) {
-			System.out.println(pic);
 			p = new Picture(picNum, pic.trim());
 			rd.insertPicture(p);
 		}
@@ -153,7 +149,6 @@ public class RoomController extends MskimRequestMapping{
 			p_list.add(picList.get(i).getLocation());
 		}
 		
-		System.out.println(p_list);
 		
 		// 선택한 객실의 정보를 가져와서 저장
 		
@@ -168,180 +163,167 @@ public class RoomController extends MskimRequestMapping{
 		return "/view/entrepreneur/roominfo.jsp";
 	}
 	
-//	
-//	@RequestMapping("roomUpdate")
-//	public String roomUpdate(HttpServletRequest request, HttpServletResponse response) {
-//		
-//		
-//		
-//		
-//		HttpSession session = request.getSession();
-//		  
-//		String bu_email =(String)session.getAttribute("bu_email");
-//		 
-//		 
-//		String ro_num = request.getParameter("ro_num");
-//		String pic_num = request.getParameter("pic_num");
-//		
-//		map.clear();
-//		map.put("ro_num", ro_num);
-//		map.put("bu_email", bu_email);
-//		
-//		
-//		RoomDao rd = new RoomDao();
-//		
-//		
-//		Room room = rd.selectRoom(map);
-//		Picture pic = rd.selectPic(map);
-//		
-//		request.setAttribute("pic_num", pic_num);
-//		request.setAttribute("room", room);
-//		request.setAttribute("ro_num", ro_num);
-//		request.setAttribute("pic", pic);
-//		
-//		return "/view/entrepreneur/roomUpdate.jsp";
-//	}
-//	
-//	
-//	@RequestMapping("roomUpdatePro")
-//	public String roomUpdatPro(HttpServletRequest request, HttpServletResponse response) {
-//		
-//		
-//		try {
-//			request.setCharacterEncoding("utf-8");
-//		} catch (UnsupportedEncodingException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		
-//		HttpSession session = request.getSession();
-//		  
-//		String bu_email =(String)session.getAttribute("bu_email");
-//		 
-//		
-//		String ro_num = request.getParameter("ro_num");
-//		String pic_num = request.getParameter("pic_num");
-//		
-//		String path = getServletContext().getRealPath("/") + "/roomimgupload/";
-//		int size = 10 * 1024 * 1024;
-//		MultipartRequest multi = null;
-//		try {
-//			multi = new MultipartRequest(request, path, size, "utf-8");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		map.clear();
-//		map.put("bu_email", bu_email);
-//		map.put("ro_num", ro_num);
-//		
-//		RoomDao rd = new RoomDao();
-//		Room room = rd.selectRoom(map);
-//		Picture p = rd.selectPic(map);
-//		
-//		room.setRo_name(multi.getParameter("roName"));
-//		room.setBu_email(bu_email);
-//		room.setRo_price(multi.getParameter("roPrice"));
-//		room.setCheckin(multi.getParameter("checkIn"));
-//		room.setCheckout(multi.getParameter("checkOut"));
-//		room.setRo_count(multi.getParameter("roCount"));
-//		room.setRo_info(multi.getParameter("roomInfo"));
-//		p.setLocation(multi.getParameter("picLocation"));
-//		
-//		if(multi.getParameter("picLocation") == null && multi.getParameter("picLocation").equals("")) {
-//			p.setLocation(p.getLocation());
-//		}else {
-//			p.setLocation(multi.getParameter("picLocation"));
-//		}
-//		
-//		// room객체에 저장된 값을 room table에 저장
-//		int rnum = rd.updateRoom(room);
-//		
-//		
-//		// p객체에 저장된 값을 picture table에 저장
-//		int pic = rd.updatePicture(p);
-//		
-//		String msg = "객실 수정시 오류가 발생했습니다.";
-//		String url = request.getContextPath() + "/room/roomUpdate?ro_num="+ro_num+"&pic_num="+pic_num;
-//		
-//		
-//		if(rnum > 0 && pic > 0) {
-//			msg = "객실 수정이 완료되었습니다.";
-//			url = request.getContextPath() + "/room/roomlist?bu_email="+bu_email;
-//		}
-//		request.setAttribute("msg", msg);
-//		request.setAttribute("url", url);
-//		
-//		
-//		return "/view/alert.jsp";
-//	}
-//	
-//	
-//	@RequestMapping("roomDelete")
-//	public String roomDelete(HttpServletRequest request, HttpServletResponse response) {
-//		
-//		String ro_num = request.getParameter("ro_num");
-//		
-//		request.setAttribute("ro_num", ro_num);
-//		
-//		return "/view/entrepreneur/roomDelete.jsp";
-//	}
-//	
-//	
-//	@RequestMapping("roomDeletePro")
-//	public String roomDeletePro(HttpServletRequest request, HttpServletResponse response) {
-//		
-//		
-//		HttpSession session = request.getSession();
-//		  
-//		String bu_email =(String)session.getAttribute("bu_email");
-//		 
-//		
-//		String pwd = request.getParameter("pwd");
-//		String ro_num = request.getParameter("ro_num");
-//		
-//		RoomDao rd = new RoomDao();
-//		
-//		// 사업자 비밀번호 찾기
-//		Business business = rd.selectBu(bu_email);
-//		int room = 0;
-//		
-//		String msg = "객실 삭제시 오류가 발생했습니다.";
-//		String url = request.getContextPath() + "/room/roomDelete?ro_num="+ro_num;
-//		
-//		if(pwd == null || pwd.equals("") || !pwd.equals(business.getBu_password())) {
-//			msg = "비밀번호가 틀렸습니다.";
-//		}else {
-//			// 비밀번호가 일치하면 객실 삭제
-//			room = rd.deleteRoom(map);
-//		}
-//		
-//		if(room > 0) {
-//			msg = "객실 삭제가 완료되었습니다.";
-//			url = request.getContextPath() + "/room/roomlist?bu_email="+bu_email;
-//		}
-//		request.setAttribute("msg", msg);
-//		request.setAttribute("url", url);
-//		
-//		
-//		return "/view/alert.jsp";
-//	}
-//	
-//	
+	
+	@RequestMapping("roomUpdate")
+	public String roomUpdate(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		  
+		String bu_email =(String)session.getAttribute("bu_email");
+		 
+		 
+		int ro_num = Integer.parseInt(request.getParameter("ro_num"));
+		int pic_num = Integer.parseInt(request.getParameter("pic_num"));
+		
+		RoomDao rd = new RoomDao();
+		String pic = "";
+		
+		Room room = rd.selectRoom(ro_num);
+		List<Picture> piclist = rd.selectPic(pic_num);
+		
+		for(Picture p : piclist) {
+			pic += p.getLocation()+"\n";
+		}
+		
+		request.setAttribute("pic_num", pic_num);
+		request.setAttribute("room", room);
+		request.setAttribute("ro_num", ro_num);
+		request.setAttribute("pic", pic);
+		
+		return "/view/entrepreneur/roomUpdate.jsp";
+	}
+	
+	
+	@RequestMapping("roomUpdatePro")
+	public String roomUpdatPro(HttpServletRequest request, HttpServletResponse response) {
+		
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		
+		HttpSession session = request.getSession();
+		  
+		String bu_email =(String)session.getAttribute("bu_email");
+		 
+		
+		int ro_num = Integer.parseInt(request.getParameter("ro_num"));
+		int pic_num = Integer.parseInt(request.getParameter("pic_num"));
+		
+		String path = getServletContext().getRealPath("/") + "/roomimgupload/";
+		int size = 10 * 1024 * 1024;
+		MultipartRequest multi = null;
+		try {
+			multi = new MultipartRequest(request, path, size, "utf-8");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		RoomDao rd = new RoomDao();
+		Room room = rd.selectRoom(ro_num);
+		int p = rd.deleteLocation(pic_num);
+		
+		room.setRo_name(multi.getParameter("roName"));
+		room.setBu_email(bu_email);
+		room.setRo_price(multi.getParameter("roPrice"));
+		room.setCheckin(multi.getParameter("checkIn"));
+		room.setCheckout(multi.getParameter("checkOut"));
+		room.setRo_count(multi.getParameter("roCount"));
+		room.setRo_info(multi.getParameter("roomInfo"));
+		
+		String[] picList = multi.getParameter("picLocation").split("\n");
+		Picture picLocation = null;
+		int pic = 0;
+		for(String lo : picList) {
+			picLocation = new Picture(pic_num,lo);
+
+			pic = rd.insertPicture(picLocation);
+		}
+		
+		// room객체에 저장된 값을 room table에 저장
+		int rnum = rd.updateRoom(room);
+		
+		
+		String msg = "객실 수정시 오류가 발생했습니다.";
+		String url = request.getContextPath() + "/room/roomUpdate?ro_num="+ro_num+"&pic_num="+pic_num;
+		
+		
+		if(rnum > 0 && pic > 0) {
+			msg = "객실 수정이 완료되었습니다.";
+			url = request.getContextPath() + "/room/roomlist?bu_email="+bu_email;
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("url", url);
+		
+		
+		return "/view/alert.jsp";
+	}
+	
+	
+	@RequestMapping("roomDelete")
+	public String roomDelete(HttpServletRequest request, HttpServletResponse response) {
+		
+		String ro_num = request.getParameter("ro_num");
+		
+		request.setAttribute("ro_num", ro_num);
+		
+		return "/view/entrepreneur/roomDelete.jsp";
+	}
+	
+	
+	@RequestMapping("roomDeletePro")
+	public String roomDeletePro(HttpServletRequest request, HttpServletResponse response) {
+		
+		
+		HttpSession session = request.getSession();
+		  
+		String bu_email =(String)session.getAttribute("bu_email");
+		 
+		
+		String pwd = request.getParameter("pwd");
+		String ro_num = request.getParameter("ro_num");
+		
+		RoomDao rd = new RoomDao();
+		
+		// 사업자 비밀번호 찾기
+		Business business = rd.selectBu(bu_email);
+		int room = 0;
+		
+		String msg = "객실 삭제시 오류가 발생했습니다.";
+		String url = request.getContextPath() + "/room/roomDelete?ro_num="+ro_num;
+		
+		if(pwd == null || pwd.equals("") || !pwd.equals(business.getBu_password())) {
+			msg = "비밀번호가 틀렸습니다.";
+		}else {
+			// 비밀번호가 일치하면 객실 삭제
+			room = rd.deleteRoom(map);
+		}
+		
+		if(room > 0) {
+			msg = "객실 삭제가 완료되었습니다.";
+			url = request.getContextPath() + "/room/roomlist?bu_email="+bu_email;
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("url", url);
+		
+		
+		return "/view/alert.jsp";
+	}
+	
+	
 	
 	
 	
 	@RequestMapping("reservation")
 	public String reservation(HttpServletRequest request, HttpServletResponse response) {
 		
-		
-		
-		
 		HttpSession session = request.getSession();
 		 
 		String bu_email =(String)session.getAttribute("bu_email");
-		
-		 
 		
 		RoomDao rd = new RoomDao();		
 				
