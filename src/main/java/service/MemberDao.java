@@ -105,7 +105,7 @@ public class MemberDao {
 		Business sb = rd.selectBusiness(request.getParameter("bu_email"));
 		int p = 0;
 		Picture insertP = new Picture();
-		
+		System.out.println("sb = " + sb);
 		String pass = request.getParameter("bu_password");
 		if(sb.getBu_password().equals(pass)) {
 			// 입력한 비밀번호와 저장된 비밀번호가 같으면 pic_num이 같은 데이터는 삭제

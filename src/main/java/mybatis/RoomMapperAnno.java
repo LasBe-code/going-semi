@@ -15,7 +15,7 @@ import model.Room;
 
 public interface RoomMapperAnno {
 
-	@Select("select * from room where bu_email = #{bu_email}")
+	@Select("select * from room where bu_email = #{bu_email} order by lpad(ro_price, 10, '0')")
 	List<Room> roomList(String bu_email);
 	
 	//roominfo 슬라이드에 나올 첫번째 사진
@@ -91,7 +91,6 @@ public interface RoomMapperAnno {
 	@Delete("delete from picture where pic_num = #{pic_num}")
 	int deleteLocation(int pic_num);
 
-	
 	
 	
 }
