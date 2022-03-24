@@ -65,7 +65,7 @@ public interface RoomMapperAnno {
 	Business selectBu(String bu_email);
 
 	
-	@Select("select * from (select rownum rnum, a.* from (select bo.ro_name, ro.ro_count, bo.checkin, bo.checkout "
+	@Select("select * from (select rownum rnum, a.* from (select bo.ro_name, ro.ro_count, bo.checkin, bo.checkout, bo.status "
 			+ "	from booking bo, room ro where ro.bu_email = #{bu_email} and ro.ro_name = bo.ro_name order by checkin "
 			+ "	) a)  where rnum between #{startPage} and #{endPage}")
 	List<Booking> selectBkList(Map<String, Object> map);
