@@ -33,7 +33,7 @@ public interface ReservedMapperAnno {
 	@Select("select * from picture where pic_num = #{pic_num}")
 	List<Picture> sbPicList(int pic_num);
 	
-	@Select("select min(ro_price) from room where bu_email = #{bu_email} group by #{bu_email}")
+	@Select("select min(to_number(ro_price)) from room where bu_email = #{bu_email} group by #{bu_email}")
 	String roomMinPrice(String bu_email);
 	
 	@Delete("delete from reserved where ro_num=#{ro_num} and re_date between #{checkin} and #{checkout}")
