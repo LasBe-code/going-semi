@@ -52,8 +52,8 @@ public class SearchController extends MskimRequestMapping{
 		request.setAttribute("picMap", picMap);
 		request.setAttribute("minPriceMap", minPriceMap);
 		
-		checkin.replaceAll("-", "");
-		checkout.replaceAll("-", "");
+		checkin = checkin.replaceAll("-", ""); 
+		checkout = checkout.replaceAll("-", ""); System.out.println(checkin + ", "+checkout);
 		request.setAttribute("bu_list", list);
 		request.setAttribute("checkin", checkin);
 		request.setAttribute("checkout", checkout);

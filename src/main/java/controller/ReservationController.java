@@ -22,6 +22,7 @@ import service.MemberDao;
 import service.ReservationDao;
 import service.ReserveDao;
 import service.RoomDao;
+import service.SearchDao;
 
 public class ReservationController extends MskimRequestMapping {
 	ReservationDao dao = new ReservationDao();
@@ -73,6 +74,7 @@ public class ReservationController extends MskimRequestMapping {
 		ReserveDao reserveDao = new ReserveDao();
 		MemberDao md = new MemberDao();
 		RoomDao rd = new RoomDao();
+		SearchDao sd = new SearchDao();
 		
 		String bu_email = request.getParameter("bu_email");
 		String checkin = request.getParameter("checkin");
@@ -89,6 +91,7 @@ public class ReservationController extends MskimRequestMapping {
 		
 		List<Room> roomList = reserveDao.roomList(map); // 룸 정보 받아오기
 		Business bu = md.selectBusinessOne(bu_email); // 사업자, 숙소 정보 받아오기
+		List<Picture> buPicList = sd.sbPicList(bu.getPic_num());
 		
 		Map<Integer, Boolean> roomMap = new HashMap<>();
 		for(Room r : roomList) {
@@ -114,9 +117,10 @@ public class ReservationController extends MskimRequestMapping {
 			System.out.println(picList.get(0).getLocation().trim());
 		}
 		
-		System.out.println(bu);
-		System.out.println(roomList);
-		System.out.println(roomMap);
+		System.out.println("business : "+bu);
+		System.out.println("roomList : "+roomList);
+		System.out.println("roomMap : "+roomMap);
+		System.out.println("buPicList : "+buPicList);
 		
 		request.setAttribute("roomPicMap", roomPicMap);
 		request.setAttribute("roomList", roomList);
