@@ -54,7 +54,7 @@
         	</c:if>
           <c:if test="${bu_email == null && email == null}"> <!-- 비로그인 -->
           	<li class="nav-item">  
-            	<a class="nav-link" href="${pageContext.request.contextPath}">예약내역</a>
+            	<a class="nav-link" href="${pageContext.request.contextPath}/member/loginForm">예약내역</a>
             </li>
             <li class="nav-item">
             	<a class="nav-link" href="${pageContext.request.contextPath}/member/loginForm">로그인</a>
