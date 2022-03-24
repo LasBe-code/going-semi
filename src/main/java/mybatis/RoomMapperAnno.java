@@ -66,14 +66,14 @@ public interface RoomMapperAnno {
 
 	
 	@Select("select * from (select rownum rnum, a.* from (select bo.ro_name, ro.ro_count, bo.checkin, bo.checkout "
-			+ " from booking bo, room ro where ro.bu_email = #{bu_email} and ro.ro_name = bo.ro_name order by checkin "
-			+ " ) a where #{nowDay} < checkin or #{nowDay} = checkout or #{nowDay} between checkin and checkout) where rnum between #{startPage} and #{endPage}")
+			+ "	from booking bo, room ro where ro.bu_email = #{bu_email} and ro.ro_name = bo.ro_name order by checkin "
+			+ "	) a)  where rnum between #{startPage} and #{endPage}")
 	List<Booking> selectBkList(Map<String, Object> map);
 
 	@Select("select rnum, name, tel, email from (select rownum rnum, a.* "
 			+ " from(select m.name, m.tel, m.email, b.checkin, b.checkout from member m, room r, booking b "
-			+ " where r.bu_email = 'iop@naver.com' and r.ro_name = b.ro_name and m.email = b.email order by checkin) a "
-			+ " where #{nowDay} < checkin or #{nowDay} = checkout or #{nowDay} between checkin and checkout) where rnum between #{startPage} and #{endPage}")
+			+ " where r.bu_email = #{bu_email} and r.ro_name = b.ro_name and m.email = b.email order by checkin) a) "
+			+ " where rnum between #{startPage} and #{endPage}")
 	List<Member> selectMember(Map<String, Object> map);
 	
 	
