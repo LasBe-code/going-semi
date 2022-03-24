@@ -24,7 +24,7 @@ function logout() {
   <div class="row">
     <div class="col-sm-2" id="memberinfo_left_nav" >
     <a href="${pageContext.request.contextPath}/reservation/reservationList">예약내역<br><br></a>
-    <a href="${pageContext.request.contextPath}/reservation/memberInfo">내정보관리<br><br></a>
+    <a href="${pageContext.request.contextPath}/member/memberInfo">내정보관리<br><br></a>
     </div>
     
     
