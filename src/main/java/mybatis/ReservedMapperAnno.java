@@ -27,7 +27,7 @@ public interface ReservedMapperAnno {
 	@Insert("insert into reserved values(#{ro_num}, #{re_date})")
 	int insertReserved(Reserved r);
 	
-	@Select("select * from business where bu_id = #{bu_id} and bu_address like '%${bu_address}%'")
+	@Select("select * from business where bu_id = #{bu_id} and ( bu_address like '%${bu_address}%' or bu_title like '%${bu_address}%')")
 	List<Business> businessList(Map map);
 	
 	@Select("select * from picture where pic_num = #{pic_num}")
