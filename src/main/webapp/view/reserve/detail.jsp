@@ -12,7 +12,7 @@
 function roomDetail(ro_num, bu_email){
 	const url = '${pageContext.request.contextPath}/reservation/roomDetail?ro_num='+ro_num+'&bu_email='+bu_email
 			console.log(url+', '+ro_num)
-	const op = 'width=1200, height=1000, location=no, toolbar=no'
+	const op = 'width=550, height=1000, location=no, toolbar=no'
 
 	open(url, '방 정보', op)
 }
@@ -24,26 +24,21 @@ function roomDetail(ro_num, bu_email){
   <div class="top row">
     <!-- Carousel -->
     <div id="demo" class="carousel col-sm-6" data-bs-ride="carousel">
-
-      <!-- Indicators/dots -->
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-      </div>
+    	<!-- Indicators/dots -->
+    	<div class="carousel-indicators">
+			<c:forEach var="pic" items="${buPicList}" varStatus="i">
+				<button type="button" data-bs-target="#demo" data-bs-slide-to="${i.index}" <c:if test="${i.index == 0}"> class="active"</c:if> ></button>
+			</c:forEach>
+		</div>
       
       <!-- The slideshow/carousel -->
-      <div class="carousel-inner ">
-        <div class="carousel-item active">
-          <img class="top-img  rounded" src="https://image.goodchoice.kr/resize_490x348/affiliate/2016/07/20/578f33c3c6eb2.jpg" alt="" class="d-block" style="width:490px">
-        </div>
-        <div class="carousel-item">
-          <img class="top-img  rounded" src="https://image.goodchoice.kr/resize_490x348/affiliate/2016/07/05/577b1bcc75b2c.jpg" alt="" class="d-block" style="width:490px">
-        </div>
-        <div class="carousel-item">
-          <img class="top-img  rounded" src="https://image.goodchoice.kr/resize_490x348/affiliate/2016/07/05/577b1bac46a0a.jpg" alt="" class="d-block" style="width:490px">
-        </div>
-      </div>
+		<div class="carousel-inner ">
+      		<c:forEach var="pic" items="${buPicList}" varStatus="i">
+				<div class="carousel-item  <c:if test="${i.index == 0}">active</c:if>">
+		        	<img class="top-img  rounded" src="${pic.location}" class="d-block" style="width:490px">
+		        </div>
+			</c:forEach>
+		</div>
       
       <!-- Left and right controls/icons -->
       <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
@@ -79,9 +74,9 @@ function roomDetail(ro_num, bu_email){
         <li class="nav-item">
           <a class="nav-link active" href="#">객실안내/예약</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" style="color: dimgray;" href="#">리뷰</a>
-        </li>
+        </li> -->
       </ul>
     </div>
 
@@ -108,7 +103,7 @@ function roomDetail(ro_num, bu_email){
 				      <strong class="medium_text">가격</strong>
 				    </div>
 				    <div class="col-sm-6 right_text">
-				      <b class="large_text">${room.ro_price}</b>
+				      <b class="large_text">${room.ro_price}원</b>
 				    </div>
 				  </div>
 				  <div class="row">

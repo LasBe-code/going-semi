@@ -148,13 +148,9 @@ public class RoomController extends MskimRequestMapping{
 		
 		List<Picture> picList = rd.selectPic(room.getPic_num());
 		List<String> p_list = new ArrayList<String>();
+		
 		for(int i=0; i<picList.size();i++) {
-			if(i==0) {
-				request.setAttribute("picMain", picList.get(i).getLocation());
-				System.out.println(picList.get(i).getLocation());
-				} else {
-				p_list.add(picList.get(i).getLocation());
-			}
+			p_list.add(picList.get(i).getLocation());
 		}
 		
 		System.out.println(p_list);

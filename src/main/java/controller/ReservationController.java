@@ -122,6 +122,7 @@ public class ReservationController extends MskimRequestMapping {
 		System.out.println("roomMap : "+roomMap);
 		System.out.println("buPicList : "+buPicList);
 		
+		request.setAttribute("buPicList", buPicList);		
 		request.setAttribute("roomPicMap", roomPicMap);
 		request.setAttribute("roomList", roomList);
 		request.setAttribute("roomMap", roomMap);
@@ -135,6 +136,13 @@ public class ReservationController extends MskimRequestMapping {
 	
 	@RequestMapping("reserve")
 	public String reserve(HttpServletRequest request, HttpServletResponse response) {
+		String email = (String) request.getSession().getAttribute("email");
+		if(email == null) {
+			request.setAttribute("url", request.getContextPath()+"/member/loginForm");
+			request.setAttribute("msg", "로그인이 필요한 서비스입니다.");
+			return "/view/alert.jsp";
+		}
+		
 		Booking bo = new Booking();
 		ReserveDao rd = new ReserveDao();
 		MemberDao md = new MemberDao();
@@ -205,12 +213,7 @@ public class ReservationController extends MskimRequestMapping {
 		List<Picture> picList = rd.selectPic(room.getPic_num());
 		List<String> p_list = new ArrayList<String>();
 		for(int i=0; i<picList.size();i++) {
-			if(i==0) {
-				request.setAttribute("picMain", picList.get(i).getLocation());
-				System.out.println(picList.get(i).getLocation());
-				} else {
-				p_list.add(picList.get(i).getLocation());
-			}
+			p_list.add(picList.get(i).getLocation());
 		}
 		
 		System.out.println(p_list);
@@ -225,6 +228,6 @@ public class ReservationController extends MskimRequestMapping {
 		request.setAttribute("pic_num", room.getPic_num());
 		request.setAttribute("info", info);
 		
-		return "/view/reserve/roomDetail.jsp";
+		return "/common/roomDetail.jsp";
 	}
 }
