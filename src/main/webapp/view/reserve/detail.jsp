@@ -100,7 +100,7 @@ function roomDetail(ro_num, bu_email){
 				
 				<div class="reserve_room">
 				  <p class="reserve_pic_view">
-				    <img src="${roomPicMap[ro_num]}" alt="">
+				    <img src="${roomPicMap[ro_num]}" class="rounded" style="width:376px; height:226px; object-fit: cover;">
 				  </p>
 				  <strong class="reserve_room_title">${room.ro_name}</strong>
 				  <div class="reserve_room_price row">
