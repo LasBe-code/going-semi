@@ -84,5 +84,20 @@ public class ReserveDao {
 		return 0;
 	}
 	
+	public int cancelReserveList(Booking b) {
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		try {
+			
+			int result = sqlSession.getMapper(ReservedMapperAnno.class).cancelReserveList(b);
+			return result;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return 0;
+	}
 	
 }

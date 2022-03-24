@@ -50,4 +50,17 @@ public String roomMinPrice(String bu_email) {
 	}
 	return null;
 }
+
+public List<Business> buidList(Map map) {
+    SqlSession sqlSession = MybatisConnection.getConnection();
+    try {
+        List<Business> list = sqlSession.getMapper(ReservedMapperAnno.class).buidList(map);
+        return list;
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        MybatisConnection.close(sqlSession);
+    }
+    return null;
+}
 }

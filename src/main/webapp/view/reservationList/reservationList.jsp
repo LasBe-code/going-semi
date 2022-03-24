@@ -7,6 +7,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/common/reservationList.css">
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/ajax.js"></script>
+
+<script>
+
+function cancel(bo_num){
+	var flag = confirm('예약을 취소하시겠습니까?');
+	if (flag) {
+		location.href="${pageContext.request.contextPath}/reservation/cancel?bo_num="+bo_num;
+	} else {
+		return;
+	}	
+	
+}
+
+
+</script>
+
 </head>
 <body>
 
@@ -33,7 +50,7 @@
     				<table class="reservationList_table" style="margin-top: 40px;">
 		    			<tr>
 		    				<td>
-		    					<img class="reservationList_image" src="${picMap[booking.ro_num]}" style="object-fit: cover; border-radius: 10px;">
+		    					<img class="reservationList_image" src="${picMap[booking.ro_num]}" style="object-fit: cover; border-radius: 10px; border-bottom-style: none;">
 		    				</td>
 		    			</tr>
 		    			<tr align=center>
@@ -43,9 +60,8 @@
 		      					href="${pageContext.request.contextPath}/reservation/reservationDetail?flag=true&bo_num=${booking.bo_num}">
 			      				<b>${booking.bu_title} ㆍ ${booking.ro_name}</b><br>
 			      				${booking.checkin} - ${booking.checkout} <b>ㆍ</b></a><br>
-			      				<button class="default_btn rounded" type="button" 
-				      				style="height: 30px; width:100px; margin-top: 5px; background-color: red;" 
-				      				onclick="cancelButton(${booking.bo_num});">
+			      				<button class="default_btn rounded" type="button" id="cancelBtn" onclick="cancel('${booking.bo_num}')"
+				      				style="height: 30px; width:100px; margin-top: 5px; background-color: red;">
 				      				<b>예약취소</b>
 			      				</button>
 		      				</td>
@@ -56,8 +72,9 @@
 	   	</c:forEach>
 	</div>
 
-
-	<div class="row">   
+	<hr style="width:800px; margin-left:170px;">
+	
+	<div class="row"> 
 	    <div class="col-sm-2"></div>
 		<div class="col-sm-10" >
 		    <p class="medium_text" style="margin-top: 100px;">이용 완료</p>
@@ -67,13 +84,12 @@
     <div class="row">
 	    <c:forEach var="booking" items="${bookingList}">
 	    	<div class="col-sm-2"></div>
-	    	
 	    	<div class="col-sm-10" >
 		    	<c:if test="${booking.status == 3}">
     				<table class="reservationList_table" style="margin-top: 40px;">
 		    			<tr>
 		    				<td>
-		    					<img class="reservationList_image" src="${picMap[booking.ro_num]}" style="object-fit: cover;border-radius: 10px;">
+		    					<img class="reservationList_image" src="${picMap[booking.ro_num]}" style="object-fit: cover;border-radius: 10px; border-bottom-style: none;">
 		    				</td>
 		    			</tr>
 		    			 <tr align=center>
@@ -96,6 +112,7 @@
 	    </c:forEach>
     </div>
 	    
+  	<hr style="width:800px; margin-left:170px;">
   
 	<div class="row">
 	    <div class="col-sm-2"></div>
@@ -115,7 +132,7 @@
 		    		
 		    			<tr>
 		    				<td>
-		    					<img class="reservationList_image" src="${picMap[booking.ro_num]}" style="object-fit: cover;border-radius: 10px;">
+		    					<img class="reservationList_image" src="${picMap[booking.ro_num]}" style="object-fit: cover;border-radius: 10px; border-bottom-style: none;">
 		    				</td>
 		    			</tr>
 		    			<tr align=center>
@@ -151,18 +168,7 @@
 	}
 	
 }*/
-function cancelButton(bo_num){
-	
-	var flag = confirm('예약을 취소하시겠습니까?');
-	
-	if (flag) {
-		alert ('예약이 취소되었습니다.');
-		location.href="${pageContext.request.contextPath}/reservation/reservationDetail?flag=false&bo_num="+bo_num;
-	} else {
-		return;
-	}	
-	
-}
+
 </script>
 </body>
 </html>

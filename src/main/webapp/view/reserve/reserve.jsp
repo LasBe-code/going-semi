@@ -30,10 +30,7 @@ function requestPay() {
 	        	url : "${pageContext.request.contextPath}/reservation/reservePro?bo_num=" + rsp.imp_uid + "&payment=" + rsp.pay_method
 	        }).done(function(data){
 	        	location.href='${pageContext.request.contextPath}/reservation/reservationList'
-	        	
 	        })
-	        
-	   	  
       } else {
      	alert('결제 실패')
       }

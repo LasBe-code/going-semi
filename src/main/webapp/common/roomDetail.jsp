@@ -49,13 +49,13 @@
 		<input type="hidden" name="pic_num" value="${pic_num}">
 		<input type="hidden" name="ro_num" value="${room.ro_num}">
 		
-		<div class="mt-3" style="text-align: center;">
-			<span class="badge bg-warning" style="width:500px;">
-				<strong class="large_text" style="color:white;">${room.ro_name}</strong>
-			</span>
+		<div class="rounded mt-3" style="text-align: center;">
+			<div style="width:500px;  border-top: 1px solid #c8c8c8; border-bottom: 1px solid #c8c8c8;">
+				<strong class="large_text" style="color:black;">${room.ro_name}</strong>
+			</div>
 		</div>
 		<div class="rounded mt-3 mb-3" style="text-align: center; border:1px solid #c8c8c8;">
-			<div class="large_text mt-3 mb-3"><strong>객실기본정보</strong></div>
+			<div class="large_text mt-3 mb-3"><strong style="color:grey">객실기본정보</strong></div>
 			<table class="table table-borderless medium_text" style="text-align: center;">
 				<tr>
 					<td><strong>가격</strong></td>

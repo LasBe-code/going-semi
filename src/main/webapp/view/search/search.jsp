@@ -48,6 +48,14 @@ function dateChk(){ // 날짜 유효성 체크
 		}
 	}
 }
+function NoMultiChk(chk) {
+	var obj = document.getElementsByName("bu_id");
+	for(var i=0; i<obj.length; i++) {
+		if(obj[i] != chk) {
+			obj[i].checked = false;
+		}
+	}
+}
 </script>
 <body>
 <div class=default_width>
@@ -56,16 +64,23 @@ function dateChk(){ // 날짜 유효성 체크
 		<div class="search_filter_box">
 		<h3>상세조건</h3>
 		<form action="${pageContext.request.contextPath}/search/search" method="get" name="f">
-		<input type="hidden" name="bu_email" value="${bu.bu_email }">
-		<input type="hidden" name="ro_count" value="${ro_count }">
+		<input type="hidden" name="bu_email" value="${bu.bu_email}">
+		<input type="hidden" name="ro_count" value="${ro_count}">
 		<div>
 			<input type='date' id="checkin" class="main_checkin_1" name="checkin" onchange="dateChk()" required>
 		</div>
 		<div>
 			<input type='date' id="checkout" class="main_checkout_1" name="checkout" onchange="dateChk()" style="border:none;" required>
 		</div>
+		<input type="hidden" name="ro_count" value="2"> <!-- select 저장용 -->
+							<select id="select_ro_count" class="form-select form-select-lg" onchange="change_ro_count()" style="border: none;">
+							     <option value="1">1</option>
+							     <option value="2" selected>2</option>
+							     <option value="3">3</option>
+							     <option value="4">4</option>
+						   	</select>
+		<input type=search class=search_text placeholder=지역,숙소명 name="bu_address" required>
 			<div class=search_button_box>
-			<button type=submit class=search_commit_button_size style="border:none;">적용</button>
 				<div>
 				</div>
 			</div>
@@ -74,33 +89,28 @@ function dateChk(){ // 날짜 유효성 체크
 			<strong class="search_strong_font">숙소 유형</strong>
 			<ul class="search_detail_ul">
 			<li>
-			<input type="checkbox" name="bu_id" value="1" checked="checked">
+			<input type="checkbox" name="bu_id" value="1" onclick="NoMultiChk(this)">
 			<label class="search_label_font">호텔</label>
 			</li>
 			<li>
-			<input type="checkbox" name="bu_id" value="2">
+			<input type="checkbox" name="bu_id" value="2" onclick="NoMultiChk(this)">
 			<label class="search_label_font">모텔</label>
 			</li >
 			<li>
-			<input type="checkbox" name="bu_id" value="3">
+			<input type="checkbox" name="bu_id" value="3" onclick="NoMultiChk(this)">
 			<label class="search_label_font">펜션</label>
 			</li>
 			<li>
-			<input type="checkbox" name="bu_id" value="4">
+			<input type="checkbox" name="bu_id" value="4" onclick="NoMultiChk(this)">
 			<label class="search_label_font">리조트</label>
 			</li>
 			</ul>
 			</div>
 			</div>
+			<button type=submit class=search_commit_button_size style="border:none;">적용</button>
 		</form>
 		</div>
-		
 		<div class="search_list_mainbox">
-			<!-- <div class="search_button_box2">
-				<button type="button" class="search_km_button">거리순</button>
-				<button type="button" class="search_price_button">낮은 가격 순</button>
-				<button type="button" class="search_map_button">지도</button>
-			</div> -->
 			<c:forEach var="bu" items="${bu_list}">
 				<div class="search_list_box">
 					<form action="${pageContext.request.contextPath}/reservation/detail" class="search_list_abox" method="get">
@@ -108,27 +118,11 @@ function dateChk(){ // 날짜 유효성 체크
 						<input type="hidden" name="checkin" value="${checkin }">
 						<input type="hidden" name="checkout" value="${checkout }">
 						<input type="hidden" name="ro_count" value="${ro_count }">
-						<%-- <div class="search_list_imgbox">
-							<img src="${picMap[bu.pic_num] }" class="search_list_img">
-						</div>
-						
-						<div class="search_list_name">
-							<strong class="search_list_striong">${bu.bu_title }</strong><br>
-						</div>
-						<p class="search_review_text"></p>
-						<b class="search_km_info"></b>
-						
-						<div class="search_price_box">
-							<p class="search_rocount"></p><p class="search_price">${minPriceMap[bu.pic_num] }원</p>
-						</div> --%>
-						
-						
 						<div class="reserve_room" style="width:690px; margin-top: 0px; padding-left:385px;">
 						  <p class="reserve_pic_view" style="width:330px;">
 						    <img src="${picMap[bu.pic_num] }" class="rounded" style="width:330px; height:226px; object-fit: cover;">
 						  </p>
 						  <div style="margin:0 auto">
-						  
 						  </div>
 						  <strong class="reserve_room_title" style="width:300px;">${bu.bu_title}</strong>
 						  <div class="reserve_room_price row" style="width:300px;">
@@ -140,10 +134,7 @@ function dateChk(){ // 날짜 유효성 체크
 						    </div>
 						  </div>
 				  		  <input type="submit" class="reserve_room_btn default_btn medium_text rounded" value="숙소 살펴보기" style="margin-left:-5px;">
-						  		
 						</div>
-						
-						
 					</form>
 				</div>
 			</c:forEach>

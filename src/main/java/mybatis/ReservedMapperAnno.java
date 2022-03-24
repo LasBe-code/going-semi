@@ -35,4 +35,10 @@ public interface ReservedMapperAnno {
 	
 	@Select("select min(ro_price) from room where bu_email = #{bu_email} group by #{bu_email}")
 	String roomMinPrice(String bu_email);
+	
+	@Delete("delete from reserved where ro_num=#{ro_num} and re_date between #{checkin} and #{checkout}")
+	int cancelReserveList(Booking b);
+	
+	@Select("select * from business where bu_id = #{bu_id}")
+	List<Business> buidList(Map map);
 }

@@ -378,14 +378,6 @@
 		border-width: 1px;
 	    border-color: gainsboro;
 	}
-	.search_reset_button_size {
-		background-color: #ffc107;
-		border: none;
-	    color: black;
-	    height: 40px;
-	    width: 120px;
-	    cursor: pointer;
-	}
 	.search_commit_button_size {
 		background-color: #ffc107;
 		border-top: none;
@@ -410,76 +402,11 @@
 		color: rgba(0,0,0,0.56);
 		font-size: 16px;
 	}
-	.search_strong_font {
-		font-size: 18px;
-	}
-	.search_list_img {
-		width: 152px;
-		height: 189px;
-	}
-	.search_km_button {
-		background-color: #ffc107;
-		border: none;
+	.search_text {
+		margin-top: 8px;
+	    border: none;
 	    color: black;
-	    height: 40px;
-	    width: 272px;
-	    cursor: pointer;
-	}
-	.search_price_button {
-		background-color: #ffc107;
-		border-top: none;
-		border-right: none;
-		border-bottom: none;
-		border-left: 1px;
-	    color: black;
-	    height: 40px;
-	    width: 272px;
-	    cursor: pointer;
-	}
-	.search_list_box {
-	}
-	.search_list_abox {
-		display: flex;
-		text-decoration:none !important;
-	}
-	.search_list_name {
-		margin-left: 20px;
-	}
-	.search_list_striong {
-		font-size: 22px;
-		color: black;
-	}
-	.search_map_button {
-		width: 80px;
-		height: 40px;
-		background-color: #ffc107;
-		border: none;
-	    color: black;
-	    cursor: pointer;
-	}
-	.search_rocount {
-		font-size: 16px;
-		margin-top: 58px;
-		margin-bottom: 0;
-		color: gray;	
-	}
-	.search_price_box {
-		text-align: right;
-		width: 459px;
-		vertical-align: bottom;
-	}
-	.search_review_text {
-		color: rgb(255,167,38);
-		margin-bottom: 3px;
-	}
-	.search_km_info {
-		font-weight: 100;
-		color: black;
-		font-size: 16px;
-	}
-	.search_price {
-		font-weight: 300;
-		color: black;
-		font-size: 22px;
+	    height: 30px;
+		padding-left: 13px;
 	}
 /* 박상용 끝 */

@@ -10,6 +10,12 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
+<style type="text/css">
+.page-item.active .page-link { 
+	background-color: #ffc107!important;
+    border-color: #ffc107!important;
+}
+</style>
 </head>
 <body>
 <div class="container" style="margin-top:100px">
@@ -30,7 +36,7 @@
 </nav>
 <div class="container" style="margin-top: 50px;">
   <h2 style="text-align: center;">예약 내역</h2>
-  <table class="table table-striped" style="margin-top: 30px; text-align: center;">
+  <table class="table table-hover" style="margin-top: 30px; text-align: center;">
     <thead>
       <tr>
      	<th>객실 이름</th>
@@ -39,6 +45,7 @@
         <th>예약자이름</th>
         <th>핸드폰번호</th>
         <th>Email</th>
+        <th>예약상태</th>
       </tr>
     </thead>
     <tbody>
@@ -50,6 +57,13 @@
      	<td>${m[i.index].name}</td>
         <td>${m[i.index].tel}</td>
         <td>${m[i.index].email}</td>
+        <td>
+        	<c:choose>
+        		<c:when test="${b.status == '1'}">예약 완료</c:when>
+        		<c:when test="${b.status == '2'}">결제 취소</c:when>
+        		<c:when test="${b.status == '3'}">이용 완료</c:when>
+        	</c:choose>
+        </td>
       </tr>
     </c:forEach>  
     </tbody>

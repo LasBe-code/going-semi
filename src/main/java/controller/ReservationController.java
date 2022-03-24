@@ -1,5 +1,14 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -11,6 +20,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import model.Booking;
 import model.Business;
@@ -242,5 +255,39 @@ public class ReservationController extends MskimRequestMapping {
 		request.setAttribute("info", info);
 		
 		return "/common/roomDetail.jsp";
+	}
+	
+	@RequestMapping("cancel")
+	public String cancel(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
+		
+		if(request.getSession().getAttribute("email") == null) {
+			request.setAttribute("url", request.getContextPath()+"/member/loginForm");
+			request.setAttribute("msg", "로그인이 필요한 서비스입니다.");
+			return "/view/alert.jsp";
+		}
+		
+		ReservationDao rd = new ReservationDao();
+		ReserveDao reserveDao = new ReserveDao();
+		String bo_num = request.getParameter("bo_num");
+		rd.updateBookingStatus(bo_num); // 예약 상태 변경
+		
+		// 예약 중복 내역 삭제
+		Booking b = rd.getBookingSelectDetail(bo_num);			System.out.println(b.getCheckout());
+		int checkout = Integer.parseInt(b.getCheckout())-1; 	
+		b.setCheckout(""+checkout);								System.out.println(b.getCheckout());
+		int result = reserveDao.cancelReserveList(b);
+		
+		String url = request.getContextPath()+"/reservation/reservationList";
+		String msg = "예약 취소를 실패했습니다.";
+		
+		if(result != 0) {
+			msg = "예약이 취소되었습니다.";
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+			return "/view/alert.jsp";
+		}
+		
+		
+		return "/view/alert.jsp";
 	}
 }
