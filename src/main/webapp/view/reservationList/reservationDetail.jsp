@@ -9,13 +9,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/common/memberInfo.css">
 <style>
 tr {
-	width:300px;
+	width:300px !important;
 }
 td {
-	width:300px;
+	width:300px !important;
 }
 table{
-	width:600px;
+	width:600px !important;
 }
 </style>
 </head>
@@ -56,7 +56,7 @@ function deleteDetail() {
     	<p class="reservationDetail_medium_text"><b>${bookingDetail.bu_title}</b></p>
       	<p class="reservationDetail_small_text" >${bookingDetail.ro_name}<b>ㆍ</b>  </p><br>
     	
-    	<div class="mt-3 mb-3" style="">
+    	<div class="mb-3" style="">
 			<div class="reservationDetail_medium_text mt-3 mb-3"><strong>객실기본정보</strong></div>
 			<table class="table table-borderless reservationDetail_small_text">
 				<tr>
@@ -81,7 +81,7 @@ function deleteDetail() {
 				</tr>
 			</table>
 			
-			<div class="reservationDetail_medium_text mt-3 mb-3"><strong>결제 정보</strong></div>
+			<div class="reservationDetail_medium_text mt-5 mb-3"><strong>결제 정보</strong></div>
 			<table class="table table-borderless reservationDetail_small_text">
 				<tr>
 					<td><strong>결제 수단</strong></td>
@@ -104,14 +104,16 @@ function deleteDetail() {
 					</c:otherwise>
 				</c:choose>
 			</table>
+			<div class="mt-5">
+				<button class = "default_btn rounded" type="button"  style="width:80px; height:30px;"
+       				onclick="location.href='${pageContext.request.contextPath}/reservation/reservationList'">확인</button>
+			</div>
 		</div>
        <br>
        <br>
        
-       <button class = "reservation_btn_chk rounded" type="button"  
-       onclick="location.href='${pageContext.request.contextPath}/reservation/reservationList'">확인</button>
-       <button class = "reservation_btn_chk rounded" type="button" onclick="deleteDetail()">삭제</button>
-       <br><br><br><br>
+       
+       
 </div>
 </div>
 </div>
