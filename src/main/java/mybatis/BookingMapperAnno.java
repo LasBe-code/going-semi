@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.*;
 import model.Booking;
 import model.Member;
+import model.Picture;
 
 public interface BookingMapperAnno {
 	
@@ -18,10 +19,6 @@ public interface BookingMapperAnno {
 	@Update("update booking set status = 2 where bo_num = #{bo_num}")
 	void updateBookingStatus(String bo_num);
 	
-	
-	
-	
-	
-	
-
+	@Select("select p.* from picture p, room r where p.pic_num = r.pic_num and r.ro_num = #{ro_num}")
+	List<Picture> bookingPictureList(int ro_num);
 }

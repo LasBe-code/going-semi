@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import model.Booking;
+import model.Picture;
 import mybatis.BookingMapperAnno;
 import util.MybatisConnection;
 
@@ -49,6 +50,22 @@ public class ReservationDao {
 		} finally {
 			MybatisConnection.close(sqlSession);
 		}
+	}
+	
+	public List<Picture> bookingPictureList(int ro_num){
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		
+		try {
+			return sqlSession.getMapper(BookingMapperAnno.class).bookingPictureList(ro_num);
+			//getMapper는 BookingMapperAnno에 Mapping한 getBookingSelectDetail을 가져오겠다는 뜻
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+			//close 이유는 SqlSession의 연결을 끊기위해 사용
+		}
+		return null;
 	}
 	
 	/*
