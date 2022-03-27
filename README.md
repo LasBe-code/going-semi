@@ -1,4 +1,8 @@
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1f2577e7-e09f-456e-8035-1a50456f541e/Untitled.png)
+# GOING - Model2
+
+생성일: 2022년 3월 13일 오전 1:54
+
+![Untitled](GOING%20-%20Mo%202860c/Untitled.png)
 
 # GOING - 숙박플랫폼 model2 프로젝트
 
@@ -75,7 +79,7 @@
 
 ## 4. 협업
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0e1c62ac-8f53-4607-8ddf-d3a358e467a9/Untitled.png)
+![Untitled](GOING%20-%20Mo%202860c/Untitled%201.png)
 
 - 형상 관리
     - GitHub
@@ -95,17 +99,17 @@
 
 - 흐름도
     
-    ![프로토타입@2x (1).png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d0aacf55-49bb-43b2-84f0-9083eaf93f48/프로토타입2x_(1).png)
+    ![프로토타입@2x (1).png](GOING%20-%20Mo%202860c/%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%852x_(1).png)
     
 
 - Database ERD
     
-    ![Database ERD@2x (2).png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/42d82bb1-fb80-4156-8310-bdc229222d46/Database_ERD2x_(2).png)
+    ![Database ERD@2x (2).png](GOING%20-%20Mo%202860c/Database_ERD2x_(2).png)
     
 
 - 핵심 로직
     
-    ![핵심 로직@2x (1).png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f0854643-798b-438f-8703-4c773896c0f8/핵심_로직2x_(1).png)
+    ![핵심 로직@2x (1).png](GOING%20-%20Mo%202860c/%ED%95%B5%EC%8B%AC_%EB%A1%9C%EC%A7%812x_(1).png)
     
 
 ---
@@ -114,7 +118,7 @@
 
 ### 6.1 Cloud Database
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/701dc433-c997-4962-b8b4-b9448dc401d1/Untitled.png)
+![Untitled](GOING%20-%20Mo%202860c/Untitled%202.png)
 
 Oracle Cloud를 이용해 팀원들 간 동일한 데이터베이스를 클라우드에 올려 공유할 수 있었습니다.
 
@@ -124,7 +128,7 @@ Oracle Cloud를 이용해 팀원들 간 동일한 데이터베이스를 클라�
 
 ### 6.2 소셜 로그인
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/58255c29-525c-443e-9185-38fdc53291ce/Untitled.png)
+![Untitled](GOING%20-%20Mo%202860c/Untitled%203.png)
 
 카카오 로그인 API를 이용해 넘겨주는 데이터를 파싱해서 소셜 로그인을 구현했습니다.
 
@@ -134,11 +138,11 @@ Oracle Cloud를 이용해 팀원들 간 동일한 데이터베이스를 클라�
 
 ### 6.3 플랫폼 형태 구축
 
-![고객](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/898e2aa4-0e7f-43e8-b04b-efea9340d5b1/Untitled.png)
+![고객](GOING%20-%20Mo%202860c/Untitled%204.png)
 
 고객
 
-![사업자](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6c13f7b0-846e-4cf9-be5b-4c36af76b853/Untitled.png)
+![사업자](GOING%20-%20Mo%202860c/Untitled%205.png)
 
 사업자
 
@@ -154,11 +158,11 @@ Oracle Cloud를 이용해 팀원들 간 동일한 데이터베이스를 클라�
 
 ### 6.5 문자인증
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/88944da9-3241-4cf7-ba45-439f1a474524/Untitled.png)
+![Untitled](GOING%20-%20Mo%202860c/Untitled%206.png)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f20ba31c-5fc2-4e51-a0d0-789eaaa83c08/Untitled.png)
+![Untitled](GOING%20-%20Mo%202860c/Untitled%207.png)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1bc034c6-252c-4f6d-95c5-fc6301841447/Untitled.png)
+![Untitled](GOING%20-%20Mo%202860c/Untitled%208.png)
 
 숙박 플랫폼 특성 상 인증된 전화번호는 꼭 필요하다고 생각해 문자 인증 서비스를 구현했습니다.
 
@@ -168,7 +172,7 @@ Oracle Cloud를 이용해 팀원들 간 동일한 데이터베이스를 클라�
 
 ### 6.6 검색 시 숙소의 방들 중 최저가 노출
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5a154c62-3fad-45fe-9f42-6c4e3474e78c/Untitled.png)
+![Untitled](GOING%20-%20Mo%202860c/Untitled%209.png)
 
 이용자의 검색 결과에 맞게 사업자(숙소)가 등록한 방들 중 최저가를 노출하도록 했습니다.
 
@@ -176,7 +180,7 @@ Oracle Cloud를 이용해 팀원들 간 동일한 데이터베이스를 클라�
 
 ### 6.7 예약 완료된 방
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/19adae35-575a-45b2-be11-131346e4ce86/Untitled.png)
+![Untitled](GOING%20-%20Mo%202860c/Untitled%2010.png)
 
 상품의 상세 정보를 표시하는 페이지에서 이미 예약된 방을 예약할 수 없도록 처리했습니다.
 
@@ -186,7 +190,7 @@ Oracle Cloud를 이용해 팀원들 간 동일한 데이터베이스를 클라�
 
 ### 6.8 결제
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1c4e95e0-dda6-45bf-adbe-171517a3bd01/Untitled.png)
+![Untitled](GOING%20-%20Mo%202860c/Untitled%2011.png)
 
 아임포트 API를 사용해 실제 결제 처리가 되면 AJAX를 이용해 예약 완료 로직이 구동되도록 했습니다.
 
@@ -210,14 +214,16 @@ Oracle Cloud를 이용해 팀원들 간 동일한 데이터베이스를 클라�
 
 프로젝트를 진행하는 동안 온라인에서는 부족한 부분을 채우기에는 한계가 있음을 느끼고 스터디룸에 팀원을 모아 기초적인 부분에 대해 설명하고 막히는 부분을 바로바로 소통하는 기회도 가졌습니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4660c4e5-d70a-4e6e-992e-fb04ae19f2d4/Untitled.png)
+![Untitled](GOING%20-%20Mo%202860c/Untitled%2012.png)
 
 프로젝트에 적극적이었던 팀원들 덕에 몇번의 모임 후 프로젝트는 순조롭게 진행되었고 기초적인 내용을 설명하며 저 스스로의 기본기도 튼튼하게 다질 수 있었습니다.
 
 프로젝트의 마무리에 가선 나뉘어있던 기능들을 이어주는 작업을 했고 그것들이 정상적으로 잘 작동하는 것을 보았을 때 너무나 큰 기쁨을 느꼈고, 막막했던 초기부터 완성까지의 기억들을 되짚어보며 개발에 대한 자신감을 가지게 되었습니다.
 
-마지막으로 3주동안 함께 밤을 새고 서로에게 힘이 되었던 팀원에게 고맙다는 말을 남깁니다~~
+마지막으로 3주동안 함께 밤을 새고 서로에게 힘이 되었던 팀원에게 감사하다는 말을 남깁니다~~
 
-![스크린샷 2022-03-16 오후 2.16.36(2).png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ff53bd3b-a624-41c9-be94-21a8f4be5e4d/스크린샷_2022-03-16_오후_2.16.36(2).png)
+![스크린샷 2022-03-16 오후 2.16.36(2).png](GOING%20-%20Mo%202860c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-03-16_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_2.16.36(2).png)
 
-[Model2-Going (1).pdf](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f57925de-5f81-4560-b9d3-f7d777d725bc/Model2-Going_(1).pdf)
+![Untitled](GOING%20-%20Mo%202860c/Untitled%2013.png)
+
+[Model2-Going (1).pdf](GOING%20-%20Mo%202860c/Model2-Going_(1).pdf)
