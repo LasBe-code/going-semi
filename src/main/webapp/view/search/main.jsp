@@ -114,29 +114,30 @@ function dateChk(){ // 날짜 유효성 체크
 	<div class="main_categorybox">
 		<div class=main_floor>
 		<div class="main_categoryone">
-			<h3 style="color:gray;">호텔</h3>
+			<h3 class="medium_text mt-1" style="color:dark gray; font-weight: 300 !important;">호텔</h3>
 			<a href="${pageContext.request.contextPath}/search/search?bu_id=1&ro_count=2">
-			<img class=main_image_size src=https://pix10.agoda.net/hotelImages/5442478/0/59658259652dae9c04f3229b87fdedd4.jpg?ca=23&ce=0&s=1024x768>
+			<img class="main_image_size rounded" src=https://pix10.agoda.net/hotelImages/5442478/0/59658259652dae9c04f3229b87fdedd4.jpg?ca=23&ce=0&s=1024x768>
 			</a>
+			
 		</div>
 		<div class="main_categoryone">
-			<h3 style="color:gray;">모텔</h3>
+			<h3 class="medium_text mt-1" style="color:dark gray; font-weight: 300 !important;">모텔</h3>
 			<a href="${pageContext.request.contextPath}/search/search?bu_id=2&ro_count=2">
-			<img class=main_image_size src=https://i.travelapi.com/hotels/17000000/16730000/16727700/16727640/42a70b89_z.jpg>
+			<img class="main_image_size rounded" src=https://i.travelapi.com/hotels/17000000/16730000/16727700/16727640/42a70b89_z.jpg>
 			</a>
 		</div>
 		</div>
 		<div class=main_floor>
 		<div class="main_categoryone">
-			<h3 style="color:gray;">펜션</h3>
+			<h3 class="medium_text mt-1" style="color:dark gray; font-weight: 300 !important;">펜션</h3>
 			<a href="${pageContext.request.contextPath}/search/search?bu_id=3&ro_count=2">
-			<img class=main_image_size src=https://uploads-ssl.webflow.com/5e5cad32512f4ebf86ae2fa1/5e942f6e5f867827a4659114_mrp_6140-hdr.jpeg>
+			<img class="main_image_size rounded" src=https://uploads-ssl.webflow.com/5e5cad32512f4ebf86ae2fa1/5e942f6e5f867827a4659114_mrp_6140-hdr.jpeg>
 			</a>
 		</div>
 		<div class="main_categoryone">
-			<h3 style="color:gray;">리조트</h3>
+			<h3 class="medium_text mt-1" style="color:dark gray; font-weight: 300 !important;">리조트</h3>
 			<a href="${pageContext.request.contextPath}/search/search?bu_id=4&ro_count=2">
-			<img class=main_image_size src=https://images.chosun.com/resizer/z171wP8hn0uIczVRiOpLA2t8pRI=/616x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/7UICRHCEMBBJNKPPY263O3AMEY.jpg>
+			<img class="main_image_size rounded" src=https://images.chosun.com/resizer/z171wP8hn0uIczVRiOpLA2t8pRI=/616x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/7UICRHCEMBBJNKPPY263O3AMEY.jpg>
 			</a>
 		</div>
 		</div>

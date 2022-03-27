@@ -19,7 +19,7 @@
 			<img alt="logo" src="${pageContext.request.contextPath}/image/colorlogo.png" style="width:200px;"><br>
 		</div>
 		<input type="text" name="email" class="form-control form-control-lg mt-5" placeholder="이메일">
-		<input type="text" name="password" class="form-control form-control-lg" placeholder="비밀번호">
+		<input type="password" name="password" class="form-control form-control-lg" placeholder="비밀번호">
 		<input type="submit" class="default_btn rounded mt-3" value="로그인">
 		<button type="button" class="default_btn rounded mt-1" 
 			onclick="location.href='${pageContext.request.contextPath}/member/buLoginForm'">Going Business</button>
@@ -41,7 +41,7 @@
 		  function loginWithKakao() {
 		    Kakao.Auth.login({
 		      success: function(authObj) {
-		        /* alert(JSON.stringify(authObj)) */
+		        /* alert(JSON.stringify(authObj)) */ 
 		        
 		        Kakao.API.request({
 			        url: '/v2/user/me',

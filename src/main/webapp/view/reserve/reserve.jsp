@@ -37,7 +37,26 @@ function requestPay() {
   });
 }
 
+function chk(){
+	const check1 = document.querySelector('#check1')
+	const check2 = document.querySelector('#check2')
+	const check3 = document.querySelector('#check3')
+	const btn = document.querySelector('#btn')
+	
+	if(check1.checked == true && check2.checked == true && check3.checked == true) {
+		btn.disabled = false
+	} else {
+		btn.disabled = true
+	}
+}
 </script>
+<style>
+button:disabled {
+    background-color: -internal-light-dark(rgba(239, 239, 239, 0.3), rgba(19, 1, 1, 0.3)) !important;
+    color: -internal-light-dark(rgba(16, 16, 16, 0.3), rgba(255, 255, 255, 0.3));
+    border-color: -internal-light-dark(rgba(118, 118, 118, 0.3), rgba(195, 195, 195, 0.3));
+}
+</style>
 </head>
 <body>
 
@@ -62,17 +81,17 @@ function requestPay() {
 	        </select>
 	      </div> -->
 	
-	      <div class="mt-5">
+	      <div class="mt-5" onclick="chk()">
 	        <div class="form-check">
-	          <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>
+	          <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" required>
 	          <label class="form-check-label" for="check1">숙소이용규칙 및 취소/환불규정 동의</label>
 	        </div>
 	        <div class="form-check">
-	          <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
+	          <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something" required>
 	          <label class="form-check-label" for="check2">개인정보 수집 및 이용 동의</label>
 	        </div>
 	        <div class="form-check">
-	          <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
+	          <input type="checkbox" class="form-check-input" id="check3" name="option2" value="something" required>
 	          <label class="form-check-label" for="check2">개인정보 제 3자 제공 동의</label>
 	        </div>
 	        
@@ -103,8 +122,8 @@ function requestPay() {
 	      <strong class="reserve_name" style="color: black;">총 결제 금액</strong> <br>
 	      <strong class="reserve_name" style="color: #ffc107; font-size: 30px;">${booking.price}</strong><strong class="reserve_name" style="color: black; font-size: 30px;"> 원</strong> <br>
 	    </div>
-	    <button type="button" onclick="requestPay()"
-	    	style="width: 100%; height: 56px; background-color: #ffc107; color: white; border: none;">결제하기</button>
+	    <button class="btn" type="button" onclick="requestPay()" id="btn" disabled
+	    	style="width: 100%; height: 56px; background: #ffc107; color: white; border: none;">결제하기</button>
 	  </div>
 	  
 	</div>
