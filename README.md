@@ -226,4 +226,4 @@ Oracle Cloud를 이용해 팀원들 간 동일한 데이터베이스를 클라�
 
 ![Untitled](GOING%20-%20Mo%202860c/Untitled%2013.png)
 
-[Model2-Going (1).pdf](GOING%20-%20Mo%202860c/Model2-Going_(1).pdf)
+[Model2-Going.pdf](GOING%20-%20Mo%202860c/Model2-Going_(1).pdf)
