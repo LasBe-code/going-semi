@@ -9,10 +9,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -200,7 +203,7 @@ public class ReservationController extends MskimRequestMapping {
 	}
 	
 	@RequestMapping("reservePro")
-	public String reservePro(HttpServletRequest request, HttpServletResponse response) {
+	public String reservePro(HttpServletRequest request, HttpServletResponse response) throws java.text.ParseException {
 		String bo_num = request.getParameter("bo_num");
 		String payment = request.getParameter("payment");
 		System.out.println(bo_num+", "+payment);
@@ -216,14 +219,29 @@ public class ReservationController extends MskimRequestMapping {
 		System.out.println(bo);
 		System.out.println(result);
 		
-		int icheckin = Integer.parseInt(bo.getCheckin());
-		int icheckout = Integer.parseInt(bo.getCheckout());
 		Reserved r = new Reserved();
 		
-		for(int i=icheckin; i<icheckout ;i++) {
-			r = new Reserved(bo.getRo_num(), String.valueOf(i));
+		// 날짜 계산을 위한 기능
+		// String -> Date -> Calendar
+		SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
+		Calendar cal = Calendar.getInstance();
+		Date checkin = dtFormat.parse(bo.getCheckin());
+		Date checkout = dtFormat.parse(bo.getCheckout());
+		
+		// 날짜 차이 계산
+		long diff = (checkout.getTime()-checkin.getTime()) / (24*60*60*1000);
+		cal.setTime(checkin);
+		
+		String date;
+		
+		// 중복 테이블에 예약 내역 insert
+		// 체크인 날짜 ~ 체크아웃 날짜 -1
+		for(int i=0; i<diff ;i++) {
+			date = dtFormat.format(cal.getTime());
+			r = new Reserved(bo.getRo_num(), date);
 			System.out.println(r);
 			rd.insertReserved(r);
+			cal.add(Calendar.DATE, 1); // 하루 증가
 		}
 		
 		return "/view/reservationList/reservationList.jsp";

@@ -2,23 +2,29 @@ package model;
 
 
 public class Review {
-	private int rev_num, bo_num;
-	private String email, content;
-	private String checkin, checkout;
-	private int pic_num;
 	
-	public Review() {}
-
-	public Review(int rev_num, int bo_num, String email, String content, String checkin, String checkout, int pic_num) {
+	private int rev_num, bo_num, ro_num, score;
+	private String email, content, review_date, review_check;
+	
+	private String ro_name;
+	
+	public Review() {};
+	
+	
+	public Review(int rev_num, int bo_num, int ro_num, int score, String email, String content, String review_date,
+			String review_check, String ro_name) {
 		super();
 		this.rev_num = rev_num;
 		this.bo_num = bo_num;
+		this.ro_num = ro_num;
+		this.score = score;
 		this.email = email;
 		this.content = content;
-		this.checkin = checkin;
-		this.checkout = checkout;
-		this.pic_num = pic_num;
+		this.review_date = review_date;
+		this.review_check = review_check;
+		this.ro_name = ro_name;
 	}
+
 
 	public int getRev_num() {
 		return rev_num;
@@ -34,6 +40,22 @@ public class Review {
 
 	public void setBo_num(int bo_num) {
 		this.bo_num = bo_num;
+	}
+
+	public int getRo_num() {
+		return ro_num;
+	}
+
+	public void setRo_num(int ro_num) {
+		this.ro_num = ro_num;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 	public String getEmail() {
@@ -52,37 +74,36 @@ public class Review {
 		this.content = content;
 	}
 
-	public String getCheckin() {
-		return checkin;
+	public String getReview_date() {
+		return review_date;
 	}
 
-	public void setCheckin(String checkin) {
-		this.checkin = checkin;
+	public void setReview_date(String review_date) {
+		this.review_date = review_date;
 	}
 
-	public String getCheckout() {
-		return checkout;
+	public String getReview_check() {
+		return review_check;
 	}
 
-	public void setCheckout(String checkout) {
-		this.checkout = checkout;
+	public void setReview_check(String review_check) {
+		this.review_check = review_check;
 	}
 
-	public int getPic_num() {
-		return pic_num;
+	public String getRo_name() {
+		return ro_name;
 	}
 
-	public void setPic_num(int pic_num) {
-		this.pic_num = pic_num;
+	public void setRo_name(String ro_name) {
+		this.ro_name = ro_name;
 	}
 
 	@Override
 	public String toString() {
-		return "{\"rev_num\":\"" + rev_num + "\", \"bo_num\":\"" + bo_num + "\", \"email\":\"" + email
-				+ "\", \"content\":\"" + content + "\", \"checkin\":\"" + checkin + "\", \"checkout\":\"" + checkout
-				+ "\", \"pic_num\":\"" + pic_num + "\"}";
+		return "{\"rev_num\":\"" + rev_num + "\", \"bo_num\":\"" + bo_num + "\", \"ro_num\":\"" + ro_num
+				+ "\", \"score\":\"" + score + "\", \"email\":\"" + email + "\", \"content\":\"" + content
+				+ "\", \"review_date\":\"" + review_date + "\", \"review_check\":\"" + review_check
+				+ "\", \"ro_name\":\"" + ro_name + "\"}";
 	}
-
-	
 	
 }

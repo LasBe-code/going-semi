@@ -394,5 +394,16 @@ public class MemberController extends MskimRequestMapping {
 		return "/view/alert.jsp";
 
 	}
-
+	
+	@RequestMapping("review")
+	public String review(HttpServletRequest request, HttpServletResponse response) {
+		
+		return "/common/review.jsp";
+	}
+	
+	@RequestMapping("reviewPro")
+	public String reviewPro(HttpServletRequest request, HttpServletResponse response) {
+		
+		return "/view/alert.jsp";
+	}
 }
