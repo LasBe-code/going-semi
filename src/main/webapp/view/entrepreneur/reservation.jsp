@@ -31,6 +31,9 @@
 	    <li class="nav-item">
 	      <a class="nav-link" href="${pageContext.request.contextPath}/room/reservation">예약 확인</a>
 	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/sales">매출</a>
+	    </li>
 	  </ul>
 	  </div>
 </nav>
@@ -41,7 +44,8 @@
       <tr>
      	<th>객실 이름</th>
         <th>이용인원수</th>
-        <th>예약일</th>
+        <th>체크인</th>
+        <th>체크아웃</th>
         <th>예약자이름</th>
         <th>핸드폰번호</th>
         <th>Email</th>
@@ -53,10 +57,11 @@
       <tr>
      	<td>${b.ro_name}</td>
         <td>${b.ro_count}</td>
-        <td>${b.checkin} ~ ${b.checkout}</td>
-     	<td>${m[i.index].name}</td>
-        <td>${m[i.index].tel}</td>
-        <td>${m[i.index].email}</td>
+        <td>${b.checkin}</td>
+        <td>${b.checkout}</td>
+     	<td>${b.name}</td>
+        <td>${b.tel}</td>
+        <td>${b.email}</td>
         <td>
         	<c:choose>
         		<c:when test="${b.status == '1'}">예약 완료</c:when>
@@ -72,15 +77,26 @@
 <div class="container"  >
 <ul class="pagination justify-content-center"  >
 	<li class='page-item <c:if test="${startNum <= bottomLine}">disabled </c:if>'>
-	<a class="page-link" href="${pageContext.request.contextPath}/room/reservation?pageNum=${startPage-bottomLine}">Previous</a></li>
+	<a class="page-link" href="${pageContext.request.contextPath}/room/reservation?pageNum=${startPage-bottomLine}&searchName=${searchName}&search=${search}">Previous</a></li>
 	<c:forEach var="i" begin="${startNum}" end="${endNum}">
 		<li class='page-item <c:if test="${i==pageInt}">active</c:if>'>
-		<a class="page-link" href="${pageContext.request.contextPath}/room/reservation?pageNum=${i}">${i}</a></li>
+		<a class="page-link" href="${pageContext.request.contextPath}/room/reservation?pageNum=${i}&searchName=${searchName}&search=${search}">${i}</a></li>
 	</c:forEach>
 	<li class='page-item <c:if test="${endNum >= maxNum}">disabled </c:if>'>
-	<a class="page-link" href="${pageContext.request.contextPath}/room/reservation?pageNum=${startPage+bottomLine}">Next</a></li>
+	<a class="page-link" href="${pageContext.request.contextPath}/room/reservation?pageNum=${startPage+bottomLine}&searchName=${searchName}&search=${search}">Next</a></li>
 </ul>
 </div>
+<form style=" margin:30px 0px auto; float: right;">
+  <select name="searchName" id="searchName">
+  	<option value="ro_name" ${searchName == 'ro_name' ? 'selected' : '' }>방이름</option>
+  	<option value="name" ${searchName == 'name' ? 'selected' : '' }>예약자이름</option>
+  	<option value="checkin" ${searchName == 'checkin' ? 'selected' : '' }>체크인</option>
+  	<option value="checkout" ${searchName == 'checkout' ? 'selected' : '' }>체크아웃</option>
+  	<option value="status" ${searchName == 'status' ? 'selected' : '' }>예약상태</option>
+  </select>
+  <input type="text" name="search"  ${searchName == 'status' ? 'placeholder="예약완료, 결제취소, 이용완료 세개중 하나를 입력하세요."' : '' }  style="width:450px;">
+  <input type="submit" value="검색">
+</form>
 </div>
 </body>
 </html>

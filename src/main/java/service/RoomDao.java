@@ -8,13 +8,13 @@ import org.apache.ibatis.session.SqlSession;
 
 import model.Booking;
 import model.Business;
-import model.Member;
 import model.Picture;
 import model.Room;
 import mybatis.RoomMapperAnno;
 import util.MybatisConnection;
 
 public class RoomDao {
+
 
 	public List<Room> roomList(String bu_email) {
 		
@@ -258,14 +258,15 @@ public class RoomDao {
 		
 		return null;
 	}
-
-	public int countBoard(String bu_email) {
+	
+	public List<Booking> searchStatus(Map<String, Object> map) {
+		
 		SqlSession sqlSession = MybatisConnection.getConnection();
 
 		try {
 			
-			int countBoard = sqlSession.getMapper(RoomMapperAnno.class).countBoard(bu_email);
-			return countBoard;
+			List<Booking> searchStatus = sqlSession.getMapper(RoomMapperAnno.class).searchStatus(map);
+			return searchStatus;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -273,8 +274,29 @@ public class RoomDao {
 			MybatisConnection.close(sqlSession);
 		}
 		
-		return 0;
+		return null;
 	}
+	
+	
+	public List<Booking> searchName(Map<String, Object> map) {
+
+		SqlSession sqlSession = MybatisConnection.getConnection();
+
+		try {
+			
+			List<Booking> searchName = sqlSession.getMapper(RoomMapperAnno.class).searchName(map);
+			return searchName;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return null;
+	}
+
+
 
 	public String picList(Map<String, Object> map) {
 		
@@ -346,13 +368,16 @@ public class RoomDao {
 		return 0;
 	}
 
-	public List<Member> selectMember(Map<String, Object> map) {
-		SqlSession sqlSession = MybatisConnection.getConnection();
 
+
+
+	public Booking selectSales(Map<String, Object> map) {
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		
 		try {
 			
-			List<Member> selectMember = sqlSession.getMapper(RoomMapperAnno.class).selectMember(map);
-			return selectMember;
+			Booking selectSales = sqlSession.getMapper(RoomMapperAnno.class).selectSales(map);
+			return selectSales;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -363,6 +388,76 @@ public class RoomDao {
 		return null;
 	}
 
+	public Booking selectAreaSales(Map<String, Object> map) {
+		
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		
+		try {
+			
+			Booking selectAreaSales = sqlSession.getMapper(RoomMapperAnno.class).selectAreaSales(map);
+			return selectAreaSales;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		return null;
+	}
+
+	public int countBoard(Map<String, Object> map) {
+
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		
+		try {
+			
+			int countBoard = sqlSession.getMapper(RoomMapperAnno.class).countBoard(map);
+			return countBoard;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return 0;
+	}
+
+	public int countBoardStatus(Map<String, Object> map) {
+		
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		
+		try {
+			
+			int countBoardStatus = sqlSession.getMapper(RoomMapperAnno.class).countBoardStatus(map);
+			return countBoardStatus;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return 0;
+	}
+
+	public int countBoardSearchName(Map<String, Object> map) {
+		
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		
+		try {
+			
+			int countBoardSearchName = sqlSession.getMapper(RoomMapperAnno.class).countBoardSearchName(map);
+			return countBoardSearchName;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return 0;
+	}
 
 	
 }

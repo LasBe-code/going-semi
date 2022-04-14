@@ -29,6 +29,9 @@
 	    <li class="nav-item">
 	      <a class="nav-link" href="${pageContext.request.contextPath}/room/reservation">예약 확인</a>
 	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/sales">매출</a>
+	    </li>
 	  </ul>
 	  </div>
 </nav>

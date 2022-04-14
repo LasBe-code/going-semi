@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+
 import com.oreilly.servlet.MultipartRequest;
 
 import model.Booking;
@@ -315,10 +317,6 @@ public class RoomController extends MskimRequestMapping{
 		return "/view/alert.jsp";
 	}
 	
-	
-	
-	
-	
 	@RequestMapping("reservation")
 	public String reservation(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -344,9 +342,71 @@ public class RoomController extends MskimRequestMapping{
 				
 		pageInt = Integer.parseInt(pageNum);
 				
+		// 한페이지에 출력할 게시글 rownum의 번호
+		int startPage = (pageInt-1)*limit + 1;
+		int endPage = (pageInt-1)*limit + limit;
+//		게시글 갯수
+		int count = 0;
+		
+		// =========== 현재 시간 ==============
+		LocalDate now = LocalDate.now();
+		// 포맷 정의
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+		// 포맷 적용
+		String nowDay = now.format(formatter);
+		
+		map.clear();
+		map.put("startPage", startPage);
+		map.put("endPage", endPage);
+		map.put("nowDay", nowDay);
+		map.put("bu_email", bu_email);
+		
+		// 예약 내역 찾기
+		String searchName = request.getParameter("searchName");
+		String search = request.getParameter("search");
+		List<Booking> bk = new ArrayList<Booking>();
+		
+		System.out.println("searchName : " + searchName);
+		System.out.println("search : " + search);
+//		검색할 컬럼이름
+		map.put("searchName", searchName);
+//		검색할 컬럼 값
+		map.put("search", search);
+		
+		if("".equals(searchName) || searchName == null || search == null || "".equals(search)) {
+			bk = rd.selectBkList(map);
+			count = rd.countBoard(map);
+		}
+		else if("status".equals(searchName)) {
+			if("예약완료".equals(search)) {
+				map.put("status", "1");
+			}
+			else if("결제취소".equals(search)) {
+				map.put("status", "2");
+			}
+			else if("이용완료".equals(search)) {
+				map.put("status", "3");
+			}
+			else {
+				String msg = "예약완료, 결제취소, 이용완료 세개중 하나를 입력하세요.";
+				String url = request.getContextPath()+"/room/reservation";
+				request.setAttribute("msg", msg);
+				request.setAttribute("url", url);
+				return "/view/alert.jsp";
+			}
+			bk = rd.searchStatus(map);
+			count = rd.countBoardStatus(map);
+		}
+		else {
+			bk = rd.searchName(map);
+			count = rd.countBoardSearchName(map);
+		}
+		
+		System.out.println("bk : " + bk);
+		
 		// -----------------------------------------------------------------------------
 		// 게시글 갯수를 확인하는 메서드
-		int count = rd.countBoard(bu_email);
+		
 		int boardNum = count - (pageInt - 1) *limit;
 		
 		int bottomLine = 3;
@@ -358,28 +418,8 @@ public class RoomController extends MskimRequestMapping{
 			endNum = maxNum;
 		}
 		
-		// 한페이지에 출력할 게시글 rownum의 번호
-		int startPage = (pageInt-1)*limit + 1;
-		int endPage = (pageInt-1)*limit + limit;
-
-		// =========== 현재 시간 ==============
-		LocalDate now = LocalDate.now();
-		// 포맷 정의
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-		// 포맷 적용
-		String nowDay = now.format(formatter);
-		
-		map.clear();
-		map.put("startPage", startPage);
-		map.put("endPage", endPage);
-		map.put("bu_email", bu_email);
-		map.put("nowDay", nowDay);
-		
-		// 예약 내역 찾기
-		List<Booking> bk = rd.selectBkList(map);
-		List<Member> m = rd.selectMember(map);
-		
-		request.setAttribute("m", m);
+		request.setAttribute("search", search);
+		request.setAttribute("searchName", searchName);
 		request.setAttribute("bk", bk);
 		request.setAttribute("boardNum", boardNum);
 		request.setAttribute("bottomLine", bottomLine);
@@ -389,6 +429,77 @@ public class RoomController extends MskimRequestMapping{
 		request.setAttribute("pageInt", pageInt);
 		
 		return "/view/entrepreneur/reservation.jsp";
+	}
+	
+	@RequestMapping("sales")
+	public String sales(HttpServletRequest request, HttpServletResponse response) {
+	
+		HttpSession session = request.getSession();
+		
+		String bu_email =(String)session.getAttribute("bu_email");
+		String[] month = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+		RoomDao rd = new RoomDao();
+		map.clear();
+		map.put("bu_email", bu_email);
+		String result = "";
+		
+		for(String mon : month) {
+			map.put("mon", mon);
+			Booking bo = rd.selectSales(map);
+			System.out.println("bo : "+bo);
+			if(result!="") { 
+				result += ","; 
+			}
+
+			if(bo == null) {
+				result += "['"+mon+"월', "+"0"+"]";
+
+			}
+			else {
+				result += "['"+mon+"월', "+bo.getPrice()+"]";
+			}
+		}
+		
+		request.setAttribute("result", result);
+
+		return "/view/entrepreneur/sales.jsp";
+	}
+	
+	@RequestMapping("areaSales")
+	public String areaSales(HttpServletRequest request, HttpServletResponse response) {
+		
+		map.clear();
+		
+		String[] areas = {"서울", "경기", "강원", "부산"};
+		String month = request.getParameter("month");
+		RoomDao rd = new RoomDao();
+		
+		if(month == null) {
+			LocalDate now = LocalDate.now();
+			int month1 = now.getMonthValue();
+			month = "0"+month1;
+		}
+		
+		String result = "";
+		map.put("month", month);
+		for(String area : areas) {
+			map.put("area", area);
+			Booking bo = rd.selectAreaSales(map);
+			if(result!="") { 
+				result += ","; 
+			}
+			if(bo == null) {
+				result += "['"+area+"', "+"0"+"]";
+			}
+			else {
+				result += "['"+area+"', "+bo.getPrice()+"]";
+			}
+		}
+		
+		request.setAttribute("month", month);
+		request.setAttribute("result", result);
+		
+		return "/view/entrepreneur/areaSales.jsp";
 	}
 	
 }
