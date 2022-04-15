@@ -18,6 +18,14 @@ public interface ReservedMapperAnno {
 	@Select("select * from reserved where ro_num = #{ro_num} and ( re_date between #{checkin} and #{checkout} ) ")
 	List<Reserved> reserveCheck(Map map);
 	
+	@Select("select a.*, nvl(r.overlap, 0) as overlap "
+			+ "from (select * from room where bu_email = #{bu_email} and ro_count >= #{ro_count}) a "
+			+ "left outer join "
+			+ "(select ro_num, count(*) as overlap from reserved where re_date BETWEEN #{checkin} and #{checkout} group by ro_num) r "
+			+ "on a.ro_num = r.ro_num "
+			+ "order by a.ro_price")
+	List<Room> overlapRoomList(Map map);
+	
 	@Select("select boseq.nextval from dual")
 	int nextBoNum();
 	

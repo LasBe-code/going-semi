@@ -96,7 +96,7 @@
 										<strong class="medium_text">가격</strong>
 									</div>
 									<div class="col-sm-6 right_text">
-										<b class="large_text">${room.ro_price}원</b>
+										<b class="large_text"><fmt:formatNumber value="${room.ro_price}" pattern="#,###" />원</b>
 									</div>
 								</div>
 								<div class="row">
@@ -104,7 +104,7 @@
 										<button type="button" class="reserve_room_btn default_btn medium_text" onclick="roomDetail('${room.ro_num}', '${bu.bu_email}')">방 정보</button>
 									</div>
 									<div class="col-sm-6">
-										<input type="submit" class="reserve_room_btn default_btn medium_text" <c:if test="${roomMap[ro_num] == true}">disabled value="예약된 방"</c:if> <c:if test="${roomMap[ro_num] == false}">value="예약"</c:if>>
+										<input type="submit" class="reserve_room_btn default_btn medium_text" <c:if test="${room.overlap != 0}">disabled value="예약된 방"</c:if> <c:if test="${room.overlap == 0}">value="예약"</c:if>>
 									</div>
 								</div>
 							</div>

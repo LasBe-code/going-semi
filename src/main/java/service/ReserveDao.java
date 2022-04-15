@@ -51,6 +51,23 @@ public class ReserveDao {
 		return null;
 	}
 	
+	public List<Room> overlapRoomList(Map map) {
+		
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		try {
+			
+			List<Room> list = sqlSession.getMapper(ReservedMapperAnno.class).overlapRoomList(map);
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return null;
+	}
+	
 	public int insertBooking(Booking b) {
 		
 		SqlSession sqlSession = MybatisConnection.getConnection();

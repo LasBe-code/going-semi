@@ -12,11 +12,12 @@ public class Room {
 	private String ro_info;
 	private String location;
 	private int pic_num;
+	private String overlap;
 	
 	public Room() {}
 
 	public Room(int ro_num, String bu_email, String ro_count, String ro_name, String ro_price, String checkin,
-			String checkout, String ro_info, String location, int pic_num) {
+			String checkout, String ro_info, String location, int pic_num, String overlap) {
 		super();
 		this.ro_num = ro_num;
 		this.bu_email = bu_email;
@@ -28,6 +29,7 @@ public class Room {
 		this.ro_info = ro_info;
 		this.location = location;
 		this.pic_num = pic_num;
+		this.overlap = overlap;
 	}
 
 	public int getRo_num() {
@@ -109,12 +111,20 @@ public class Room {
 	public void setPic_num(int pic_num) {
 		this.pic_num = pic_num;
 	}
+	
+	public String getOverlap() {
+		return overlap;
+	}
+
+	public void setOverlap(String overlap) {
+		this.overlap = overlap;
+	}
 
 	@Override
 	public String toString() {
 		return "Room [ro_num=" + ro_num + ", bu_email=" + bu_email + ", ro_count=" + ro_count + ", ro_name=" + ro_name
-				+ ", ro_price=" + ro_price + ", checkin=" + checkin + ", checkout=" + checkout + ", ro_info=" + ro_info
-				+ ", location=" + location + ", pic_num=" + pic_num + "]";
+				+ ", ro_price=" + ro_price + ", checkin=" + checkin + ", checkout=" + checkout + ", ro_info= 생략" 
+				+ ", location=" + location + ", pic_num=" + pic_num + ", overlap=" + overlap +"]";
 	}
 
 	

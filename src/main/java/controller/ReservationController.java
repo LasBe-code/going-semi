@@ -116,45 +116,45 @@ public class ReservationController extends MskimRequestMapping {
 		 */
 		
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("bu_email", bu_email); map.put("ro_count", ro_count);
+		map.put("bu_email", bu_email); 	map.put("ro_count", ro_count);
+		map.put("checkin", checkin); 	map.put("checkout", checkout);
 		
-		List<Room> roomList = reserveDao.roomList(map); // 룸 정보 받아오기
+		List<Room> roomList = reserveDao.overlapRoomList(map); // 룸 정보 받아오기
 		Business bu = md.selectBusinessOne(bu_email); // 사업자, 숙소 정보 받아오기
 		List<Picture> buPicList = sd.sbPicList(bu.getPic_num());
 		
-		Map<Integer, Boolean> roomMap = new HashMap<>();
-		for(Room r : roomList) {
-			map.put("ro_num", ""+r.getRo_num()); map.put("checkin", checkin); map.put("checkout", String.valueOf(Integer.parseInt(checkout)-1));
-			// 방마다 예약 체크
-			List<Reserved> list = reserveDao.reserveCheck(map);
-			System.out.println(r.getRo_num()); System.out.println(list);
-			if(list.isEmpty()) { // 예약된 정보가 없으면 false
-				roomMap.put(r.getRo_num(), false);
-			} else { // 예약이 되어 있으면 true
-				roomMap.put(r.getRo_num(), true); 
-			}
-			
-		}
+//		Map<Integer, Boolean> roomMap = new HashMap<>();
+//		for(Room r : roomList) {
+//			map.put("ro_num", ""+r.getRo_num()); map.put("checkin", checkin); map.put("checkout", String.valueOf(Integer.parseInt(checkout)-1));
+//			// 방마다 예약 체크
+//			List<Reserved> list = reserveDao.reserveCheck(map);
+//			System.out.println(r.getRo_num()); System.out.println(list);
+//			if(list.isEmpty()) { // 예약된 정보가 없으면 false
+//				roomMap.put(r.getRo_num(), false);
+//			} else { // 예약이 되어 있으면 true
+//				roomMap.put(r.getRo_num(), true); 
+//			}
+//		}
 		
+		// 방 사진 가져오기
 		Map<Integer, Object> roomPicMap = new HashMap<>();
 		List<Picture> picList = new ArrayList<Picture>();
 		
 		for(Room room : roomList) {
 			picList = rd.selectPic(room.getPic_num());
-			System.out.println(picList);
+			// 방의 첫번째로 등록한 사진이 걸림
 			roomPicMap.put(room.getRo_num(), picList.get(0).getLocation().trim());
-			System.out.println(picList.get(0).getLocation().trim());
 		}
 		
 		System.out.println("business : "+bu);
 		System.out.println("roomList : "+roomList);
-		System.out.println("roomMap : "+roomMap);
+//		System.out.println("roomMap : "+roomMap);
 		System.out.println("buPicList : "+buPicList);
 		
 		request.setAttribute("buPicList", buPicList);		
 		request.setAttribute("roomPicMap", roomPicMap);
 		request.setAttribute("roomList", roomList);
-		request.setAttribute("roomMap", roomMap);
+//		request.setAttribute("roomMap", roomMap);
 		request.setAttribute("bu", bu);
 		request.setAttribute("ro_count", ro_count);
 		request.setAttribute("checkin", checkin);
