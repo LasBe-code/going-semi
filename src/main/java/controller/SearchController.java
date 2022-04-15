@@ -1,8 +1,10 @@
 package controller;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,10 +15,18 @@ import javax.servlet.http.HttpServletResponse;
 import model.Business;
 import model.Picture;
 import service.SearchDao;
+import util.DateParse;
 
 public class SearchController extends MskimRequestMapping{
 	@RequestMapping("main")
-	public String main(HttpServletRequest request, HttpServletResponse response) {
+	public String main(HttpServletRequest request, HttpServletResponse response) throws ParseException {
+		DateParse dateParse = new DateParse();
+		String today = dateParse.getTodayPlus(0);
+	    String tomorrow = dateParse.getTodayPlus(1);
+	    System.out.println(dateParse.strToDate(today)+dateParse.strToDate(tomorrow));
+	    request.setAttribute("today", dateParse.strToDate(today));
+	    request.setAttribute("tomorrow", dateParse.strToDate(tomorrow));
+	    
 		return "/view/search/main.jsp";
 	}
 	@RequestMapping("search")
@@ -49,8 +59,6 @@ public class SearchController extends MskimRequestMapping{
 			minPrice = sd.roomMinPrice(b.getBu_email());
 			minPriceMap.put(b.getPic_num(), minPrice);
 		}
-		System.out.println(picMap);
-		System.out.println(minPriceMap);
 		
 		request.setAttribute("picMap", picMap);
 		request.setAttribute("minPriceMap", minPriceMap);
@@ -58,30 +66,29 @@ public class SearchController extends MskimRequestMapping{
 		map.clear();
 		for(Business b : list2) {
 			picList = sd.sbPicList(b.getPic_num());
-			System.out.println(picList+"//////////////"+b.getPic_num());
 			if(!picList.isEmpty()) picMap.put(b.getPic_num(), picList.get(0).getLocation());
 			else  picMap.put(b.getPic_num(), "");
 			
 			minPrice = sd.roomMinPrice(b.getBu_email());
 			minPriceMap.put(b.getPic_num(), minPrice);
 		}
-		System.out.println(picMap);
-		System.out.println(minPriceMap);
 		
 		request.setAttribute("picMap", picMap);
 		request.setAttribute("minPriceMap", minPriceMap);
-		LocalDate now = LocalDate.now();
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-	    String nowDay = now.format(formatter);
-	    String nextDay = "" + (Integer.parseInt(nowDay)+1);
-		if(checkin == null) checkin = nowDay;
-		checkin = checkin.replaceAll("-", "");
-		if(checkout == null) checkout = nextDay;
-		checkout = checkout.replaceAll("-", "");
+		
+		// 카테고리 별 검색 시 현재 시간으로 날짜 설정
+		DateParse dateParse = new DateParse();
+		String today = dateParse.getTodayPlus(0);
+		String tomorrow = dateParse.getTodayPlus(1);
+		if(checkin == null) checkin = today;
+		if(checkout == null) checkout = tomorrow;
+		
 		request.setAttribute("bu_list", list);
 		request.setAttribute("checkin", checkin);
 		request.setAttribute("checkout", checkout);
 		request.setAttribute("ro_count", ro_count);
+		request.setAttribute("today", today);
+		request.setAttribute("tomorrow", tomorrow);
 		return "/view/search/search.jsp";
 	}
 }

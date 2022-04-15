@@ -26,7 +26,6 @@ function dateChk(){ // 날짜 유효성 체크
 	console.log(day)
 	
 	let checkin = document.f.checkin.value
-	console.log(checkin)
 	let checkout = document.f.checkout.value
 	
 	checkin = checkin.replace('-',	'')
@@ -34,16 +33,6 @@ function dateChk(){ // 날짜 유효성 체크
 	checkout = checkout.replace('-', '')
 	checkout = checkout.replace('-', '')
 	
-	console.log(checkin)
-	
-	if(checkin != '' && checkin < day){
-		alert('지난 날짜 선택')
-		document.f.checkin.value = null
-	}
-	if(checkout != '' && checkout < day){
-		alert('지난 날짜 선택')
-		document.f.checkout.value = null
-	}
 	if(checkin != '' && checkout != ''){
 		if(checkin >= checkout){
 			alert('최소 1박 2일의 일정을 선택해주세요')
@@ -81,10 +70,10 @@ function dateChk(){ // 날짜 유효성 체크
 						<div role=button>
 							<div class="main_checkinout_buttonbox">
 								<div>
-									<input type='date' id="checkin" min="today" class="main_checkin_1" name="checkin" onchange="dateChk()" required>
+									<input type='date' id="checkin" min="${today }" value="${today }" class="main_checkin_1" name="checkin" onchange="dateChk()"  required>
 								</div>
 								<div>
-									<input type='date' id="checkout" class="main_checkout_1" name="checkout" onchange="dateChk()" required>
+									<input type='date' id="checkout" min="${tomorrow }" value="${tomorrow }"class="main_checkout_1" name="checkout" onchange="dateChk()" required>
 								</div>
 							</div>
 						</div>

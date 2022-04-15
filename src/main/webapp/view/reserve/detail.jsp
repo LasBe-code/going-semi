@@ -75,6 +75,24 @@
 
 				<!-- 방 목록 -->
 				<div class="tab-pane active" id="room-list">
+					<!-- 재검색 -->
+					<form action="${pageContext.request.contextPath}/reservation/detail" method="get">
+						<div class="row" style="text-align: center; margin:0 auto; margin-bottom: -12px;">
+							<input type="hidden" name="bu_email" value="${bu_email}">
+							<input type="hidden" name="ro_count" value="${ro_count}">
+							<div class="col-sm-5" style="border-left: 1px solid #dee2e6">
+								<input type='date' id="checkin" min="${today }" value="${checkin }" class="detail_checkin_1" name="checkin" onchange="dateChk()" required>
+							</div>
+							<div class="col-sm-5" style="border-left: 1px solid #dee2e6">
+								<input type='date' id="checkout" min="${tomorrow }" value="${checkout }" class="detail_checkin_1" name="checkout" onchange="dateChk()" style="border: none;" required>
+							</div>
+							<div class="col-sm-2" style="border-right: 1px solid #dee2e6; padding:0 0 0 0 !important;">
+								<input type="submit" class="default_btn" value="날짜 변경">
+							</div>
+						</div>
+					</form>
+					<!-- 재검색 끝-->
+					
 					<c:forEach var="room" items="${roomList}">
 						<form action="${pageContext.request.contextPath}/reservation/reserve" method="get">
 							<input type="hidden" name="bu_title" value="${bu.bu_title}">
@@ -90,7 +108,13 @@
 								<p class="reserve_pic_view">
 									<img src="${roomPicMap[ro_num]}" class="rounded" style="width: 376px; height: 226px; object-fit: cover;">
 								</p>
-								<strong class="reserve_room_title large_text">${room.ro_name}</strong>
+								<span class="reserve_room_title large_text">${room.ro_name}</span>
+								<div class="gray_subtext right_text">
+									<span>최대 ${room.ro_count}인</span> <br>
+									<span>입실 : ${room.checkin} / </span>
+									<span> 퇴실 : ${room.checkout}</span>
+								</div>
+								
 								<div class="reserve_room_price row">
 									<div class="col-sm-6">
 										<strong class="medium_text">가격</strong>

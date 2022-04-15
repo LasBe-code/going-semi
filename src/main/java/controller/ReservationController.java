@@ -39,6 +39,7 @@ import service.ReservationDao;
 import service.ReserveDao;
 import service.RoomDao;
 import service.SearchDao;
+import util.DateParse;
 
 public class ReservationController extends MskimRequestMapping {
 	ReservationDao dao = new ReservationDao();
@@ -99,23 +100,26 @@ public class ReservationController extends MskimRequestMapping {
 	*/
 	
 	@RequestMapping("detail")
-	public String detail(HttpServletRequest request, HttpServletResponse response) {
+	public String detail(HttpServletRequest request, HttpServletResponse response) throws java.text.ParseException {
 		ReserveDao reserveDao = new ReserveDao();
 		MemberDao md = new MemberDao();
 		RoomDao rd = new RoomDao();
 		SearchDao sd = new SearchDao();
+		DateParse dateParse = new DateParse();
 		
 		String bu_email = request.getParameter("bu_email");
+		String ro_count = request.getParameter("ro_count");
 		String checkin = request.getParameter("checkin");
 		String checkout = request.getParameter("checkout");
-		String ro_count = request.getParameter("ro_count");
+		String today = dateParse.getTodayPlus(0);
+		String tomorrow = dateParse.getTodayPlus(1);
 		
 		Business bu = md.selectBusinessOne(bu_email); // 사업자, 숙소 정보 받아오기
 		List<Picture> buPicList = sd.sbPicList(bu.getPic_num()); // 숙소 사진
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("bu_email", bu_email); 	map.put("ro_count", ro_count);
-		map.put("checkin", checkin); 	map.put("checkout", checkout);
+		map.put("checkin", dateParse.dateToStr(checkin)); 	map.put("checkout", dateParse.dateToStr(checkout));
 		
 		// 룸 정보 + 기간 내 중복 받아오기
 		List<Room> roomList = reserveDao.overlapRoomList(map); 
@@ -130,10 +134,8 @@ public class ReservationController extends MskimRequestMapping {
 			roomPicMap.put(room.getRo_num(), picList.get(0).getLocation().trim());
 		}
 		
-		System.out.println("business : "+bu);
-		System.out.println("roomList : "+roomList);
-		System.out.println("buPicList : "+buPicList);
 		
+		request.setAttribute("bu_email", bu_email);
 		request.setAttribute("buPicList", buPicList);		
 		request.setAttribute("roomPicMap", roomPicMap);
 		request.setAttribute("roomList", roomList);
@@ -141,6 +143,8 @@ public class ReservationController extends MskimRequestMapping {
 		request.setAttribute("ro_count", ro_count);
 		request.setAttribute("checkin", checkin);
 		request.setAttribute("checkout", checkout);
+		request.setAttribute("today", dateParse.strToDate(today));
+		request.setAttribute("tomorrow", dateParse.strToDate(tomorrow));
 		
 		return "/view/reserve/detail.jsp";
 	}
@@ -155,16 +159,9 @@ public class ReservationController extends MskimRequestMapping {
 		}
 		
 		Booking bo = new Booking();
-		ReserveDao rd = new ReserveDao();
 		MemberDao md = new MemberDao();
 		
-		// =========== 현재 시간 ==============
-		LocalDate now = LocalDate.now();
-		// 포맷 정의
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-		// 포맷 적용
-		String nowDay = now.format(formatter);
-
+		DateParse dateParse = new DateParse();
 		
 		bo.setEmail((String) request.getSession().getAttribute("email"));
 		bo.setCheckin(request.getParameter("checkin"));
@@ -173,7 +170,7 @@ public class ReservationController extends MskimRequestMapping {
 		bo.setBu_title(request.getParameter("bu_title"));
 		bo.setRo_name(request.getParameter("ro_name"));
 		bo.setRo_num(Integer.parseInt(request.getParameter("ro_num")));
-		bo.setReg_date(nowDay);
+		bo.setReg_date(dateParse.getTodayPlus(0));
 		bo.setStatus(1);
 		
 		Member m = md.selectMemberOne(bo.getEmail());
