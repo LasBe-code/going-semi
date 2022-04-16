@@ -78,7 +78,6 @@
 					<!-- 재검색 -->
 					<form action="${pageContext.request.contextPath}/reservation/detail" method="get">
 						<div class="row" style="text-align: center; margin:0 auto; margin-bottom: -12px;">
-							<input type="hidden" name="bu_email" value="${bu_email}">
 							<input type="hidden" name="ro_count" value="${ro_count}">
 							<div class="col-sm-5" style="border-left: 1px solid #dee2e6">
 								<input type='date' id="checkin" min="${today }" value="${checkin }" class="detail_checkin_1" name="checkin" onchange="dateChk()" required>
@@ -120,6 +119,7 @@
 										<strong class="medium_text">가격</strong>
 									</div>
 									<div class="col-sm-6 right_text">
+										<span>1박 기준 &nbsp</span>
 										<b class="large_text"><fmt:formatNumber value="${room.ro_price}" pattern="#,###" />원</b>
 									</div>
 								</div>

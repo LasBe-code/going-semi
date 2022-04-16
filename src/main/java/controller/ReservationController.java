@@ -46,17 +46,15 @@ public class ReservationController extends MskimRequestMapping {
 	
 	@RequestMapping("reservationList")
 	public String reservationList(HttpServletRequest request, HttpServletResponse response) {
-		
 		HttpSession session = request.getSession(); //session을 불러옴. 
 		String email = (String)session.getAttribute("email");
-		List<Booking> bookingList = dao.getBookingSelectList(email);
-		System.out.println(bookingList);
-		Map<Integer, String> picMap = new HashMap<Integer, String>();
 		String picLocation = null;
+		
+		List<Booking> bookingList = dao.getBookingSelectList(email);
+		Map<Integer, String> picMap = new HashMap<Integer, String>();
 		
 		for(Booking booking : bookingList) {
 			picLocation = dao.bookingPictureList(booking.getRo_num()).get(0).getLocation();
-			System.out.println(picLocation);
 			picMap.put(booking.getRo_num(), picLocation);
 		}
 		
@@ -83,11 +81,11 @@ public class ReservationController extends MskimRequestMapping {
 
         //bo_num으로 select 
         Booking bookingDetail = dao.getBookingSelectDetail(bo_num);
-        request.setAttribute("bookingDetail", bookingDetail);
-
         MemberDao md = new MemberDao();
         Member m = md.selectMemberOne(email);
+        
         request.setAttribute("member", m);
+        request.setAttribute("bookingDetail", bookingDetail);
 
         return "/view/reservationList/reservationDetail.jsp";
     }
@@ -134,8 +132,6 @@ public class ReservationController extends MskimRequestMapping {
 			roomPicMap.put(room.getRo_num(), picList.get(0).getLocation().trim());
 		}
 		
-		
-		request.setAttribute("bu_email", bu_email);
 		request.setAttribute("buPicList", buPicList);		
 		request.setAttribute("roomPicMap", roomPicMap);
 		request.setAttribute("roomList", roomList);
@@ -160,13 +156,17 @@ public class ReservationController extends MskimRequestMapping {
 		
 		Booking bo = new Booking();
 		MemberDao md = new MemberDao();
-		
 		DateParse dateParse = new DateParse();
+		String checkin = request.getParameter("checkin");
+		String checkout = request.getParameter("checkout");
+		int night = dateParse.dateDif(checkin, checkout); // (checkout-checkin)-1
+		String price = (Integer.parseInt(request.getParameter("price")) * night)+"" ;
+		System.out.println(price);
 		
 		bo.setEmail((String) request.getSession().getAttribute("email"));
-		bo.setCheckin(request.getParameter("checkin"));
-		bo.setCheckout(request.getParameter("checkout"));
-		bo.setPrice(request.getParameter("price"));
+		bo.setCheckin(checkin);
+		bo.setCheckout(checkout);
+		bo.setPrice(price);
 		bo.setBu_title(request.getParameter("bu_title"));
 		bo.setRo_name(request.getParameter("ro_name"));
 		bo.setRo_num(Integer.parseInt(request.getParameter("ro_num")));
@@ -182,45 +182,28 @@ public class ReservationController extends MskimRequestMapping {
 	}
 	
 	@RequestMapping("reservePro")
-	public String reservePro(HttpServletRequest request, HttpServletResponse response) throws java.text.ParseException {
+	public String reservePro(HttpServletRequest request, HttpServletResponse response) {
+		DateParse dateParse = new DateParse();
+		Reserved r = new Reserved();
+		ReserveDao rd = new ReserveDao();
+		Booking bo = (Booking) request.getSession().getAttribute("booking");
 		String bo_num = request.getParameter("bo_num");
 		String payment = request.getParameter("payment");
-		System.out.println(bo_num+", "+payment);
 		
-		Booking bo = (Booking) request.getSession().getAttribute("booking");
-		
-		bo.setBo_num(bo_num);		bo.setPayment(payment);
-		
-		ReserveDao rd = new ReserveDao();
-		
+		bo.setBo_num(bo_num);		
+		bo.setPayment(payment);
 		int result = rd.insertBooking(bo);
-		
-		System.out.println(bo);
-		System.out.println(result);
-		
-		Reserved r = new Reserved();
-		
-		// 날짜 계산을 위한 기능
-		// String -> Date -> Calendar
-		SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
-		Calendar cal = Calendar.getInstance();
-		Date checkin = dtFormat.parse(bo.getCheckin());
-		Date checkout = dtFormat.parse(bo.getCheckout());
+		System.out.println(result == 0 ? "예약 실패" : "예약 성공");
+		request.getSession().removeAttribute("booking");
 		
 		// 날짜 차이 계산
-		long diff = (checkout.getTime()-checkin.getTime()) / (24*60*60*1000);
-		cal.setTime(checkin);
+		int dif = dateParse.dateDif(bo.getCheckin(), bo.getCheckout());
 		
-		String date;
-		
-		// 중복 테이블에 예약 내역 insert
 		// 체크인 날짜 ~ 체크아웃 날짜 -1
-		for(int i=0; i<diff ;i++) {
-			date = dtFormat.format(cal.getTime());
-			r = new Reserved(bo.getRo_num(), date);
+		for(int i=0; i<dif ;i++) {
+			r = new Reserved(bo.getRo_num(), dateParse.datePlus(bo.getCheckin(), i));
 			System.out.println(r);
 			rd.insertReserved(r);
-			cal.add(Calendar.DATE, 1); // 하루 증가
 		}
 		
 		return "/view/reservationList/reservationList.jsp";
@@ -241,8 +224,7 @@ public class ReservationController extends MskimRequestMapping {
 		
 		System.out.println(p_list);
 		
-		// 선택한 객실의 정보를 가져와서 저장
-		
+		// 선택한 객실의 정보를 가져와서 파싱 후 저장
 		String info = room.getRo_info().replace("\r\n", "<br/>");
 		
 		request.setAttribute("p_list", p_list);

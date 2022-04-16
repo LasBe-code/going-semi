@@ -19,7 +19,7 @@ import util.DateParse;
 
 public class SearchController extends MskimRequestMapping{
 	@RequestMapping("main")
-	public String main(HttpServletRequest request, HttpServletResponse response) throws ParseException {
+	public String main(HttpServletRequest request, HttpServletResponse response) {
 		DateParse dateParse = new DateParse();
 		String today = dateParse.getTodayPlus(0);
 	    String tomorrow = dateParse.getTodayPlus(1);
@@ -36,53 +36,44 @@ public class SearchController extends MskimRequestMapping{
 		String checkout = request.getParameter("checkout");
 		String ro_count = request.getParameter("ro_count");
 		String bu_id = request.getParameter("bu_id");
+		String minPrice = null;
+		SearchDao searchDao = new SearchDao();
+		
 		Map map = new HashMap();
-		map.put("bu_address", bu_address);
+		map.put("bu_address", bu_address == null ? "" : bu_address);
 		map.put("bu_id", bu_id);
 		
-		SearchDao sd = new SearchDao();
-		List<Business> list = sd.businessList(map);
-		System.out.println("bu_List"+list);
+		List<Business> list = searchDao.businessList(map);
 		List<Picture> picList = new ArrayList<>();
-		List<Business> list2 = sd.buidList(map);
-		String minPrice = null;
 		
 		Map<Integer, String> picMap = new HashMap<>();
 		Map<Integer, String> minPriceMap = new HashMap<>();
 		
 		for(Business b : list) {
-			picList = sd.sbPicList(b.getPic_num());
-			System.out.println(picList+"//////////////"+b.getPic_num());
-			if(!picList.isEmpty()) picMap.put(b.getPic_num(), picList.get(0).getLocation());
-			else  picMap.put(b.getPic_num(), "");
+			picList = searchDao.sbPicList(b.getPic_num());
+			if(!picList.isEmpty()) 
+				picMap.put(b.getPic_num(), picList.get(0).getLocation());
+			else  
+				picMap.put(b.getPic_num(), "");
 			
-			minPrice = sd.roomMinPrice(b.getBu_email());
+			minPrice = searchDao.roomMinPrice(b.getBu_email());
 			minPriceMap.put(b.getPic_num(), minPrice);
 		}
 		
-		request.setAttribute("picMap", picMap);
-		request.setAttribute("minPriceMap", minPriceMap);
-		
-		map.clear();
-		for(Business b : list2) {
-			picList = sd.sbPicList(b.getPic_num());
-			if(!picList.isEmpty()) picMap.put(b.getPic_num(), picList.get(0).getLocation());
-			else  picMap.put(b.getPic_num(), "");
-			
-			minPrice = sd.roomMinPrice(b.getBu_email());
-			minPriceMap.put(b.getPic_num(), minPrice);
-		}
-		
-		request.setAttribute("picMap", picMap);
-		request.setAttribute("minPriceMap", minPriceMap);
-		
-		// 카테고리 별 검색 시 현재 시간으로 날짜 설정
 		DateParse dateParse = new DateParse();
 		String today = dateParse.getTodayPlus(0);
 		String tomorrow = dateParse.getTodayPlus(1);
+		
+		// yyyyMMdd -> yyyy-MM-dd
+		today = dateParse.strToDate(today);
+		tomorrow = dateParse.strToDate(tomorrow);
+		
+		// 카테고리 별 검색 시 현재 날짜로 날짜 설정
 		if(checkin == null) checkin = today;
 		if(checkout == null) checkout = tomorrow;
 		
+		request.setAttribute("picMap", picMap);
+		request.setAttribute("minPriceMap", minPriceMap);
 		request.setAttribute("bu_list", list);
 		request.setAttribute("checkin", checkin);
 		request.setAttribute("checkout", checkout);
