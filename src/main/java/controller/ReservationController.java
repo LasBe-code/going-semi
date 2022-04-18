@@ -87,15 +87,8 @@ public class ReservationController extends MskimRequestMapping {
         request.setAttribute("member", m);
         request.setAttribute("bookingDetail", bookingDetail);
 
-        return "/view/reservationList/reservationDetail.jsp";
+        return "/common/bookingDetail.jsp";
     }
-	
-	/*
-	@RequestMapping("reservationCancelDetail")
-	public String reservationCencelDetail(HttpServletRequest request, HttpServletResponse response) {
-		return "/view/reservationList/reservationCancelDetail.jsp";
-	}
-	*/
 	
 	@RequestMapping("detail")
 	public String detail(HttpServletRequest request, HttpServletResponse response) throws java.text.ParseException {
@@ -261,6 +254,7 @@ public class ReservationController extends MskimRequestMapping {
 		
 		if(result != 0) {
 			msg = "예약이 취소되었습니다.";
+			System.out.println(msg);
 			request.setAttribute("msg", msg);
 			request.setAttribute("url", url);
 			return "/view/alert.jsp";
@@ -268,5 +262,40 @@ public class ReservationController extends MskimRequestMapping {
 		
 		
 		return "/view/alert.jsp";
+	}
+	
+	@RequestMapping("review")
+	public String review(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
+		
+		if(request.getSession().getAttribute("email") == null) {
+			request.setAttribute("url", request.getContextPath()+"/member/loginForm");
+			request.setAttribute("msg", "로그인이 필요한 서비스입니다.");
+			return "/view/alert.jsp";
+		}
+		
+		ReservationDao rd = new ReservationDao();
+		ReserveDao reserveDao = new ReserveDao();
+		String bo_num = request.getParameter("bo_num");
+		rd.updateBookingStatus(bo_num); // 예약 상태 변경
+		
+		// 예약 중복 내역 삭제
+		Booking b = rd.getBookingSelectDetail(bo_num);			System.out.println(b.getCheckout());
+		int checkout = Integer.parseInt(b.getCheckout())-1; 	
+		b.setCheckout(""+checkout);								System.out.println(b.getCheckout());
+		int result = reserveDao.cancelReserveList(b);
+		
+		String url = request.getContextPath()+"/reservation/reservationList";
+		String msg = "예약 취소를 실패했습니다.";
+		
+		if(result != 0) {
+			msg = "예약이 취소되었습니다.";
+			System.out.println(msg);
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+			return "/view/alert.jsp";
+		}
+		
+		
+		return "/common/review.jsp";
 	}
 }
