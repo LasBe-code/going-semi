@@ -6,8 +6,10 @@ public class Business {
 	private String bu_title;
 	private int pic_num;
 	
+	private String minPrice, picLocation;
+	
 	public Business() {}
-
+	
 	public Business(String bu_email, String bu_password, String bu_tel, String bu_name, String bu_address, String bu_id,
 			String bu_title, int pic_num) {
 		super();
@@ -19,6 +21,21 @@ public class Business {
 		this.bu_id = bu_id;
 		this.bu_title = bu_title;
 		this.pic_num = pic_num;
+	}
+
+	public Business(String bu_email, String bu_password, String bu_tel, String bu_name, String bu_address, String bu_id,
+			String bu_title, int pic_num, String minPrice, String picLocation) {
+		super();
+		this.bu_email = bu_email;
+		this.bu_password = bu_password;
+		this.bu_tel = bu_tel;
+		this.bu_name = bu_name;
+		this.bu_address = bu_address;
+		this.bu_id = bu_id;
+		this.bu_title = bu_title;
+		this.pic_num = pic_num;
+		this.minPrice = minPrice;
+		this.picLocation = picLocation;
 	}
 
 	public String getBu_email() {
@@ -85,12 +102,28 @@ public class Business {
 		this.pic_num = pic_num;
 	}
 
+	public String getMinPrice() {
+		return minPrice;
+	}
+
+	public void setMinPrice(String minPrice) {
+		this.minPrice = minPrice;
+	}
+
+	public String getPicLocation() {
+		return picLocation;
+	}
+
+	public void setPicLocation(String picLocation) {
+		this.picLocation = picLocation;
+	}
+
 	@Override
 	public String toString() {
 		return "{\"bu_email\":\"" + bu_email + "\", \"bu_password\":\"" + bu_password + "\", \"bu_tel\":\"" + bu_tel
 				+ "\", \"bu_name\":\"" + bu_name + "\", \"bu_address\":\"" + bu_address + "\", \"bu_id\":\"" + bu_id
-				+ "\", \"bu_title\":\"" + bu_title + "\", \"pic_num\":\"" + pic_num + "\"}";
+				+ "\", \"bu_title\":\"" + bu_title + "\", \"pic_num\":\"" + pic_num + "\", \"minPrice\":\"" + minPrice
+				+ "\", \"picLocation\":\"" + picLocation + "\"}";
 	}
-	
-	
+
 }

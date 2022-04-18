@@ -66,8 +66,12 @@
 
 			<div class="container mt-5">
 				<ul class="nav nav-tabs nav-justified">
-					<li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" style="color: black;" href="#room-list">객실안내/예약</a></li>
-					<li class="nav-item"><a class="nav-link" data-bs-toggle="tab" style="color: black;" href="#review">리뷰</a></li>
+					<li class="nav-item">
+						<a class="nav-link active" data-bs-toggle="tab" style="color: black;" href="#room-list">객실안내/예약</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="tab" style="color: black;" href="#review">리뷰</a>
+					</li>
 				</ul>
 			</div>
 
@@ -75,22 +79,22 @@
 
 				<!-- 방 목록 -->
 				<div class="tab-pane active" id="room-list">
-					<!-- 재검색 -->
+					<!-- 체크인 체크아웃 재설정 -->
 					<form action="${pageContext.request.contextPath}/reservation/detail" method="get">
 						<div class="row" style="text-align: center; margin:0 auto; margin-bottom: -12px;">
 							<input type="hidden" name="ro_count" value="${ro_count}">
-							<div class="col-sm-5" style="border-left: 1px solid #dee2e6">
+							<div class="col-sm-5" style="border-left: 1px solid rgba(0,0,0,0.08);">
 								<input type='date' id="checkin" min="${today }" value="${checkin }" class="detail_checkin_1" name="checkin" onchange="dateChk()" required>
 							</div>
-							<div class="col-sm-5" style="border-left: 1px solid #dee2e6">
+							<div class="col-sm-5" style="border-left: 1px solid rgba(0,0,0,0.08);">
 								<input type='date' id="checkout" min="${tomorrow }" value="${checkout }" class="detail_checkin_1" name="checkout" onchange="dateChk()" style="border: none;" required>
 							</div>
-							<div class="col-sm-2" style="border-right: 1px solid #dee2e6; padding:0 0 0 0 !important;">
+							<div class="col-sm-2" style="border-right: 1px solid rgba(0,0,0,0.08); padding:0 0 0 0 !important;">
 								<input type="submit" class="default_btn" value="날짜 변경">
 							</div>
 						</div>
 					</form>
-					<!-- 재검색 끝-->
+					<!-- 체크인 체크아웃 재설정 끝 -->
 					
 					<c:forEach var="room" items="${roomList}">
 						<form action="${pageContext.request.contextPath}/reservation/reserve" method="get">
