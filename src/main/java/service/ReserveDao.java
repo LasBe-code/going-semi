@@ -11,6 +11,7 @@ import model.Booking;
 import model.Business;
 import model.Picture;
 import model.Reserved;
+import model.Review;
 import model.Room;
 import mybatis.ReservedMapperAnno;
 import mybatis.RoomMapperAnno;
@@ -58,6 +59,38 @@ public class ReserveDao {
 			
 			List<Room> list = sqlSession.getMapper(ReservedMapperAnno.class).overlapRoomList(map);
 			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return null;
+	}
+	
+	public List<Review> businessReviewList(String bu_email){
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		try {
+			
+			List<Review> list = sqlSession.getMapper(ReservedMapperAnno.class).businessReviewList(bu_email);
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return null;
+	}
+	
+	public Business reviewAvgCountBusinessOne(String bu_email){
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		try {
+			
+			Business b = sqlSession.getMapper(ReservedMapperAnno.class).reviewAvgCountBusinessOne(bu_email);
+			return b;
 			
 		} catch (Exception e) {
 			e.printStackTrace();

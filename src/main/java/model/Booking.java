@@ -9,17 +9,21 @@ public class Booking {
 	private String ro_name;
 	private String checkin, checkout;
 	private int ro_num;
-	private String reg_date; // 예약한 날짜확인 
-	private int status;//예약 상태 확인
+	private String reg_date; 	// 예약한 날짜확인 
+	private int status;			//예약 상태 확인
 	private int ro_count;
-	private String name;	// Member테이블의 고객이름
-	private String tel;		// Member테이블의 고객전화번호
+	private String name;		// Member테이블의 고객이름
+	private String tel;			// Member테이블의 고객전화번호
+	
+	private String location; 	// 사진
+	private int revNum;			// 리뷰 유무 확인용
 
 	public Booking(){}
 
+	
 	public Booking(String bo_num, String email, String payment, String price, String bu_title, String ro_name,
 			String checkin, String checkout, int ro_num, String reg_date, int status, int ro_count, String name,
-			String tel) {
+			String tel, String location, int revNum) {
 		super();
 		this.bo_num = bo_num;
 		this.email = email;
@@ -35,7 +39,10 @@ public class Booking {
 		this.ro_count = ro_count;
 		this.name = name;
 		this.tel = tel;
+		this.location = location;
+		this.revNum = revNum;
 	}
+
 
 	public String getBo_num() {
 		return bo_num;
@@ -148,15 +155,32 @@ public class Booking {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+	
+	
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public int getRevNum() {
+		return revNum;
+	}
+
+	public void setRevNum(int revNum) {
+		this.revNum = revNum;
+	}
 
 	@Override
 	public String toString() {
-		return "Booking [bo_num=" + bo_num + ", email=" + email + ", payment=" + payment + ", price=" + price
-				+ ", bu_title=" + bu_title + ", ro_name=" + ro_name + ", checkin=" + checkin + ", checkout=" + checkout
-				+ ", ro_num=" + ro_num + ", reg_date=" + reg_date + ", status=" + status + ", ro_count=" + ro_count
-				+ ", name=" + name + ", tel=" + tel + "]";
+		return "{\"bo_num\":\"" + bo_num + "\", \"email\":\"" + email + "\", \"payment\":\"" + payment
+				+ "\", \"price\":\"" + price + "\", \"bu_title\":\"" + bu_title + "\", \"ro_name\":\"" + ro_name
+				+ "\", \"checkin\":\"" + checkin + "\", \"checkout\":\"" + checkout + "\", \"ro_num\":\"" + ro_num
+				+ "\", \"reg_date\":\"" + reg_date + "\", \"status\":\"" + status + "\", \"ro_count\":\"" + ro_count
+				+ "\", \"name\":\"" + name + "\", \"tel\":\"" + tel + "\", \"location\":\"" + location
+				+ "\", \"revNum\":\"" + revNum + "\"} \n";
 	}
-
-	
 	
 }

@@ -48,13 +48,26 @@
 
 			<!-- 숙소 소개 -->
 			<div class="col-sm-6">
-				<b class="large_text"> <span class="badge bg-warning"> <c:if test="${bu.bu_id == 1}">호텔</c:if> <c:if test="${bu.bu_id == 2}">모텔</c:if> <c:if test="${bu.bu_id == 3}">펜션</c:if> <c:if test="${bu.bu_id == 4}">리조트</c:if>
-				</span> ${bu.bu_title}
+				<b class="large_text"> 
+					<span class="badge bg-warning"> 
+						<c:if test="${bu.bu_id == 1}">호텔</c:if> 
+						<c:if test="${bu.bu_id == 2}">모텔</c:if> 
+						<c:if test="${bu.bu_id == 3}">펜션</c:if> 
+						<c:if test="${bu.bu_id == 4}">리조트</c:if>
+					</span> ${bu.bu_title}
 				</b>
-
-				<p class="gray_text">
-					<img src="https://cdn4.iconfinder.com/data/icons/music-ui-solid-24px/24/location_map_marker_pin-2-512.png" style="width: 20px;"> ${bu.bu_address}
+				
+				<div class="mt-1 mb-1 bu_review_box">
+					<li><span class="bu_review_star">⭐</span> <span class="bu_review_avg"> ${bu.avgScore}</span>
+					<span class="bu_review_avg_sub">/5</span></li>
+					<li><span class="bu_review_count">후기 <span style="color:red; font-size: 19px; font-weight: bold;">${bu.revCount}</span>개</span></li>
+				</div>
+				
+				<p class="gray_text" style="margin-bottom: 10px;">
+				<img src="https://cdn4.iconfinder.com/data/icons/music-ui-solid-24px/24/location_map_marker_pin-2-512.png" style="width: 20px;"> 
+					${bu.bu_address}
 				</p>
+				
 				<div class="event-bg text-white rounded">
 					<ul>
 						<li>대표 이름 : ${bu.bu_name}</li>
@@ -109,7 +122,7 @@
 
 							<div class="reserve_room">
 								<p class="reserve_pic_view">
-									<img src="${roomPicMap[ro_num]}" class="rounded" style="width: 376px; height: 226px; object-fit: cover;">
+									<img src="${room.location}" class="rounded" style="width: 376px; height: 226px; object-fit: cover;">
 								</p>
 								<span class="reserve_room_title large_text">${room.ro_name}</span>
 								<div class="gray_subtext right_text">
@@ -144,26 +157,39 @@
 				<div class="tab-pane fade" id="review">
 					
 					<!-- 리뷰 -->
-					<div id="review-box" style="padding: 20px 40px 20px 40px;">
-						<div style="color:#c8c8c8; font-size: 14px">
-							<div class="row">
-								<div class="col-sm-6">⭐⭐⭐⭐</div>
-								<div class="col-sm-6 " style="text-align: right">
-									<span>2022-04-22</span>
+					<c:forEach var="review" items="${reviewList}">
+						<div id="review-box" style="padding: 20px 60px 20px 60px;">
+							<div style="color:#c8c8c8; font-size: 14px">
+								<div class="row">
+									<div class="col-sm-6 review_star">
+										<c:choose>
+											<c:when test="${review.score == '1' }">⭐</c:when>
+											<c:when test="${review.score == '2' }">⭐ ⭐</c:when>
+											<c:when test="${review.score == '3' }">⭐ ⭐ ⭐</c:when>
+											<c:when test="${review.score == '4' }">⭐ ⭐ ⭐ ⭐</c:when>
+											<c:when test="${review.score == '5' }">⭐ ⭐ ⭐ ⭐ ⭐</c:when>
+										</c:choose>	
+									</div>
+									<div class="col-sm-6 review_email" style="text-align: right;">
+										<span>
+										${fn:substring(review.review_date,0,4)} -
+										${fn:substring(review.review_date,4,6)} -
+										${fn:substring(review.review_date,6,8)}</span>
+									</div>
+								</div>
+	
+								<div class="review_email">
+									<span>${review.email}</span> - <span>${review.ro_name}</span>
 								</div>
 							</div>
-
-							<div>
-								<span>LasBe@naver.com</span> - <span>스텐다드 더블</span>
+							
+							<div class="review_content mt-1">
+								<span>${review.content}</span>
 							</div>
 						</div>
-						
-						<div style="color:#5f5f5f; font-size: 16px;">
-							<span>정말 잘 쉬다 갑니다~~</span>
-						</div>
-					</div>
-					<hr style="border: 1px solid #dadada; margin:0 40px 0 40px; ">
-					<!-- 리뷰 끝 -->
+						<hr style="border: 1px solid #dadada; margin:0 40px 0 40px; ">
+						<!-- 리뷰 끝 -->
+					</c:forEach>
 				</div>
 			</div>
 			<!-- 리뷰 끝 -->

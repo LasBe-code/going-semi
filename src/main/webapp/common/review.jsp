@@ -52,10 +52,12 @@
 </head>
 <body>
 <div class="mt-3" style="margin:0 auto; text-align: center; width:400px; height:440px;">
-	<form name="myform" id="myform" method="post" action="${pageContext.request.contextPath}/member/reviewPro">
+	<form name="myform" id="myform" method="post" action="${pageContext.request.contextPath}/reservation/reviewPro">
+		<input type="hidden" name="bo_num" value="${booking.bo_num}">
+		
 		<div>
-			<span class="large_text">고잉 호텔</span> <br>
-			<span class="medium_text">스텐다드 더블</span> <br>
+			<span class="large_text">${booking.bu_title}</span> <br>
+			<span class="medium_text">${booking.ro_name}</span> <br>
 		</div>
 	
 		<fieldset>
@@ -72,7 +74,7 @@
 		</fieldset>
 		 
 		<textarea class="small_text" name="content" style="width:100%; height: 200px; border-color: #dadada; padding: 10px 10px 10px 10px" placeholder="리뷰를 작성해주세요."></textarea>
-		<input class="default_btn" type="submit" >
+		<input class="default_btn" type="submit">
 	</form>
 </div>
 </body>

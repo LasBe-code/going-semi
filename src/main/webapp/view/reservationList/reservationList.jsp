@@ -31,8 +31,15 @@
 				+ bo_num
 		const op = 'width=450, height=500, location=no, toolbar=no'
 
-		open(url, '예약정보', op)
+		popup=open(url, '리뷰 작성', op)
+		
+		popup.addEventListener('beforeunload', function() {
+			  	setTimeout(() => {
+					window.location.reload();
+			  	}, 1000)
+			});
 	}
+	
 </script>
 
 </head>
@@ -73,7 +80,7 @@
 							<c:if test="${booking.status == 1}">
 								<div class="reserveMember_room">
 									<p class="reserveMember_pic_view">
-										<img src="${picMap[booking.ro_num]}" class="reserveMember_pic rounded">
+										<img src="${booking.location}" class="reserveMember_pic rounded">
 									</p>
 									<span class="reserveMember_room_title">${booking.bu_title}</span>
 									<span class="reserveMember_room_name">${booking.ro_name}</span>
@@ -111,7 +118,7 @@
 							<c:if test="${booking.status == 2}">
 								<div class="reserveMember_room">
 									<p class="reserveMember_pic_view">
-										<img src="${picMap[booking.ro_num]}" class="reserveMember_pic rounded">
+										<img src="${booking.location}" class="reserveMember_pic rounded">
 									</p>
 									<span class="reserveMember_room_title">${booking.bu_title}</span>
 									<span class="reserveMember_room_name">${booking.ro_name}</span>
@@ -144,7 +151,7 @@
 							<c:if test="${booking.status == 3}">
 								<div class="reserveMember_room">
 									<p class="reserveMember_pic_view">
-										<img src="${picMap[booking.ro_num]}" class="reserveMember_pic rounded">
+										<img src="${booking.location}" class="reserveMember_pic rounded">
 									</p>
 									<span class="reserveMember_room_title">${booking.bu_title}</span>
 									<span class="reserveMember_room_name">${booking.ro_name}</span>
@@ -167,7 +174,19 @@
 											<button type="button" class="reserveMember_room_btn default_btn medium_text rounded" onclick="bookingDetail(${booking.bo_num})">예약 정보</button>
 										</div>
 										<div class="col-sm-6 center_box">
-											<button type="button" onclick="review('${booking.bo_num}')" class="reserveMember_room_btn default_btn medium_text rounded">후기 작성</button>
+											<c:choose>
+												<c:when test="${booking.revNum != 0}">
+													<button type="button"
+														class="reserveMember_room_btn default_btn medium_text rounded" disabled>
+														후기 작성 완료</button>
+												</c:when>
+												
+												<c:otherwise>
+													<button type="button" onclick="review('${booking.bo_num}')" 
+														class="reserveMember_room_btn default_btn medium_text rounded">
+														후기 작성</button>
+												</c:otherwise>
+											</c:choose>
 										</div>
 									</div>
 								</div>

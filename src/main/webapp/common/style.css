@@ -279,6 +279,47 @@
 	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 	padding-bottom: 10px;
 }
+
+.bu_review_box{
+	margin-left: 6px;
+}
+.bu_review_star{
+	font-size: 1.3em; /* 이모지 크기 */
+	color: transparent; /* 기존 이모지 컬러 제거 */
+	text-shadow: 0 0 0 #ffc107; /* 새 이모지 색상 부여 */
+}
+.bu_review_avg{
+	font-size:23px;
+	font-weight:bold;
+	color: black;
+}
+.bu_review_avg_sub{
+	font-size:16px;
+	color: rgba(19, 19, 19, 0.56);
+	margin-right: 30px;
+}
+.bu_review_count{
+	font-size:16px;
+	color: rgba(19, 19, 19, 0.56);
+}
+.review_star{
+	font-size: 1em; /* 이모지 크기 */
+	color: transparent; /* 기존 이모지 컬러 제거 */
+	text-shadow: 0 0 0 #ffc107; /* 새 이모지 색상 부여 */
+}
+
+.review_email {
+	letter-spacing:1px;
+	font-size:13px;
+	font-weight:400;
+	color: #919191;
+}
+.review_content{
+	font-size:15px;
+	font-weight:600;
+	color: #616161;
+}
+
 /* 장성우 끝 */
 
 /* 조성필 inquiry css */
