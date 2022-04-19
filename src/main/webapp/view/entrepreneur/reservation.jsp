@@ -19,7 +19,7 @@
 </head>
 <body>
 <div class="container" style="margin-top:100px">
-  <nav class="navbar navbar-expand-sm bg-light navbar-light" style="width: 60%; margin:0px auto;">
+<nav class="navbar navbar-expand-sm bg-light navbar-light" style="width: 60%; margin:0px auto;">
   	<div style="margin: 0px auto;">
 	  <ul class="navbar-nav">
 	  	<li class="nav-item">
@@ -34,11 +34,30 @@
 	    <li class="nav-item">
 	      <a class="nav-link" href="${pageContext.request.contextPath}/room/sales">매출</a>
 	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/todayCheckin">체크인</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/map">지도</a>
+	    </li>
 	  </ul>
 	  </div>
 </nav>
 <div class="container" style="margin-top: 50px;">
   <h2 style="text-align: center;">예약 내역</h2>
+<div style="margin-bottom: 100px;">
+<form style=" margin:30px 0px auto; float: right;">
+  <select name="searchName" id="searchName">
+  	<option value="ro_name" ${searchName == 'ro_name' ? 'selected' : '' }>방이름</option>
+  	<option value="name" ${searchName == 'name' ? 'selected' : '' }>예약자이름</option>
+  	<option value="checkin" ${searchName == 'checkin' ? 'selected' : '' }>체크인</option>
+  	<option value="checkout" ${searchName == 'checkout' ? 'selected' : '' }>체크아웃</option>
+  	<option value="status" ${searchName == 'status' ? 'selected' : '' } >예약상태</option>
+  </select>
+  <input type="text" id="search" name="search" ${searchName == 'status' ? 'placeholder ="예약완료, 결제취소, 이용완료 , 입실완료 입력하세요"' : '' } style="width:450px;">
+  <input type="submit" value="검색">
+</form>
+</div>
   <table class="table table-hover" style="margin-top: 30px; text-align: center;">
     <thead>
       <tr>
@@ -74,6 +93,7 @@
     </tbody>
   </table>
 </div>
+
 <div class="container"  >
 <ul class="pagination justify-content-center"  >
 	<li class='page-item <c:if test="${startNum <= bottomLine}">disabled </c:if>'>
@@ -86,17 +106,22 @@
 	<a class="page-link" href="${pageContext.request.contextPath}/room/reservation?pageNum=${startPage+bottomLine}&searchName=${searchName}&search=${search}">Next</a></li>
 </ul>
 </div>
-<form style=" margin:30px 0px auto; float: right;">
-  <select name="searchName" id="searchName">
-  	<option value="ro_name" ${searchName == 'ro_name' ? 'selected' : '' }>방이름</option>
-  	<option value="name" ${searchName == 'name' ? 'selected' : '' }>예약자이름</option>
-  	<option value="checkin" ${searchName == 'checkin' ? 'selected' : '' }>체크인</option>
-  	<option value="checkout" ${searchName == 'checkout' ? 'selected' : '' }>체크아웃</option>
-  	<option value="status" ${searchName == 'status' ? 'selected' : '' }>예약상태</option>
-  </select>
-  <input type="text" name="search"  ${searchName == 'status' ? 'placeholder="예약완료, 결제취소, 이용완료 세개중 하나를 입력하세요."' : '' }  style="width:450px;">
-  <input type="submit" value="검색">
-</form>
+<script type="text/javascript">
+$(document).ready(function(){
+	var inputTag = document.querySelector('#search');  // id가 search인 태그를 선택
+    $('#searchName').change(function(){
+        var searchName = $('#searchName').val(); //id가 searchName인 select box의 값 추출하여 저장
+        if(searchName == 'status'){ 	// searchName의 값이 status면 
+        								// inputTag의 placeholder값을 변경
+            inputTag.placeholder = "예약완료, 결제취소, 이용완료 , 입실완료 입력하세요";
+        }
+        else{
+        	// searchName의 값이 status가 아니면 공백으로 변경
+        	inputTag.placeholder = "";
+        }
+    });
+});
+</script>
 </div>
 </body>
 </html>

@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import model.Booking;
 import model.Business;
 import model.Picture;
+import model.Reserved;
 import model.Room;
 import mybatis.RoomMapperAnno;
 import util.MybatisConnection;
@@ -449,6 +450,129 @@ public class RoomDao {
 			
 			int countBoardSearchName = sqlSession.getMapper(RoomMapperAnno.class).countBoardSearchName(map);
 			return countBoardSearchName;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return 0;
+	}
+
+	public List<Business> addressList(Map<String, Object> map) {
+
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		
+		try {
+			
+			List<Business> addressList = sqlSession.getMapper(RoomMapperAnno.class).addressList(map);
+			return addressList;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		return null;
+	}
+
+	public List<Booking> selectNotCheckin(Map<String, Object> map) {
+
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		
+		try {
+			
+			List<Booking> selectNotCheckin = sqlSession.getMapper(RoomMapperAnno.class).selectNotCheckin(map);
+			return selectNotCheckin;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		return null;
+	}
+
+	public List<Booking> selectcheckinOk(Map<String, Object> map) {
+		
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		
+		try {
+			
+			List<Booking> selectcheckinOk = sqlSession.getMapper(RoomMapperAnno.class).selectcheckinOk(map);
+			return selectcheckinOk;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		return null;
+	}
+
+	public int updateTodayCheckin(Map<String, Object> map) {
+
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		
+		try {
+			
+			int updateTodayCheckin = sqlSession.getMapper(RoomMapperAnno.class).updateTodayCheckin(map);
+			return updateTodayCheckin;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		
+		return 0;
+	}
+
+	public List<Booking> selectNotCheckOut(Map<String, Object> map) {
+
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		
+		try {
+			
+			List<Booking> selectNotCheckOut = sqlSession.getMapper(RoomMapperAnno.class).selectNotCheckOut(map);
+			return selectNotCheckOut;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		return null;
+	}
+
+	public List<Booking> selectcheckOutOk(Map<String, Object> map) {
+
+
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		
+		try {
+			
+			List<Booking> selectcheckOutOk = sqlSession.getMapper(RoomMapperAnno.class).selectcheckOutOk(map);
+			return selectcheckOutOk;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(sqlSession);
+		}
+		return null;
+	}
+
+	public int updateAndDeleteTodayCheckOut(Map<String, Object> map) {
+
+
+		SqlSession sqlSession = MybatisConnection.getConnection();
+		
+		try {
+//			List<Reserved> list = sqlSession.getMapper(RoomMapperAnno.class).reservedList(map);
+			int updateTodayCheckOut = sqlSession.getMapper(RoomMapperAnno.class).updateTodayCheckOut(map);
+			return updateTodayCheckOut;
 			
 		} catch (Exception e) {
 			e.printStackTrace();

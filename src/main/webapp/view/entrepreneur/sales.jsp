@@ -48,27 +48,30 @@
       }
     </script>
 <div class="container" style="margin-top:100px">
-	<nav class="navbar navbar-expand-sm bg-light navbar-light" style="width: 60%; margin:0px auto;">
-		<div style="margin: 0px auto;">
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/room/roomInsert">객실 등록</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/room/roomlist">객실 정보</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/room/reservation">예약 확인</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/room/sales">매출</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/room/areaSales">지역별매출</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
+<nav class="navbar navbar-expand-sm bg-light navbar-light" style="width: 60%; margin:0px auto;">
+  	<div style="margin: 0px auto;">
+	  <ul class="navbar-nav">
+	  	<li class="nav-item">
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/roomInsert">객실 등록</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/roomlist">객실 정보</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/reservation">예약 확인</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/sales">매출</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/todayCheckin">체크인</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="${pageContext.request.contextPath}/room/map">지도</a>
+	    </li>
+	  </ul>
+	  </div>
+</nav>
 </div>
 <div id="ColumnChart" style="width: 1200px; height: 600px; margin: 0px auto; margin-top: 100px;"></div>
 </body>

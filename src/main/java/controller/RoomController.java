@@ -6,9 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -16,16 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-
 import com.oreilly.servlet.MultipartRequest;
 
 import model.Booking;
 import model.Business;
-import model.Member;
 import model.Picture;
 import model.Room;
 import service.RoomDao;
+import util.DateParse;
 
 public class RoomController extends MskimRequestMapping{
 
@@ -387,8 +383,11 @@ public class RoomController extends MskimRequestMapping{
 			else if("이용완료".equals(search)) {
 				map.put("status", "3");
 			}
+			else if("입실완료".equals(search)) {
+				map.put("status", "4");
+			}
 			else {
-				String msg = "예약완료, 결제취소, 이용완료 세개중 하나를 입력하세요.";
+				String msg = "예약완료, 결제취소, 이용완료 , 입실완료중 하나를 입력하세요.";
 				String url = request.getContextPath()+"/room/reservation";
 				request.setAttribute("msg", msg);
 				request.setAttribute("url", url);
@@ -414,7 +413,7 @@ public class RoomController extends MskimRequestMapping{
 		int endNum = startNum + bottomLine - 1;
 		
 		int maxNum = (count / limit) + (count % limit == 0 ? 0 : 1);
-		if(endNum > maxNum){
+		if(endNum >= maxNum){
 			endNum = maxNum;
 		}
 		
@@ -502,4 +501,168 @@ public class RoomController extends MskimRequestMapping{
 		return "/view/entrepreneur/areaSales.jsp";
 	}
 	
+	
+	@RequestMapping("map")
+	public String map(HttpServletRequest request, HttpServletResponse response) {
+		
+		DateParse dp = new DateParse();
+		
+		List<Business> addressList = new ArrayList<Business>();
+		RoomDao rd = new RoomDao();
+		String bu_id = request.getParameter("bu_id");
+		String ro_count = request.getParameter("ro_count");
+		String checkin = request.getParameter("checkin");
+		String checkout = request.getParameter("checkout");
+		String bu_address = request.getParameter("bu_address");
+		
+				
+		map.clear();
+		if(bu_address == null  || bu_id == null || checkin == null ||  checkout == null) {
+			bu_address = "서울";
+			bu_id = "1";
+			checkin = dp.strToDate(dp.getTodayPlus(0));
+			checkout = dp.strToDate(dp.getTodayPlus(1));
+		}
+		map.put("bu_address", bu_address);
+		map.put("bu_id", bu_id);
+		
+		String resultAddress = "[";
+		String roomTitle = "[";
+		String roomPic = "[";
+		String bu_email = "[";
+		addressList = rd.addressList(map);
+		for(int i = 0 ; i < addressList.size(); i++) {
+			if(i == addressList.size()-1) {
+				resultAddress += "'"+addressList.get(i).getBu_address().trim()+"'";
+				roomTitle += "'"+addressList.get(i).getBu_title().trim()+"'";
+				roomPic += "'"+addressList.get(i).getLocation().trim()+"'";
+				bu_email += "'"+addressList.get(i).getBu_email().trim()+"'";
+			}
+			else {
+				resultAddress += "'"+addressList.get(i).getBu_address().trim()+"', ";
+				roomTitle += "'"+addressList.get(i).getBu_title().trim()+"', ";
+				roomPic += "'"+addressList.get(i).getLocation().trim()+"', ";
+				bu_email += "'"+addressList.get(i).getBu_email().trim()+"', ";
+			}
+		}
+		resultAddress += "]";
+		roomTitle += "]";
+		roomPic += "]";
+		bu_email += "]";
+		
+		
+		request.setAttribute("resultAddress", resultAddress);
+		request.setAttribute("roomTitle", roomTitle);
+		request.setAttribute("roomPic", roomPic);
+		request.setAttribute("bu_email", bu_email);
+		request.setAttribute("bu_id", bu_id);
+		request.setAttribute("ro_count", ro_count);
+		request.setAttribute("checkin", checkin);
+		request.setAttribute("checkout", checkout);
+		request.setAttribute("bu_address", bu_address);
+		return "/view/entrepreneur/map.jsp";
+	}
+	
+	
+	@RequestMapping("todayCheckin")
+	public String todayCheckin(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		  
+		String bu_email =(String)session.getAttribute("bu_email");
+		RoomDao rd = new RoomDao();
+		DateParse dp = new DateParse();
+		String checkin = dp.getTodayPlus(0);
+		
+		map.clear();
+		map.put("bu_email", bu_email);
+		map.put("checkin", checkin);
+		
+		List<Booking> notCheckin = rd.selectNotCheckin(map);
+		List<Booking> checkinOk = rd.selectcheckinOk(map);
+		
+		
+		
+		request.setAttribute("notCheckin", notCheckin);
+		request.setAttribute("checkinOk", checkinOk);
+		
+		return "/view/entrepreneur/todayCheckin.jsp";
+	}
+	
+	
+	@RequestMapping("updateTodayCheckin")
+	public String updateTodayCheckin(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		DateParse dp = new DateParse();
+		String checkin = dp.getTodayPlus(0);
+		String bu_email =(String)session.getAttribute("bu_email");
+		String bo_num = request.getParameter("bo_num");
+		System.out.println("bo_num"+bo_num);
+		
+		RoomDao rd = new RoomDao();
+		map.clear();
+		map.put("bu_email", bu_email);
+		map.put("bo_num", bo_num);
+		map.put("checkin", checkin);
+		
+		int rowCnt = rd.updateTodayCheckin(map);
+		
+		return "redirect:/room/todayCheckin";
+	}
+	
+	
+	@RequestMapping("todayCheckOut")
+	public String todayCheckOut(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		  
+		String bu_email =(String)session.getAttribute("bu_email");
+		RoomDao rd = new RoomDao();
+		DateParse dp = new DateParse();
+		String checkout = dp.getTodayPlus(0);
+		
+		map.clear();
+		map.put("bu_email", bu_email);
+		map.put("checkout", checkout);
+		
+		List<Booking> notCheckOut = rd.selectNotCheckOut(map);
+		List<Booking> checkOutOk = rd.selectcheckOutOk(map);
+		
+		
+		System.out.println("checkout = "+checkout);
+		System.out.println("bu_email = "+bu_email);
+		System.out.println("notCheckOut = "+notCheckOut);
+		System.out.println("checkOutOk = "+checkOutOk);
+		
+		request.setAttribute("notCheckOut", notCheckOut);
+		request.setAttribute("checkOutOk", checkOutOk);
+		
+		return "/view/entrepreneur/todayCheckOut.jsp";
+	}
+	
+	
+	@RequestMapping("updateTodayCheckOut")
+	public String updateTodayCheckOut(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		
+		DateParse dp = new DateParse(); 
+		String bu_email =(String)session.getAttribute("bu_email");
+		String bo_num = request.getParameter("bo_num");
+		String checkout = dp.getTodayPlus(0);
+		System.out.println("bo_num"+bo_num);
+		
+		RoomDao rd = new RoomDao();
+		map.clear();
+		map.put("bu_email", bu_email);
+		map.put("bo_num", bo_num);
+		map.put("checkout", checkout);
+		
+//		int rowCnt = rd.updateAndDeleteTodayCheckOut(map);
+		
+		
+		
+		return "redirect:/room/todayCheckOut";
+	}
 }

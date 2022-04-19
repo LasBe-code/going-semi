@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 import model.Booking;
 import model.Business;
 import model.Picture;
+import model.Reserved;
 import model.Room;
 
 public interface RoomMapperAnno {
@@ -139,5 +140,48 @@ public interface RoomMapperAnno {
 			+ "where bu.bu_title = bo.bu_title and bu.bu_address like #{area}||'%' and bo.checkin like '____'||#{month}||'%' ")
 	Booking selectAreaSales(Map<String, Object> map);
 
+//	사업자의 주소를 가져와 지도로 출력
+	@Select("select * from (select location, bu_address, bu_title, bu_email, "
+			+ "	ROW_NUMBER() OVER (PARTITION BY pic_num order by pic_num) AS NUM "
+			+ "	FROM (select bu.bu_address, bu.bu_id, bu.bu_title, p.location, p.pic_num,bu.bu_email from  business bu , "
+			+ "	picture p where  bu.pic_num = p.pic_num and bu.bu_id = #{bu_id} and bu.bu_address like #{bu_address}||'%')) where num = 1")
+	List<Business> addressList(Map<String, Object> map);
+
 	
+// 오늘 체크인목록중 아직 입실안한 방
+	@Select("select * from (select b.bo_num, m.name, m.tel, b.ro_name, b.checkin, b.checkout,  r.ro_count, b.status from member m, room r, booking b "
+			+ "	where r.bu_email = #{bu_email} and r.ro_name = b.ro_name and m.email = b.email and b.status = 1) where checkin = #{checkin} ")
+	List<Booking> selectNotCheckin(Map<String, Object> map);
+
+	
+//	 오늘 체크인목록중 입실 완료한 방
+	@Select("select * from (select b.bo_num, m.name, m.tel, b.ro_name, b.checkin, b.checkout,  r.ro_count, b.status from member m, room r, booking b "
+			+ "	where r.bu_email = #{bu_email} and r.ro_name = b.ro_name and m.email = b.email and b.status = 4) where checkin = #{checkin}")
+	List<Booking> selectcheckinOk(Map<String, Object> map);
+
+//	오늘 체크인목록중 체크인 한사람 예약상태 입실완료로 바꾸기
+	@Update("update (select status from booking bo, business bu "
+			+ " where bo.bu_title = bu.bu_title and bu.bu_email = #{bu_email} and bo_num = #{bo_num} and checkin = #{checkin}) b set b.status = 4")
+	int updateTodayCheckin(Map<String, Object> map);
+
+//	오늘이후에 체크아웃하는 방 목록중 퇴실안한 방
+	@Select("select * from (select b.bo_num, m.name, m.tel, b.ro_name, b.checkin, b.checkout,  r.ro_count, b.status from member m, room r, booking b "
+			+ "	where r.bu_email = #{bu_email} and r.ro_name = b.ro_name and m.email = b.email and b.status = 4) where checkout >= #{checkout} order by checkout")
+	List<Booking> selectNotCheckOut(Map<String, Object> map);
+
+//	오늘 체크아웃 목록중 퇴실 완료한 방
+	@Select("select * from (select b.bo_num, m.name, m.tel, b.ro_name, b.checkin, b.checkout,  r.ro_count, b.status from member m, room r, booking b "
+			+ "	where r.bu_email = #{bu_email} and r.ro_name = b.ro_name and m.email = b.email and b.status = 3) where checkout = #{checkout} order by checkout")
+	List<Booking> selectcheckOutOk(Map<String, Object> map);
+
+//	오늘 체크아웃하는 방 예약상태 이용완료로바꾸기
+	@Update("update (select * from booking bo, business bu where bo.bu_title = bu.bu_title and "
+			+ " bu.bu_email = #{bu_email} and status = 4 and checkout >= #{checkout} and bo_num = #{bo_num}) set status = 3")
+	int updateTodayCheckOut(Map<String, Object> map);
+
+//	체크아웃을 원래 예약보다 일찍한 고객의 reserved테이블의 예약내역가져오기
+	@Select("")
+	List<Reserved> reservedList(Map<String, Object> map);
+
+
 }

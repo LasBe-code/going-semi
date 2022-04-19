@@ -5,6 +5,7 @@ public class Business {
 	private String bu_id;
 	private String bu_title;
 	private int pic_num;
+	private String location;
 	
 	private String minPrice, picLocation;
 	
@@ -117,13 +118,24 @@ public class Business {
 	public void setPicLocation(String picLocation) {
 		this.picLocation = picLocation;
 	}
+	
+	
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
 
 	@Override
 	public String toString() {
-		return "{\"bu_email\":\"" + bu_email + "\", \"bu_password\":\"" + bu_password + "\", \"bu_tel\":\"" + bu_tel
-				+ "\", \"bu_name\":\"" + bu_name + "\", \"bu_address\":\"" + bu_address + "\", \"bu_id\":\"" + bu_id
-				+ "\", \"bu_title\":\"" + bu_title + "\", \"pic_num\":\"" + pic_num + "\", \"minPrice\":\"" + minPrice
-				+ "\", \"picLocation\":\"" + picLocation + "\"}";
+		return "Business [bu_email=" + bu_email + ", bu_password=" + bu_password + ", bu_tel=" + bu_tel + ", bu_name="
+				+ bu_name + ", bu_address=" + bu_address + ", bu_id=" + bu_id + ", bu_title=" + bu_title + ", pic_num="
+				+ pic_num + ", location=" + location + ", minPrice=" + minPrice + ", picLocation=" + picLocation + "]";
 	}
+
+	
 
 }
