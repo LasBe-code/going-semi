@@ -2,8 +2,6 @@
 
 생성일: 2022년 3월 13일 오전 1:54
 
-![Untitled](GOING%20-%20Mo%202860c/Untitled.png)
-
 # GOING - 숙박플랫폼 model2 프로젝트
 
 ## 목차
